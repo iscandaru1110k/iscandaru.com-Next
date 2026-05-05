@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { calculateDateDiff, toDate } from "@/features/labo/utils/date";
 import { DateInputField } from "./DateInputField";
-import { DateParts } from "../types/date";
+import { DateParts } from "../../types/date";
 import { DateDiffResult } from "./DateDiffResult";
+import {
+  toDate,
+  calculateDateDiff,
+} from "@/features/labo/date-diff/utils/date";
 
 const EMPTY_DATE_PARTS: DateParts = {
   year: "",
@@ -26,15 +29,12 @@ export const DateDiffCalculator = () => {
     !!endDate.year &&
     !!endDate.month &&
     !!endDate.day;
-  const hasInvalidDate =
-    isInputComplete &&
-    (!startDateObj || !endDateObj);
+  const hasInvalidDate = isInputComplete && (!startDateObj || !endDateObj);
 
   const diff =
     startDateObj && endDateObj
       ? calculateDateDiff(startDateObj, endDateObj)
       : null;
-
 
   return (
     <section className="mx-auto w-full max-w-xl rounded-2xl border-2 border-blue-900/80 bg-slate-50 p-5 shadow-md sm:p-6">
@@ -48,7 +48,11 @@ export const DateDiffCalculator = () => {
       </div>
 
       <div className="space-y-4">
-        <DateInputField label="開始日" value={startDate} onChange={setStartDate} />
+        <DateInputField
+          label="開始日"
+          value={startDate}
+          onChange={setStartDate}
+        />
         <DateInputField label="終了日" value={endDate} onChange={setEndDate} />
       </div>
 

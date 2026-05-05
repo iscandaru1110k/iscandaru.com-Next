@@ -5,8 +5,8 @@ import {
   getMonthOptions,
   normalizeYearInput,
   isYearInRange,
-} from "@/features/labo/utils/date";
-import { DateParts } from "../types/date";
+} from "@/features/labo/date-diff/utils/date";
+import { DateParts } from "../../types/date";
 
 type DateInputFieldProps = {
   label: string;
@@ -17,7 +17,11 @@ type DateInputFieldProps = {
 const MIN_YEAR = 1;
 const MAX_YEAR = 9999;
 
-export const DateInputField = ({ label, value, onChange }: DateInputFieldProps) => {
+export const DateInputField = ({
+  label,
+  value,
+  onChange,
+}: DateInputFieldProps) => {
   const months = getMonthOptions();
   const days = getDayOptions(value.year, value.month);
   const isInvalidYear =

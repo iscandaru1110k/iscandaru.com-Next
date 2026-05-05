@@ -1,5 +1,5 @@
-import { MILLISECONDS_PER_DAY } from "../constants/time";
-import { DateParts } from "../types/date";
+import { DateParts } from "@/features/labo/types/date";
+import { MILLISECONDS_PER_DAY } from "@/features/labo/constants/time";
 
 /**
  * 二つの日付から差分の日数を計算する

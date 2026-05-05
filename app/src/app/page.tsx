@@ -1,9 +1,13 @@
-import { DateDiffCalculator } from "@/features/labo/components/DateDiffCalculator";
+import Link from "next/link";
 
-export default function LaboPage() {
+export default function Home() {
   return (
-    <div className="p-6">
-      <DateDiffCalculator />
-    </div>
+    <main className="p-4">
+      <h1 className="text-xl font-bold mb-4">Home</h1>
+
+      <Link href="/labo" className="text-blue-600 underline">
+        LABOへ
+      </Link>
+    </main>
   );
 }

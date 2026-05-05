@@ -6,7 +6,7 @@ import {
   isValidDate,
   toDate,
 } from "./date";
-import { DateParts } from "../types/date";
+import { DateParts } from "@/features/labo/types/date";
 
 describe("calculateDateDiff", () => {
   it("returns 0 for the same date", () => {
