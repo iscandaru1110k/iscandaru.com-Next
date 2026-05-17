@@ -1,9 +1,10 @@
 import { DateDiffCalculator } from "@/features/labo/date-diff/components/DateDiffCalculator";
+import styles from "./DateDiffPage.module.css";
 
 export default function Page() {
   return (
-    <main className="p-4">
-      <h1 className="text-xl font-bold mb-4">日数計算</h1>
+    <main className={styles.page}>
+      <h1 className={styles.title}>日数計算</h1>
       <DateDiffCalculator />
     </main>
   );

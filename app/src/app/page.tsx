@@ -1,11 +1,12 @@
 import Link from "next/link";
+import styles from "./HomePage.module.css";
 
 export default function Home() {
   return (
-    <main className="p-4">
-      <h1 className="text-xl font-bold mb-4">Home</h1>
+    <main className={styles.page}>
+      <h1 className={styles.title}>Home</h1>
 
-      <Link href="/labo" className="text-blue-600 underline">
+      <Link href="/labo" className={styles.link}>
         LABOへ
       </Link>
     </main>

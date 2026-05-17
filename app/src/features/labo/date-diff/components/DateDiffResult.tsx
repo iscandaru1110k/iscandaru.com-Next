@@ -1,5 +1,7 @@
 "use client";
 
+import styles from "./DateDiffCalculator.module.css";
+
 type DateDiffResultProps = {
   diff: number | null;
   isInputComplete: boolean;
@@ -22,9 +24,9 @@ export const DateDiffResult = ({
   }
 
   return (
-    <div className="mt-5 rounded-xl border-2 border-sky-300 bg-white px-4 py-3 text-center shadow-sm">
-      <p className="text-sm text-slate-600">{message}</p>
-      <p className="mt-1 text-2xl font-semibold tracking-wide text-blue-900">{valueText}</p>
+    <div className={styles.result}>
+      <p className={styles.resultMessage}>{message}</p>
+      <p className={styles.resultValue}>{valueText}</p>
     </div>
   );
 };

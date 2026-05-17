@@ -1,0 +1,42 @@
+.page {
+  width: min(90%, 56rem);
+  margin: 3rem auto;
+}
+
+.title {
+  margin: 0 0 1.5rem 0.625rem;
+  color: var(--color-primary);
+  font-size: 1.875rem;
+  font-weight: 700;
+  text-shadow: 1px 1px 3px var(--color-muted);
+}
+
+.list {
+  display: grid;
+  gap: 1.25rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.card {
+  padding: 1.25rem;
+  border: 5px solid var(--color-primary);
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background: var(--color-background);
+}
+
+.link {
+  color: var(--color-primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-shadow: 1px 1px 2px color-mix(in srgb, var(--color-primary-soft) 45%, transparent);
+}
+
+.description {
+  margin: 0.75rem 0 0;
+  color: var(--color-muted);
+  line-height: 1.7;
+}

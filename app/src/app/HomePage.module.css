@@ -1,0 +1,16 @@
+.page {
+  width: min(90%, 48rem);
+  margin: 3rem auto;
+}
+
+.title {
+  margin: 0 0 1.5rem;
+  color: var(--color-foreground);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.link {
+  color: var(--color-primary);
+  text-decoration: underline;
+}

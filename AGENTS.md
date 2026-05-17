@@ -223,6 +223,23 @@ Do not place feature-specific styling in globals.css.
 
 ---
 
+## Styling Rules
+
+- Tailwind CSS is not used.
+- Use CSS Modules for component/page styling.
+- Global design tokens are defined in src/app/globals.css.
+- Do not hardcode color values inside \*.module.css files.
+- Always reference colors via CSS variables defined in :root.
+- Prefer reusing existing color tokens before adding new ones.
+- Avoid introducing similar color tokens with slightly different hex values.
+- globals.css should contain only:
+  - reset/base styles
+  - typography base
+  - shared design tokens
+- Page-specific styles must stay inside CSS Modules.
+
+---
+
 ## Testing Policy
 
 Use Vitest.

@@ -1,23 +1,27 @@
 import Link from "next/link";
+import styles from "./LaboPage.module.css";
 
 export default function LaboPage() {
   return (
-    <main className="p-4">
-      <h1 className="text-xl font-bold mb-4">LABO</h1>
+    <main className={styles.page}>
+      <h1 className={styles.title}>LABO</h1>
 
-      <ul className="space-y-2">
-        <li className="rounded-lg border border-slate-200 p-4">
-          <Link href="/labo/birthday" className="text-blue-600 underline">
+      <ul className={styles.list}>
+        <li className={styles.card}>
+          <Link href="/labo/birthday" className={styles.link}>
             誕生日計算
           </Link>
-          <p>
+          <p className={styles.description}>
             生年月日から年齢・生存日数・次の誕生日までの日数を計算します。
           </p>
         </li>
-        <li>
-          <Link href="/labo/date-diff" className="text-blue-600 underline">
+        <li className={styles.card}>
+          <Link href="/labo/date-diff" className={styles.link}>
             日数計算
           </Link>
+          <p className={styles.description}>
+            2つの日付から日数の差分を計算します。
+          </p>
         </li>
       </ul>
     </main>

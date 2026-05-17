@@ -7,6 +7,7 @@ import {
   isYearInRange,
 } from "@/features/labo/date-diff/utils/date";
 import { DateParts } from "../../types/date";
+import styles from "./DateDiffCalculator.module.css";
 
 type DateInputFieldProps = {
   label: string;
@@ -28,17 +29,17 @@ export const DateInputField = ({
     value.year !== "" && !isYearInRange(value.year, MIN_YEAR, MAX_YEAR);
 
   return (
-    <div className="flex flex-col gap-2 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-      <label className="text-sm font-medium text-slate-700">
+    <div className={styles.inputGroup}>
+      <label className={styles.label}>
         {label}
-        <span className="ml-4 text-xs text-slate-500">西暦/月/日</span>
+        <span className={styles.hint}>西暦/月/日</span>
       </label>
       {isInvalidYear && (
-        <p className="text-xs text-red-600">
+        <p className={styles.error}>
           年は{MIN_YEAR}年〜{MAX_YEAR}年の範囲で入力してください
         </p>
       )}
-      <div className="grid grid-cols-3 gap-2">
+      <div className={styles.dateGrid}>
         <input
           aria-label={`${label}の年`}
           type="text"
@@ -50,14 +51,14 @@ export const DateInputField = ({
             const year = normalizeYearInput(e.target.value);
             onChange({ ...value, year });
           }}
-          className="rounded-lg border border-slate-300 bg-white px-2 py-2 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+          className={styles.field}
         />
 
         <select
           aria-label={`${label}の月`}
           value={value.month}
           onChange={(e) => onChange({ ...value, month: e.target.value })}
-          className="rounded-lg border border-slate-300 bg-white px-2 py-2 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+          className={styles.field}
         >
           <option value="">月</option>
           {months.map((month) => (
@@ -71,7 +72,7 @@ export const DateInputField = ({
           aria-label={`${label}の日`}
           value={value.day}
           onChange={(e) => onChange({ ...value, day: e.target.value })}
-          className="rounded-lg border border-slate-300 bg-white px-2 py-2 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+          className={styles.field}
         >
           <option value="">日</option>
           {days.map((day) => (

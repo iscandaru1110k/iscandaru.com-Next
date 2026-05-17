@@ -8,6 +8,7 @@ import {
   toDate,
   calculateDateDiff,
 } from "@/features/labo/date-diff/utils/date";
+import styles from "./DateDiffCalculator.module.css";
 
 const EMPTY_DATE_PARTS: DateParts = {
   year: "",
@@ -37,17 +38,13 @@ export const DateDiffCalculator = () => {
       : null;
 
   return (
-    <section className="mx-auto w-full max-w-xl rounded-2xl border-2 border-blue-900/80 bg-slate-50 p-5 shadow-md sm:p-6">
-      <div className="mb-5 border-b border-slate-200 pb-3">
-        <h2 className="text-2xl font-bold tracking-wide text-blue-900 drop-shadow-sm">
-          日付差分計算
-        </h2>
-        <p className="mt-1 text-right text-sm text-slate-500">
-          日数の計算、お任せください。
-        </p>
+    <section className={styles.calculator}>
+      <div className={styles.header}>
+        <h2>日付差分計算</h2>
+        <p>日数の計算、お任せください。</p>
       </div>
 
-      <div className="space-y-4">
+      <div className={styles.fields}>
         <DateInputField
           label="開始日"
           value={startDate}
