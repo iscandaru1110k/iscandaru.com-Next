@@ -332,3 +332,30 @@ When acting as an AI coding assistant:
 - Do not replace simple code with complex abstractions
 - Avoid unnecessary dependency additions
 - Keep changes understandable and incremental
+
+---
+
+## Development Rules for Codex
+
+- Use Next.js App Router, TypeScript, and CSS Modules.
+- Do not use Tailwind CSS.
+- Do not edit the legacy reference app directory:
+  /Users/iscandaru/Desktop/WebSite/iscandaru_com_origin
+- Keep diffs minimal.
+- Avoid unrelated refactoring.
+- Do not introduce new architecture.
+- src/app is responsible for routing.
+- src/features is responsible for feature-specific logic and UI.
+- Shared layout components should be placed under src/components.
+- Do not write feature-specific styles in globals.css.
+- Use CSS variables from globals.css for colors.
+- Do not use raw color codes in CSS Modules.
+- Do not break existing routes:
+  - /
+  - /labo
+  - /labo/date-diff
+  - /labo/birthday
+- Run the following checks before finalizing changes:
+  - pnpm lint
+  - pnpm typecheck
+  - pnpm test:run
