@@ -1,23 +1,43 @@
+import Image from "next/image";
 import Link from "next/link";
 import styles from "./Header.module.css";
 
 export function Header() {
   return (
     <header className={styles.header}>
-      <div className={styles.inner}>
-        <Link href="/" className={styles.brand}>
-          iscandaru.com
+      <div className={styles.brandImages}>
+        <Link href="/" className={styles.brandLink} aria-label="Home">
+          <Image
+            src="/images/logo_circle3.png"
+            alt=""
+            width={60}
+            height={69}
+            className={styles.mark}
+            priority
+          />
+          <Image
+            src="/images/title.png"
+            alt="iscandaru.com"
+            width={230}
+            height={19}
+            className={styles.titleImage}
+            priority
+          />
         </Link>
-
-        <nav className={styles.nav} aria-label="Main navigation">
-          <Link href="/" className={styles.navLink}>
-            Home
-          </Link>
-          <Link href="/labo" className={styles.navLink}>
-            Labo
-          </Link>
-        </nav>
       </div>
+
+      <div className={styles.titleWrap}>
+        <p className={styles.siteTitle}>iscandaru.com</p>
+      </div>
+
+      <nav className={styles.nav} aria-label="Main navigation">
+        <Link href="/" className={styles.navLink}>
+          Home
+        </Link>
+        <Link href="/labo" className={styles.navLink}>
+          Labo
+        </Link>
+      </nav>
     </header>
   );
 }
