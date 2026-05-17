@@ -1,0 +1,45 @@
+.header {
+  border-bottom: 1px solid var(--color-border-muted);
+  background: var(--color-surface-muted);
+}
+
+.inner {
+  display: flex;
+  width: min(90%, 56rem);
+  margin: 0 auto;
+  padding: 1rem 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  color: var(--color-primary);
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.navLink {
+  color: var(--color-foreground);
+  text-decoration: none;
+}
+
+.navLink:hover,
+.navLink:focus-visible {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
