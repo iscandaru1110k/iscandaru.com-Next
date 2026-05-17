@@ -2,225 +2,316 @@
 
 ## Project Overview
 
-This is a personal rebuild project using Next.js App Router and TypeScript.
+This is a personal website rebuild project using:
 
-The previous app was built with Flask + HTML/CSS/JS, but this project rebuilds it from scratch.
+- Next.js App Router
+- TypeScript
+- CSS Modules
+- Vitest
 
-The goal is to keep the application simple, maintainable, and suitable for learning application design.
+The previous application was built with Flask + HTML/CSS/JS.
+
+This project rebuilds the application from scratch with a focus on:
+
+- maintainability
+- simple architecture
+- learning application design
+- feature-based structure
+
+Application root is:
+
+app/
+
+---
 
 ## Current Scope
 
-The initial scope is limited to the `labo` feature.
+Current scope is limited to small labo-style tools.
 
-Features:
+Implemented or planned features:
 
-- Birthday calculator
 - Date difference calculator
+- Birthday calculator
+
+---
 
 ## Out of Scope
 
-Do not implement the following in the initial phase:
+Do not introduce the following unless explicitly approved:
 
 - Database
 - Authentication
 - API routes
 - Docker
-- Complex state management
-- Global state management libraries
-- UI component libraries
+- Complex global state management
+- Redux / Zustand / MobX
 - Excessive abstraction
+- Premature optimization
+- Large UI frameworks
+
+Keep the project lightweight.
+
+---
 
 ## Development Principles
 
-- Keep the implementation simple.
+- Keep implementations simple.
 - Avoid over-engineering.
-- Use minimal external libraries.
-- Use `useState` for local component state.
-- Prefer readable code over clever code.
-- Build small pieces and verify them step by step.
-- Separate UI components from calculation logic.
-- Do not expand the scope without explicit approval.
+- Prefer readability over cleverness.
+- Build incrementally.
+- Verify changes step by step.
+- Keep diffs minimal.
+- Avoid unrelated refactoring.
+- Do not expand scope without approval.
 
-## Directory Policy
+---
 
-Use the following structure as the baseline:
+## Architecture Policy
 
-```txt
-project-root/
-  app/
-    src/
-      app/
-        layout.tsx
-        page.tsx
-        globals.css
-        labo/
-          page.tsx
+### Routing Responsibility
 
-      components/
-        Header.tsx
+src/app is responsible for:
 
-      features/
-        labo/
-          components/
-            BirthdayCalculator.tsx
-            DateDiffCalculator.tsx
-          utils/
-            date.ts
-          types.ts
+- routing
+- page composition
+- metadata
 
-  docs/
-    requirements.md
-    design.md
-    decisions.md
-    tasks.md
-    coding-rules.md
+Do not place business logic in app.
 
-  AGENTS.md
-  README.md
-```
+---
 
-## Routing Policy
+### Feature Responsibility
 
-Use Next.js App Router.
+Feature-specific code belongs under:
 
-Routes:
+src/features/\*
 
-```txt
-/       Home page
-/labo   Labo feature page
-```
+Each feature may contain:
 
-The `src/app` directory should focus on routing and page composition.
+- components/
+- utils/
+- types/
+- constants/
+- hooks/
+- tests/
+
+Example:
+
+- src/features/labo/date-diff
+- src/features/labo/birthday
+
+---
+
+## Shared vs Feature-Specific Code
+
+Shared labo-related code should live under:
+
+src/features/labo/
+
+Examples:
+
+- src/features/labo/types/date.ts
+- src/features/labo/utils/date.ts
+
+Feature-specific code should remain inside the feature directory.
+
+Do not aggressively commonize code too early.
+
+---
+
+## Import Policy
+
+Use path aliases:
+
+@/features/...
+
+Avoid deep relative imports like:
+
+../../../
+
+---
 
 ## Component Policy
 
-Place shared components under:
+Shared UI components:
 
-```txt
-app/src/components/
-```
+src/components/
 
-Place labo-specific components under:
+Feature-specific UI components:
 
-```txt
-app/src/features/labo/components/
-```
+src/features/\*/components/
 
-Client components that use `useState` or event handlers must include:
+Client Components using hooks or event handlers must include:
 
-```tsx
 "use client";
-```
 
-Do not create generic components too early.  
-Create shared components only after clear duplication appears.
+Do not create generic reusable components prematurely.
+
+Only extract shared UI after duplication becomes clear.
+
+---
 
 ## Logic Policy
 
-Place date calculation logic under:
+Calculation logic must be implemented as pure functions.
 
-```txt
-app/src/features/labo/utils/date.ts
-```
+Place calculation logic under:
 
-The logic in `date.ts` should be implemented as pure TypeScript functions.
+utils/
 
 Rules:
 
-- Do not depend on React.
-- Do not depend on browser APIs unless necessary.
-- Keep functions small and testable.
-- Prefer explicit names.
-- Avoid hidden side effects.
+- Do not depend on React
+- Avoid browser APIs unless necessary
+- Keep functions testable
+- Avoid hidden side effects
+- Prefer explicit naming
 
-Expected functions may include:
+Example functions:
 
-```ts
-calculateAge(birthDate: string): number
-calculateDaysUntilNextBirthday(birthDate: string): number
-calculateDateDiff(startDate: string, endDate: string): number
-```
+- calculateAge()
+- calculateDateDiff()
+- calculateDaysUntilNextBirthday()
+
+---
 
 ## TypeScript Policy
 
-- Avoid `any`.
-- Define types only when they improve readability.
-- Do not over-model simple data.
-- Move shared labo-related types to:
+- Avoid any
+- Prefer simple types
+- Do not over-model data
+- Use shared types only when actual reuse exists
 
-```txt
-app/src/features/labo/types.ts
-```
+Shared labo types belong under:
+
+src/features/labo/types/
+
+---
 
 ## Styling Policy
 
-Use simple CSS.
+Use CSS Modules for component styling.
 
-Initial styling should be handled mainly in:
+Example:
 
-```txt
-app/src/app/globals.css
-```
+Component.tsx
+Component.module.css
 
-Do not introduce Tailwind CSS, CSS frameworks, or UI libraries in the initial phase unless explicitly approved.
+Keep styling simple and maintainable.
+
+Prefer:
+
+- locally scoped styles
+- readable class names
+- small component-level stylesheets
+
+Avoid:
+
+- large CSS frameworks
+- CSS-in-JS libraries
+- unnecessary utility abstraction
+- excessive global CSS
+
+globals.css should contain only:
+
+- reset styles
+- base typography
+- layout foundations
+- shared variables if needed
+
+Do not place feature-specific styling in globals.css.
+
+---
+
+## Testing Policy
+
+Use Vitest.
+
+Pure functions should be tested.
+
+Prefer colocated tests near implementation files.
+
+Example:
+
+utils/birthday.ts
+utils/birthday.test.ts
+
+Minimum expectations:
+
+- normal cases
+- edge cases
+- invalid input cases
+
+---
+
+## Refactoring Policy
+
+Do not perform large refactors unless explicitly requested.
+
+Avoid:
+
+- unrelated formatting changes
+- renaming files unnecessarily
+- restructuring directories without reason
+- unnecessary abstraction
+- excessive commonization
+
+Protect existing stable functionality.
+
+---
+
+## Existing Stable Features
+
+The following features are already working and should not be broken:
+
+- /labo/date-diff
+
+---
 
 ## Documentation Policy
 
-Update relevant documents when the scope, design, or decisions change.
+Update documents when important decisions or scope changes occur.
 
 Documents:
 
-```txt
-docs/requirements.md     Requirements and scope
-docs/design.md           Application design
-docs/decisions.md        Decision log
-docs/tasks.md            Task list
-docs/coding-rules.md     Coding rules
-```
+- docs/requirements.md
+- docs/design.md
+- docs/decisions.md
+- docs/tasks.md
+- docs/coding-rules.md
 
-When making an important technical decision, add an entry to:
+Important technical decisions should be recorded in:
 
-```txt
 docs/decisions.md
-```
 
-## Task Policy
-
-When working from `docs/tasks.md`:
-
-- Work on one phase or one task group at a time.
-- Do not skip ahead without approval.
-- Keep changes small.
-- Avoid unrelated refactoring.
-- Do not add dependencies unless explicitly approved.
+---
 
 ## Before Finishing a Task
 
-Before considering a task complete, check the following where applicable:
+Run checks where applicable:
 
-```bash
-npm run lint
-npm run dev
-```
+- pnpm test
+- pnpm lint
+- pnpm build
 
 Also verify:
 
-- The app starts locally.
-- The target page renders.
-- The implementation stays within the current scope.
-- No unnecessary libraries were added.
-- Relevant documents were updated if needed.
+- app starts locally
+- target page renders
+- no existing feature is broken
+- no unnecessary dependency was added
+
+---
 
 ## AI Assistant Behavior
 
 When acting as an AI coding assistant:
 
-- Read this file before making changes.
-- Respect `docs/requirements.md`.
-- Respect `docs/design.md`.
-- Respect `docs/coding-rules.md`.
-- Check `docs/decisions.md` before changing established choices.
-- Prefer minimal, understandable changes.
-- Explain assumptions when requirements are ambiguous.
-- Do not silently introduce new architecture.
-- Do not replace the current design with a more complex one without approval.
+- Read this file before making changes
+- Prefer minimal changes
+- Respect existing architecture
+- Explain assumptions when ambiguous
+- Do not silently introduce new architecture
+- Do not replace simple code with complex abstractions
+- Avoid unnecessary dependency additions
+- Keep changes understandable and incremental
