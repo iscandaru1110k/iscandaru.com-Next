@@ -1,0 +1,124 @@
+.header {
+  position: relative;
+  min-height: 250px;
+  overflow: hidden;
+  background-color: var(--color-foreground);
+  background-image: url("/images/heartbeat-normal_long.png");
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 100vw auto;
+  color: var(--color-background);
+}
+
+.brandImages {
+  position: absolute;
+  top: 155px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.brandLink {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.mark {
+  width: 80px;
+  height: auto;
+}
+
+.titleImage {
+  width: 230px;
+  height: auto;
+  margin-top: 35px;
+}
+
+.titleWrap {
+  display: grid;
+  min-height: 185px;
+  padding: 0 1.5rem;
+  place-items: center;
+}
+
+.siteTitle {
+  margin: 0;
+  color: var(--color-background);
+  font-size: 3.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18rem;
+  text-align: center;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0 1rem 1rem;
+}
+
+.navLink {
+  border: 1px solid color-mix(in srgb, var(--color-background) 45%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-background) 12%, transparent);
+  color: var(--color-background);
+  padding: 0.45rem 0.9rem;
+  text-decoration: none;
+}
+
+.navLink:hover,
+.navLink:focus-visible {
+  border-color: var(--color-primary-soft);
+  background: color-mix(in srgb, var(--color-primary-soft) 22%, transparent);
+  outline: none;
+}
+
+@media (max-width: 700px) {
+  .header {
+    min-height: 200px;
+    background-size: 900px auto;
+  }
+
+  .brandImages {
+    top: 18px;
+    right: 10px;
+  }
+
+  .mark {
+    width: 50px;
+  }
+
+  .titleImage {
+    width: 180px;
+    margin-top: 23px;
+  }
+
+  .titleWrap {
+    min-height: 145px;
+    padding: 0 1rem;
+  }
+
+  .siteTitle {
+    font-size: 2.5rem;
+    letter-spacing: 0.12rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .brandImages {
+    position: static;
+    justify-content: flex-end;
+    padding: 0.75rem 0.75rem 0;
+  }
+
+  .titleWrap {
+    min-height: 95px;
+  }
+
+  .siteTitle {
+    font-size: 2rem;
+  }
+}
