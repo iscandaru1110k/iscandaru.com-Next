@@ -8,6 +8,7 @@ import {
 } from "@/features/labo/date-diff/utils/date";
 import { DateParts } from "../../types/date";
 import styles from "./DateDiffCalculator.module.css";
+import clsx from "clsx";
 
 type DateInputFieldProps = {
   label: string;
@@ -51,7 +52,7 @@ export const DateInputField = ({
             const year = normalizeYearInput(e.target.value);
             onChange({ ...value, year });
           }}
-          className={styles.field}
+          className={clsx(styles.field, styles.text)}
         />
 
         <select
