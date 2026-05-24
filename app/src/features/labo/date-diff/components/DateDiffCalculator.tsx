@@ -40,8 +40,7 @@ export const DateDiffCalculator = () => {
   return (
     <section className={styles.calculator}>
       <div className={styles.header}>
-        <h2>日付差分計算</h2>
-        <p>日数の計算、お任せください。</p>
+        <p>2つの日付から日数の差分を計算します。</p>
       </div>
 
       <div className={styles.fields}>
