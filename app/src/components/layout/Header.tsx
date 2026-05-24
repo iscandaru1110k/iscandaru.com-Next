@@ -8,19 +8,11 @@ export function Header() {
       <div className={styles.brandImages}>
         <Link href="/" className={styles.brandLink} aria-label="Home">
           <Image
-            src="/images/logo_circle3.png"
-            alt=""
+            src="/images/logo-mark_base.png"
+            alt="logo mark"
             width={60}
             height={69}
             className={styles.mark}
-            priority
-          />
-          <Image
-            src="/images/title.png"
-            alt="iscandaru.com"
-            width={230}
-            height={19}
-            className={styles.titleImage}
             priority
           />
         </Link>
