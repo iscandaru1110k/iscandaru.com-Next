@@ -1,11 +1,30 @@
 import { MILLISECONDS_PER_DAY } from "@/features/labo/constants/time";
 import { DateParts } from "@/features/labo/types/date";
-import { BirthdayCalculationResult } from "@/features/labo/birthday/types/birthday";
+import {
+  BirthdayAgeParts,
+  BirthdayCalculationResult,
+  BirthdayDisplayDetails,
+  BirthdayElapsedParts,
+} from "@/features/labo/birthday/types/birthday";
 
 const MIN_YEAR = 1;
 const MAX_YEAR = 9999;
 const HOURS_PER_DAY = 24;
 const SECONDS_PER_DAY = 86400;
+const MILLISECONDS_PER_SECOND = 1000;
+const MILLISECONDS_PER_MINUTE = 60 * MILLISECONDS_PER_SECOND;
+const MILLISECONDS_PER_HOUR = 60 * MILLISECONDS_PER_MINUTE;
+const TEN_THOUSAND = 10000;
+const HUNDRED_MILLION = 100000000;
+const WEEKDAY_NAMES = [
+  "日曜日",
+  "月曜日",
+  "火曜日",
+  "水曜日",
+  "木曜日",
+  "金曜日",
+  "土曜日",
+];
 
 const startOfDay = (date: Date): Date => {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
@@ -73,6 +92,113 @@ const getBirthdayInYear = (birthDate: Date, year: number): Date => {
   }
 
   return new Date(year, month, day);
+};
+
+const addMonths = (date: Date, months: number): Date => {
+  return new Date(date.getFullYear(), date.getMonth() + months, date.getDate());
+};
+
+export const formatBirthdayNumber = (value: number): string => {
+  return value.toLocaleString("ja-JP");
+};
+
+export const formatBirthdayDate = (date: Date): string => {
+  return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日（${
+    WEEKDAY_NAMES[date.getDay()]
+  }）`;
+};
+
+export const formatApproximateLargeNumber = (value: number): string => {
+  if (value >= HUNDRED_MILLION) {
+    const oku = Math.floor(value / HUNDRED_MILLION);
+    const man = Math.floor((value % HUNDRED_MILLION) / TEN_THOUSAND);
+    return `${oku}億${man}万`;
+  }
+
+  if (value >= TEN_THOUSAND) {
+    return `${Math.floor(value / TEN_THOUSAND)}万`;
+  }
+
+  return formatBirthdayNumber(value);
+};
+
+export const calculateAgeParts = (
+  birthDate: Date,
+  today: Date = new Date(),
+): BirthdayAgeParts => {
+  const todayDate = startOfDay(today);
+  const birthDateValue = startOfDay(birthDate);
+  const years = calculateAge(birthDateValue, todayDate);
+  const lastBirthday = getBirthdayInYear(
+    birthDateValue,
+    birthDateValue.getFullYear() + years,
+  );
+  let months = 0;
+
+  while (addMonths(lastBirthday, months + 1).getTime() <= todayDate.getTime()) {
+    months += 1;
+  }
+
+  const monthStart = addMonths(lastBirthday, months);
+  const days = Math.floor(
+    (todayDate.getTime() - monthStart.getTime()) / MILLISECONDS_PER_DAY,
+  );
+
+  return { years, months, days };
+};
+
+export const calculateExactLivedHours = (
+  birthDate: Date,
+  today: Date = new Date(),
+): number => {
+  return Math.floor(
+    (today.getTime() - birthDate.getTime()) / MILLISECONDS_PER_HOUR,
+  );
+};
+
+export const calculateExactLivedSeconds = (
+  birthDate: Date,
+  today: Date = new Date(),
+): number => {
+  return Math.floor(
+    (today.getTime() - birthDate.getTime()) / MILLISECONDS_PER_SECOND,
+  );
+};
+
+export const calculateElapsedParts = (
+  birthDate: Date,
+  today: Date = new Date(),
+): BirthdayElapsedParts => {
+  const elapsed = today.getTime() - birthDate.getTime();
+
+  return {
+    years: calculateAge(birthDate, today),
+    days: Math.floor(elapsed / MILLISECONDS_PER_DAY) % 365,
+    hours: Math.floor((elapsed % MILLISECONDS_PER_DAY) / MILLISECONDS_PER_HOUR),
+    minutes: Math.floor((elapsed % MILLISECONDS_PER_HOUR) / MILLISECONDS_PER_MINUTE),
+    seconds: Math.floor(
+      (elapsed % MILLISECONDS_PER_MINUTE) / MILLISECONDS_PER_SECOND,
+    ),
+  };
+};
+
+export const buildBirthdayDisplayDetails = (
+  birthDate: Date,
+  today: Date = new Date(),
+): BirthdayDisplayDetails => {
+  const exactHours = calculateExactLivedHours(birthDate, today);
+  const exactSeconds = calculateExactLivedSeconds(birthDate, today);
+
+  return {
+    todayText: formatBirthdayDate(today),
+    birthDateText: formatBirthdayDate(birthDate),
+    ageParts: calculateAgeParts(birthDate, today),
+    elapsedParts: calculateElapsedParts(birthDate, today),
+    exactHours,
+    exactSeconds,
+    approximateHoursText: formatApproximateLargeNumber(exactHours),
+    approximateSecondsText: formatApproximateLargeNumber(exactSeconds),
+  };
 };
 
 export const calculateAge = (birthDate: Date, today: Date = new Date()): number => {

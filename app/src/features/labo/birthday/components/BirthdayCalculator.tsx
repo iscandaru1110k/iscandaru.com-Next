@@ -29,7 +29,7 @@ export const BirthdayCalculator = () => {
   return (
     <section className={styles.calculator}>
       <div className={styles.header}>
-        <h2>人生カウンター / 誕生日計算</h2>
+        <h2>人生カウンター</h2>
         <p>生年月日から、今日までの時間を計算します。</p>
       </div>
 
@@ -43,6 +43,7 @@ export const BirthdayCalculator = () => {
       {isInputComplete && (
         <BirthdayResult
           name={name}
+          birthDate={birthDateObj}
           result={result}
           hasInvalidDate={hasInvalidDate}
         />
