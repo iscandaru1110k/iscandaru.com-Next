@@ -43,6 +43,7 @@ export const BirthdayCalculator = () => {
       {isInputComplete && (
         <BirthdayResult
           name={name}
+          birthDate={birthDateObj}
           result={result}
           hasInvalidDate={hasInvalidDate}
         />

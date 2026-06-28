@@ -1,8 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
   calculateAge,
+  calculateAgeParts,
   calculateBirthday,
   calculateDaysUntilNextBirthday,
+  buildBirthdayDisplayDetails,
+  calculateElapsedParts,
   isLeapYear,
   toDate,
 } from "./birthday";
@@ -50,5 +53,40 @@ describe("birthday calculations", () => {
     const result = calculateBirthday(new Date(2000, 4, 10), new Date(2026, 4, 10));
     expect(result?.isBirthdayToday).toBe(true);
     expect(result?.daysUntilNextBirthday).toBe(0);
+  });
+
+  it("calculates age parts for result display", () => {
+    expect(calculateAgeParts(new Date(1988, 0, 1), new Date(2026, 5, 28))).toEqual({
+      years: 38,
+      months: 5,
+      days: 27,
+    });
+  });
+
+  it("builds birthday display details", () => {
+    const details = buildBirthdayDisplayDetails(
+      new Date(1988, 0, 1),
+      new Date(2026, 5, 28, 17, 22, 34),
+    );
+
+    expect(details.todayText).toBe("2026年6月28日（日曜日）");
+    expect(details.birthDateText).toBe("1988年1月1日（金曜日）");
+    expect(details.approximateHoursText).toBe("33万");
+    expect(details.approximateSecondsText).toBe("12億1467万");
+  });
+
+  it("calculates elapsed parts for result writing", () => {
+    expect(
+      calculateElapsedParts(
+        new Date(1988, 0, 1),
+        new Date(2026, 5, 28, 17, 22, 34),
+      ),
+    ).toEqual({
+      years: 38,
+      days: 188,
+      hours: 17,
+      minutes: 22,
+      seconds: 34,
+    });
   });
 });

@@ -59,7 +59,6 @@
 }
 
 .textInput {
-  width: 100%;
   border: 1px solid var(--color-border-input);
   border-radius: 0.5rem;
   background: var(--color-background);
@@ -76,39 +75,151 @@
 
 .result {
   margin-top: 1.25rem;
+  width: 95%;
+  max-width: max-content;
+  margin-right: auto;
+  margin-left: auto;
   padding: 1rem;
-  border: 2px solid var(--color-primary-soft);
-  border-radius: 0.75rem;
+  border: 3px solid var(--color-primary-soft);
+  border-radius: 10px;
   background: var(--color-background);
-}
-
-.birthdayMessage {
-  margin: 0 0 0.75rem;
-  color: var(--color-danger);
-  font-weight: 700;
   text-align: center;
 }
 
-.resultList {
+.resultText {
+  display: grid;
+  gap: 0.85rem;
+  line-height: 1.8;
+}
+
+.resultText p {
+  margin: 0;
+}
+
+.resultNumber {
+  color: var(--color-primary);
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+.ageLine {
+  font-weight: 700;
+}
+
+.birthdayNotice {
+  width: 100%;
+  max-width: max-content;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--color-border-warm);
+  border-radius: 10px;
+  background: var(--color-surface-warm);
+  color: var(--color-danger);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.birthdayNotice p {
+  margin: 0;
+}
+
+.shareTool {
+  width: 95%;
+  max-width: max-content;
+  margin: 1rem auto 0;
+  text-align: center;
+}
+
+.modeSelect {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0 0 0.75rem;
+  padding: 0.75rem;
+  border: 2px double var(--color-primary);
+  border-radius: 10px;
+  background: var(--color-surface-muted);
+}
+
+.modeSelect legend {
+  padding: 0 0.5rem;
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+}
+
+.modeSelect label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--color-primary);
+  font-size: 0.875rem;
+  text-decoration: underline;
+}
+
+.shareButton {
+  border: 2px solid color-mix(in srgb, var(--color-danger) 35%, transparent);
+  border-radius: 20px;
+  background: var(--color-background);
+  color: var(--color-primary);
+  padding: 0.75rem 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.shareButton:hover,
+.shareButton:focus-visible {
+  border-color: color-mix(in srgb, var(--color-danger) 70%, transparent);
+  outline: none;
+}
+
+.sharePreview {
   display: grid;
   gap: 0.75rem;
-  margin: 0;
+  margin-top: 1rem;
+  justify-items: center;
 }
 
-.resultList div {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+.sharePreview img {
+  width: min(100%, 18rem);
+  height: auto;
+  border: 1px solid var(--color-border-muted);
+  border-radius: 10px;
 }
 
-.resultList dt {
-  color: var(--color-muted);
-}
-
-.resultList dd {
-  margin: 0;
+.sharePreview a {
   color: var(--color-primary);
   font-weight: 700;
+}
+
+.info {
+  width: max-content;
+  margin: 3rem auto 0;
+}
+
+.infoToggle {
+  margin-bottom: 1rem;
+  display: block;
+  border: 0;
+  background: transparent;
+  color: var(--color-primary);
+  font: inherit;
+  text-shadow: 1px 1px 1px var(--color-primary-soft);
+  cursor: pointer;
+}
+
+.infoToggle:hover,
+.infoToggle:focus-visible {
+  text-decoration: underline;
+}
+
+.infoContent {
+  
+  line-height: 2;
+}
+
+.infoContent p {
+  margin: 0;
 }
 
 .errorText {
