@@ -9,7 +9,7 @@ export default function LaboPage() {
       <ul className={styles.list}>
         <li className={styles.card}>
           <Link href="/labo/birthday" className={styles.link}>
-            誕生日計算
+            人生カウンター
           </Link>
           <p className={styles.description}>
             生年月日から年齢・生存日数・次の誕生日までの日数を計算します。
