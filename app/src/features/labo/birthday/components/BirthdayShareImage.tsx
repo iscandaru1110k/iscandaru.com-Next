@@ -164,6 +164,19 @@ const drawFooter = (
 const getFont = (options: Pick<DrawTextOptions, "fontSize" | "weight">) =>
   `${options.weight ?? 600} ${options.fontSize}px sans-serif`;
 
+const measureTextWidth = (
+  context: CanvasRenderingContext2D,
+  text: string,
+  options: Pick<DrawTextOptions, "fontSize" | "weight">,
+) => {
+  context.save();
+  context.font = getFont(options);
+  const width = context.measureText(text).width;
+  context.restore();
+
+  return width;
+};
+
 const drawMaxMode = (
   context: CanvasRenderingContext2D,
   props: BirthdayShareImageProps,
@@ -199,15 +212,12 @@ const drawMaxMode = (
       fontSize: FONT_SIZE_BASE,
     } satisfies DrawTextOptions;
 
-    context.save();
-
-    context.font = getFont(ageOptions);
-    const ageWidth = context.measureText(age).width;
-
-    context.font = getFont(ageFollowOptions);
-    const ageFollowWidth = context.measureText(ageFollow).width;
-
-    context.restore();
+    const ageWidth = measureTextWidth(context, age, ageOptions);
+    const ageFollowWidth = measureTextWidth(
+      context,
+      ageFollow,
+      ageFollowOptions,
+    );
 
     const totalWidthAge = ageWidth + ageFollowWidth;
     const startXAge = (CANVAS_WIDTH - totalWidthAge) / 2;
@@ -244,18 +254,9 @@ const drawMaxMode = (
       fontSize: FONT_SIZE_BASE,
     } satisfies DrawTextOptions;
 
-    context.save();
-
-    context.font = getFont(leftOptions);
-    const leftWidth = context.measureText(left).width;
-
-    context.font = getFont(centerOptions);
-    const centerWidth = context.measureText(center).width;
-
-    context.font = getFont(rightOptions);
-    const rightWidth = context.measureText(right).width;
-
-    context.restore();
+    const leftWidth = measureTextWidth(context, left, leftOptions);
+    const centerWidth = measureTextWidth(context, center, centerOptions);
+    const rightWidth = measureTextWidth(context, right, rightOptions);
 
     const totalWidth = leftWidth + centerWidth + rightWidth;
     const startX = (CANVAS_WIDTH - totalWidth) / 2;
@@ -294,15 +295,12 @@ const drawMaxMode = (
       fontSize: FONT_SIZE_BASE,
     } satisfies DrawTextOptions;
 
-    context.save();
-
-    context.font = getFont(daysOptions);
-    const daysWidth = context.measureText(days).width;
-
-    context.font = getFont(daysFollowOptions);
-    const daysFollowWidth = context.measureText(daysFollow).width;
-
-    context.restore();
+    const daysWidth = measureTextWidth(context, days, daysOptions);
+    const daysFollowWidth = measureTextWidth(
+      context,
+      daysFollow,
+      daysFollowOptions,
+    );
 
     const totalWidthDays = daysWidth + daysFollowWidth;
     const startXDays = (CANVAS_WIDTH - totalWidthDays) / 2;
@@ -346,18 +344,9 @@ const drawMaxMode = (
     fontSize: FONT_SIZE_BASE,
   } satisfies DrawTextOptions;
 
-  context.save();
-
-  context.font = getFont(leftOptions);
-  const leftWidth = context.measureText(left).width;
-
-  context.font = getFont(centerOptions);
-  const centerWidth = context.measureText(center).width;
-
-  context.font = getFont(rightOptions);
-  const rightWidth = context.measureText(right).width;
-
-  context.restore();
+  const leftWidth = measureTextWidth(context, left, leftOptions);
+  const centerWidth = measureTextWidth(context, center, centerOptions);
+  const rightWidth = measureTextWidth(context, right, rightOptions);
 
   const totalWidth = leftWidth + centerWidth + rightWidth;
   const startX = (CANVAS_WIDTH - totalWidth) / 2;
@@ -368,7 +357,7 @@ const drawMaxMode = (
 
   drawText(context, right, startX + leftWidth + centerWidth, y, rightOptions);
 
-  drawText(context, "生まれてから", 120, 420, {
+  drawCenteredText(context, "生まれてから", 420, {
     color: textColor,
     fontSize: FONT_SIZE_BASE,
   });
@@ -390,15 +379,12 @@ const drawMaxMode = (
     fontSize: FONT_SIZE_BASE,
   } satisfies DrawTextOptions;
 
-  context.save();
-
-  context.font = getFont(daysOptions);
-  const daysWidth = context.measureText(days).width;
-
-  context.font = getFont(daysFollowOptions);
-  const daysFollowWidth = context.measureText(daysFollow).width;
-
-  context.restore();
+  const daysWidth = measureTextWidth(context, days, daysOptions);
+  const daysFollowWidth = measureTextWidth(
+    context,
+    daysFollow,
+    daysFollowOptions,
+  );
 
   const totalWidthDays = daysWidth + daysFollowWidth;
   const startXDays = (CANVAS_WIDTH - totalWidthDays) / 2;
@@ -446,15 +432,12 @@ const drawMaxMode = (
     fontSize: FONT_SIZE_BASE,
   } satisfies DrawTextOptions;
 
-  context.save();
-
-  context.font = getFont(daysLeftOptions);
-  const daysLeftWidth = context.measureText(daysLeft).width;
-
-  context.font = getFont(daysFollowOptions);
-  const daysLeftFollowWidth = context.measureText(daysLeftFollow).width;
-
-  context.restore();
+  const daysLeftWidth = measureTextWidth(context, daysLeft, daysLeftOptions);
+  const daysLeftFollowWidth = measureTextWidth(
+    context,
+    daysLeftFollow,
+    daysLeftFollowOptions,
+  );
 
   const totalWidthDaysLeft = daysLeftWidth + daysLeftFollowWidth;
   const startXDaysLeft = (CANVAS_WIDTH - totalWidthDaysLeft) / 2;
@@ -470,7 +453,7 @@ const drawMaxMode = (
   );
 };
 
-const drawSimpleMode = (
+const drawCompactMode = (
   context: CanvasRenderingContext2D,
   props: BirthdayShareImageProps,
   palette: CanvasPalette,
@@ -478,12 +461,7 @@ const drawSimpleMode = (
 ) => {
   const { result, details } = props;
   const isAccentMode = mode === "rainbow" || mode === "neon";
-  const textColor =
-    mode === "rainbow"
-      ? palette.primary
-      : isAccentMode
-        ? palette.background
-        : palette.background;
+  const textColor = mode === "rainbow" ? palette.primary : palette.background;
   const numberColor = isAccentMode ? createRainbowGradient(context) : textColor;
 
   if (result.isBirthdayToday) {
@@ -518,15 +496,8 @@ const drawSimpleMode = (
       fontSize: FONT_SIZE_BASE,
     } satisfies DrawTextOptions;
 
-    context.save();
-
-    context.font = getFont(centerOptions);
-    const centerWidth = context.measureText(center).width;
-
-    context.font = getFont(rightOptions);
-    const rightWidth = context.measureText(right).width;
-
-    context.restore();
+    const centerWidth = measureTextWidth(context, center, centerOptions);
+    const rightWidth = measureTextWidth(context, right, rightOptions);
 
     const totalWidth = centerWidth + rightWidth;
     const startX = (CANVAS_WIDTH - totalWidth) / 2;
@@ -557,15 +528,12 @@ const drawSimpleMode = (
       fontSize: FONT_SIZE_BASE,
     } satisfies DrawTextOptions;
 
-    context.save();
-
-    context.font = getFont(daysOptions);
-    const daysWidth = context.measureText(days).width;
-
-    context.font = getFont(daysFollowOptions);
-    const daysFollowWidth = context.measureText(daysFollow).width;
-
-    context.restore();
+    const daysWidth = measureTextWidth(context, days, daysOptions);
+    const daysFollowWidth = measureTextWidth(
+      context,
+      daysFollow,
+      daysFollowOptions,
+    );
 
     const totalWidthDays = daysWidth + daysFollowWidth;
     const startXDays = (CANVAS_WIDTH - totalWidthDays) / 2;
@@ -609,15 +577,12 @@ const drawSimpleMode = (
     fontSize: FONT_SIZE_BASE,
   } satisfies DrawTextOptions;
 
-  context.save();
-
-  context.font = getFont(daysOptions);
-  const daysWidth = context.measureText(days).width;
-
-  context.font = getFont(daysFollowOptions);
-  const daysFollowWidth = context.measureText(daysFollow).width;
-
-  context.restore();
+  const daysWidth = measureTextWidth(context, days, daysOptions);
+  const daysFollowWidth = measureTextWidth(
+    context,
+    daysFollow,
+    daysFollowOptions,
+  );
 
   const totalWidthDays = daysWidth + daysFollowWidth;
   const startXDays = (CANVAS_WIDTH - totalWidthDays) / 2;
@@ -654,15 +619,12 @@ const drawSimpleMode = (
     fontSize: FONT_SIZE_BASE,
   } satisfies DrawTextOptions;
 
-  context.save();
-
-  context.font = getFont(daysLeftOptions);
-  const daysLeftWidth = context.measureText(daysLeft).width;
-
-  context.font = getFont(daysFollowOptions);
-  const daysLeftFollowWidth = context.measureText(daysLeftFollow).width;
-
-  context.restore();
+  const daysLeftWidth = measureTextWidth(context, daysLeft, daysLeftOptions);
+  const daysLeftFollowWidth = measureTextWidth(
+    context,
+    daysLeftFollow,
+    daysLeftFollowOptions,
+  );
 
   const totalWidthDaysLeft = daysLeftWidth + daysLeftFollowWidth;
   const startXDaysLeft = (CANVAS_WIDTH - totalWidthDaysLeft) / 2;
@@ -676,6 +638,20 @@ const drawSimpleMode = (
     yDaysLeft + 60,
     daysLeftFollowOptions,
   );
+};
+
+const drawShareImageBody = (
+  context: CanvasRenderingContext2D,
+  mode: BirthdayShareMode,
+  props: BirthdayShareImageProps,
+  palette: CanvasPalette,
+) => {
+  if (mode === "max") {
+    drawMaxMode(context, props, palette);
+    return;
+  }
+
+  drawCompactMode(context, props, palette, mode);
 };
 
 const generateShareImage = async (
@@ -699,13 +675,7 @@ const generateShareImage = async (
   };
 
   await fillBackground(context, mode, palette);
-
-  if (mode === "max") {
-    drawMaxMode(context, props, palette);
-  } else {
-    drawSimpleMode(context, props, palette, mode);
-  }
-
+  drawShareImageBody(context, mode, props, palette);
   drawFooter(context, mode, palette);
 
   return canvas.toDataURL("image/png");
