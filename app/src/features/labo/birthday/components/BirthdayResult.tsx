@@ -105,7 +105,7 @@ export const BirthdayResult = ({
       </div>
 
       <BirthdayShareImage
-        subject={subject}
+        displayName={displayName}
         birthDate={birthDate}
         result={result}
         details={details}

@@ -111,7 +111,6 @@
   max-width: max-content;
   margin: 0 auto;
   padding: 0.75rem 1rem;
-  border: 2px solid var(--color-border-warm);
   border-radius: 10px;
   background: var(--color-surface-warm);
   color: var(--color-danger);
@@ -135,7 +134,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.75rem;
-  margin: 0 0 0.75rem;
+  margin: 0 0 1rem;
   padding: 0.75rem;
   border: 2px double var(--color-primary);
   border-radius: 10px;
@@ -158,8 +157,8 @@
 }
 
 .shareButton {
-  border: 2px solid color-mix(in srgb, var(--color-danger) 35%, transparent);
-  border-radius: 20px;
+  border: 2px solid color-mix(in srgb, var(--color-primary-soft) 35%, transparent);
+  border-radius: 15px;
   background: var(--color-background);
   color: var(--color-primary);
   padding: 0.75rem 1.25rem;
@@ -169,13 +168,13 @@
 
 .shareButton:hover,
 .shareButton:focus-visible {
-  border-color: color-mix(in srgb, var(--color-danger) 70%, transparent);
+  border-color: color-mix(in srgb, var(--color-primary-soft) 70%, transparent);
   outline: none;
 }
 
 .sharePreview {
   display: grid;
-  gap: 0.75rem;
+  gap: 1rem;
   margin-top: 1rem;
   justify-items: center;
 }
@@ -184,7 +183,6 @@
   width: min(100%, 18rem);
   height: auto;
   border: 1px solid var(--color-border-muted);
-  border-radius: 10px;
 }
 
 .sharePreview a {
@@ -204,7 +202,6 @@
   background: transparent;
   color: var(--color-primary);
   font: inherit;
-  text-shadow: 1px 1px 1px var(--color-primary-soft);
   cursor: pointer;
 }
 

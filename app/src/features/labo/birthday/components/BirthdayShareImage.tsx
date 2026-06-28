@@ -7,11 +7,10 @@ import {
   BirthdayDisplayDetails,
   BirthdayShareMode,
 } from "@/features/labo/birthday/types/birthday";
-import { formatBirthdayNumber } from "@/features/labo/birthday/utils/birthday";
 import styles from "./BirthdayCalculator.module.css";
 
 type BirthdayShareImageProps = {
-  subject: string;
+  displayName: string;
   birthDate: Date;
   result: BirthdayCalculationResult;
   details: BirthdayDisplayDetails;
@@ -26,8 +25,19 @@ type CanvasPalette = {
   danger: string;
 };
 
+type DrawTextOptions = {
+  align?: CanvasTextAlign;
+  color: CanvasGradient | string;
+  fontSize: number;
+  weight?: number;
+  shadow?: boolean;
+};
+
+type DrawCenteredTextOptions = Omit<DrawTextOptions, "align">;
+
 const CANVAS_WIDTH = 1080;
 const CANVAS_HEIGHT = 1920;
+const FONT_SIZE_BASE = 60;
 const SHARE_MODES: { label: string; value: BirthdayShareMode }[] = [
   { label: "全盛りモード", value: "max" },
   { label: "シンプルモード", value: "simple" },
@@ -50,44 +60,63 @@ const loadImage = (src: string): Promise<HTMLImageElement> => {
   });
 };
 
-const drawCenteredText = (
+const drawText = (
   context: CanvasRenderingContext2D,
   text: string,
+  x: number,
   y: number,
-  options: {
-    color: CanvasGradient | string;
-    fontSize: number;
-    weight?: number;
-    shadow?: boolean;
-  },
+  options: DrawTextOptions,
 ) => {
   context.save();
   context.fillStyle = options.color;
   context.font = `${options.weight ?? 600} ${options.fontSize}px sans-serif`;
-  context.textAlign = "center";
+  context.textAlign = options.align ?? "left";
   context.textBaseline = "middle";
 
   if (options.shadow) {
-    context.shadowColor = getCssVariable("--color-foreground");
-    context.shadowBlur = 12;
-    context.shadowOffsetX = 4;
-    context.shadowOffsetY = 4;
+    context.shadowColor = getCssVariable("--color-muted");
+    context.shadowBlur = 10;
+    context.shadowOffsetX = 8;
+    context.shadowOffsetY = 8;
   }
 
-  context.fillText(text, CANVAS_WIDTH / 2, y);
+  context.fillText(text, x, y);
   context.restore();
+};
+
+const drawCenteredText = (
+  context: CanvasRenderingContext2D,
+  text: string,
+  y: number,
+  options: DrawCenteredTextOptions,
+) => {
+  drawText(context, text, CANVAS_WIDTH / 2, y, {
+    ...options,
+    align: "center",
+  });
 };
 
 const createRainbowGradient = (
   context: CanvasRenderingContext2D,
-  palette: CanvasPalette,
-) => {
-  const gradient = context.createLinearGradient(160, 0, CANVAS_WIDTH - 160, 0);
-  gradient.addColorStop(0, palette.danger);
-  gradient.addColorStop(0.25, palette.primary);
-  gradient.addColorStop(0.5, palette.soft);
-  gradient.addColorStop(0.75, palette.primary);
-  gradient.addColorStop(1, palette.danger);
+): CanvasGradient => {
+  const gradient = context.createLinearGradient(200, 0, CANVAS_WIDTH - 200, 0);
+
+  gradient.addColorStop(0, "#f00");
+  gradient.addColorStop(0.0714, "#f80");
+  gradient.addColorStop(0.1428, "#dd0");
+  gradient.addColorStop(0.2142, "#0d0");
+  gradient.addColorStop(0.2856, "#0dd");
+  gradient.addColorStop(0.357, "#00f");
+  gradient.addColorStop(0.4284, "#e0e");
+  gradient.addColorStop(0.4998, "#f00");
+  gradient.addColorStop(0.5712, "#f00");
+  gradient.addColorStop(0.6426, "#f80");
+  gradient.addColorStop(0.714, "#dd0");
+  gradient.addColorStop(0.7854, "#0d0");
+  gradient.addColorStop(0.8568, "#0dd");
+  gradient.addColorStop(0.9282, "#00f");
+  gradient.addColorStop(1, "#f00");
+
   return gradient;
 };
 
@@ -97,11 +126,11 @@ const fillBackground = async (
   palette: CanvasPalette,
 ) => {
   if (mode === "rainbow") {
-    context.fillStyle = palette.surface;
+    context.fillStyle = palette.soft;
     context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     context.strokeStyle = palette.primary;
-    context.lineWidth = 8;
-    context.strokeRect(24, 24, CANVAS_WIDTH - 48, CANVAS_HEIGHT - 48);
+    context.lineWidth = 10;
+    context.strokeRect(5, 5, CANVAS_WIDTH - 10, CANVAS_HEIGHT - 10);
     return;
   }
 
@@ -125,134 +154,320 @@ const drawFooter = (
   mode: BirthdayShareMode,
   palette: CanvasPalette,
 ) => {
-  drawCenteredText(context, "© iscandaru.com", CANVAS_HEIGHT - 110, {
+  drawCenteredText(context, "© iscandaru.com", CANVAS_HEIGHT - 90, {
     color: mode === "rainbow" ? palette.primary : palette.background,
-    fontSize: 26,
+    fontSize: 50,
     weight: 500,
   });
 };
+
+const getFont = (options: Pick<DrawTextOptions, "fontSize" | "weight">) =>
+  `${options.weight ?? 600} ${options.fontSize}px sans-serif`;
 
 const drawMaxMode = (
   context: CanvasRenderingContext2D,
   props: BirthdayShareImageProps,
   palette: CanvasPalette,
 ) => {
-  const { subject, birthDate, result, details } = props;
+  const { displayName: subject, birthDate, result, details } = props;
   const textColor = palette.background;
   const birthText = `Born in ${birthDate.getFullYear()} / ${
     birthDate.getMonth() + 1
   } / ${birthDate.getDate()}`;
 
   if (result.isBirthdayToday) {
-    drawCenteredText(context, "HAPPY BIRTHDAY", 240, {
+    drawCenteredText(context, "HAPPY BIRTHDAY", 200, {
       color: textColor,
-      fontSize: 54,
-      weight: 800,
-      shadow: true,
+      fontSize: 80,
+      weight: 600,
     });
-    drawCenteredText(context, `${subject}！`, 345, {
+
+    const yAge = 380;
+
+    const age = `${subject}`;
+    const ageFollow = `さん！`;
+
+    const ageOptions = {
       color: textColor,
-      fontSize: 48,
+      fontSize: 90,
       shadow: true,
-    });
-    drawCenteredText(context, "今日は", 540, {
+      weight: 900,
+    } satisfies DrawTextOptions;
+
+    const ageFollowOptions = {
       color: textColor,
-      fontSize: 42,
-      shadow: true,
-    });
-    drawCenteredText(context, `${details.ageParts.years}`, 700, {
-      color: textColor,
-      fontSize: 150,
-      weight: 800,
-      shadow: true,
-    });
-    drawCenteredText(context, "歳の誕生日！", 850, {
-      color: textColor,
-      fontSize: 54,
-      shadow: true,
-    });
-    drawCenteredText(context, "今日で生まれてから", 1060, {
-      color: textColor,
-      fontSize: 44,
-      shadow: true,
-    });
-    drawCenteredText(
+      fontSize: FONT_SIZE_BASE,
+    } satisfies DrawTextOptions;
+
+    context.save();
+
+    context.font = getFont(ageOptions);
+    const ageWidth = context.measureText(age).width;
+
+    context.font = getFont(ageFollowOptions);
+    const ageFollowWidth = context.measureText(ageFollow).width;
+
+    context.restore();
+
+    const totalWidthAge = ageWidth + ageFollowWidth;
+    const startXAge = (CANVAS_WIDTH - totalWidthAge) / 2;
+
+    drawText(context, age, startXAge, yAge, ageOptions);
+
+    drawText(
       context,
-      `${formatBirthdayNumber(result.livedDays)}日目`,
-      1230,
-      {
-        color: textColor,
-        fontSize: 96,
-        weight: 800,
-        shadow: true,
-      },
+      ageFollow,
+      startXAge + ageWidth + 20,
+      yAge + 15,
+      ageFollowOptions,
     );
-    drawCenteredText(context, "です！", 1390, {
+
+    const y = 700;
+
+    const left = "今日は ";
+    const center = `${details.ageParts.years}`;
+    const right = "歳の誕生日！";
+
+    const leftOptions = {
       color: textColor,
-      fontSize: 54,
+      fontSize: FONT_SIZE_BASE,
+    } satisfies DrawTextOptions;
+
+    const centerOptions = {
+      color: textColor,
+      fontSize: 200,
       shadow: true,
+    } satisfies DrawTextOptions;
+
+    const rightOptions = {
+      color: textColor,
+      fontSize: FONT_SIZE_BASE,
+    } satisfies DrawTextOptions;
+
+    context.save();
+
+    context.font = getFont(leftOptions);
+    const leftWidth = context.measureText(left).width;
+
+    context.font = getFont(centerOptions);
+    const centerWidth = context.measureText(center).width;
+
+    context.font = getFont(rightOptions);
+    const rightWidth = context.measureText(right).width;
+
+    context.restore();
+
+    const totalWidth = leftWidth + centerWidth + rightWidth;
+    const startX = (CANVAS_WIDTH - totalWidth) / 2;
+
+    drawText(context, left, startX, y + 50, leftOptions);
+
+    drawText(context, center, startX + leftWidth, y, centerOptions);
+
+    drawText(
+      context,
+      right,
+      startX + leftWidth + centerWidth,
+      y + 50,
+      rightOptions,
+    );
+
+    drawCenteredText(context, "今日で生まれてから", 1080, {
+      color: textColor,
+      fontSize: FONT_SIZE_BASE,
     });
-    drawCenteredText(context, birthText, 1580, {
+
+    const yDays = 1350;
+
+    const days = `${result.livedDays}`;
+    const daysFollow = `日目！`;
+
+    const daysOptions = {
       color: textColor,
-      fontSize: 34,
+      fontSize: 200,
       shadow: true,
+      weight: 900,
+    } satisfies DrawTextOptions;
+
+    const daysFollowOptions = {
+      color: textColor,
+      fontSize: FONT_SIZE_BASE,
+    } satisfies DrawTextOptions;
+
+    context.save();
+
+    context.font = getFont(daysOptions);
+    const daysWidth = context.measureText(days).width;
+
+    context.font = getFont(daysFollowOptions);
+    const daysFollowWidth = context.measureText(daysFollow).width;
+
+    context.restore();
+
+    const totalWidthDays = daysWidth + daysFollowWidth;
+    const startXDays = (CANVAS_WIDTH - totalWidthDays) / 2;
+
+    drawText(context, days, startXDays, yDays, daysOptions);
+
+    drawText(
+      context,
+      daysFollow,
+      startXDays + daysWidth + 20,
+      yDays + 60,
+      daysFollowOptions,
+    );
+
+    drawCenteredText(context, birthText, 1650, {
+      color: textColor,
+      fontSize: FONT_SIZE_BASE,
     });
     return;
   }
 
-  drawCenteredText(context, `今日で ${subject}は`, 260, {
+  const y = 200;
+
+  const left = "今日で ";
+  const center = `${subject} `;
+  const right = "さんは";
+
+  const leftOptions = {
     color: textColor,
-    fontSize: 44,
-    shadow: true,
-  });
-  drawCenteredText(context, "生まれてから", 380, {
+    fontSize: FONT_SIZE_BASE,
+  } satisfies DrawTextOptions;
+
+  const centerOptions = {
     color: textColor,
-    fontSize: 44,
+    fontSize: 80,
     shadow: true,
+  } satisfies DrawTextOptions;
+
+  const rightOptions = {
+    color: textColor,
+    fontSize: FONT_SIZE_BASE,
+  } satisfies DrawTextOptions;
+
+  context.save();
+
+  context.font = getFont(leftOptions);
+  const leftWidth = context.measureText(left).width;
+
+  context.font = getFont(centerOptions);
+  const centerWidth = context.measureText(center).width;
+
+  context.font = getFont(rightOptions);
+  const rightWidth = context.measureText(right).width;
+
+  context.restore();
+
+  const totalWidth = leftWidth + centerWidth + rightWidth;
+  const startX = (CANVAS_WIDTH - totalWidth) / 2;
+
+  drawText(context, left, startX, y, leftOptions);
+
+  drawText(context, center, startX + leftWidth, y - 10, centerOptions);
+
+  drawText(context, right, startX + leftWidth + centerWidth, y, rightOptions);
+
+  drawText(context, "生まれてから", 120, 420, {
+    color: textColor,
+    fontSize: FONT_SIZE_BASE,
   });
-  drawCenteredText(
+
+  const yDays = 650;
+
+  const days = `${result.livedDays}`;
+  const daysFollow = `日目！`;
+
+  const daysOptions = {
+    color: textColor,
+    fontSize: 200,
+    shadow: true,
+    weight: 900,
+  } satisfies DrawTextOptions;
+
+  const daysFollowOptions = {
+    color: textColor,
+    fontSize: FONT_SIZE_BASE,
+  } satisfies DrawTextOptions;
+
+  context.save();
+
+  context.font = getFont(daysOptions);
+  const daysWidth = context.measureText(days).width;
+
+  context.font = getFont(daysFollowOptions);
+  const daysFollowWidth = context.measureText(daysFollow).width;
+
+  context.restore();
+
+  const totalWidthDays = daysWidth + daysFollowWidth;
+  const startXDays = (CANVAS_WIDTH - totalWidthDays) / 2;
+
+  drawText(context, days, startXDays, yDays, daysOptions);
+
+  drawText(
     context,
-    `${formatBirthdayNumber(result.livedDays)}日目！`,
-    590,
-    {
-      color: textColor,
-      fontSize: 120,
-      weight: 800,
-      shadow: true,
-    },
+    daysFollow,
+    startXDays + daysWidth + 20,
+    yDays + 60,
+    daysFollowOptions,
   );
+
   drawCenteredText(
     context,
     `( ${details.ageParts.years}歳 ${details.ageParts.months}ヶ月 )`,
-    790,
-    { color: textColor, fontSize: 40, shadow: true },
+    870,
+    { color: textColor, fontSize: FONT_SIZE_BASE },
   );
-  drawCenteredText(context, birthText, 960, {
+  drawCenteredText(context, birthText, 1100, {
     color: textColor,
-    fontSize: 36,
-    shadow: true,
+    fontSize: FONT_SIZE_BASE,
   });
-  drawCenteredText(context, "次の誕生日まであと", 1210, {
+
+  drawCenteredText(context, "次の誕生日まであと", 1350, {
     color: textColor,
-    fontSize: 46,
-    shadow: true,
+    fontSize: FONT_SIZE_BASE,
   });
-  drawCenteredText(
+
+  const yDaysLeft = 1580;
+
+  const daysLeft = `${result.daysUntilNextBirthday}`;
+  const daysLeftFollow = `日です！`;
+
+  const daysLeftOptions = {
+    color: textColor,
+    fontSize: 200,
+    shadow: true,
+    weight: 900,
+  } satisfies DrawTextOptions;
+
+  const daysLeftFollowOptions = {
+    color: textColor,
+    fontSize: FONT_SIZE_BASE,
+  } satisfies DrawTextOptions;
+
+  context.save();
+
+  context.font = getFont(daysLeftOptions);
+  const daysLeftWidth = context.measureText(daysLeft).width;
+
+  context.font = getFont(daysFollowOptions);
+  const daysLeftFollowWidth = context.measureText(daysLeftFollow).width;
+
+  context.restore();
+
+  const totalWidthDaysLeft = daysLeftWidth + daysLeftFollowWidth;
+  const startXDaysLeft = (CANVAS_WIDTH - totalWidthDaysLeft) / 2;
+
+  drawText(context, daysLeft, startXDaysLeft, yDaysLeft, daysLeftOptions);
+
+  drawText(
     context,
-    `${formatBirthdayNumber(result.daysUntilNextBirthday)}`,
-    1390,
-    {
-      color: textColor,
-      fontSize: 150,
-      weight: 800,
-      shadow: true,
-    },
+    daysLeftFollow,
+    startXDaysLeft + daysLeftWidth + 20,
+    yDaysLeft + 60,
+    daysLeftFollowOptions,
   );
-  drawCenteredText(context, "日です！", 1550, {
-    color: textColor,
-    fontSize: 54,
-    shadow: true,
-  });
 };
 
 const drawSimpleMode = (
@@ -269,94 +484,198 @@ const drawSimpleMode = (
       : isAccentMode
         ? palette.background
         : palette.background;
-  const numberColor = isAccentMode
-    ? createRainbowGradient(context, palette)
-    : textColor;
+  const numberColor = isAccentMode ? createRainbowGradient(context) : textColor;
 
   if (result.isBirthdayToday) {
-    drawCenteredText(context, "HAPPY BIRTHDAY", 370, {
+    drawCenteredText(context, "HAPPY", 200, {
       color: numberColor,
-      fontSize: 72,
+      fontSize: 100,
       weight: 900,
-      shadow: mode === "neon",
+    });
+    drawCenteredText(context, "BIRTHDAY", 370, {
+      color: numberColor,
+      fontSize: 100,
+      weight: 900,
     });
     drawCenteredText(context, "今日は", 640, {
       color: textColor,
-      fontSize: 50,
-      shadow: mode !== "rainbow",
+      fontSize: FONT_SIZE_BASE,
     });
-    drawCenteredText(context, `${details.ageParts.years}`, 820, {
+
+    const y = 850;
+
+    const center = `${details.ageParts.years}`;
+    const right = "歳の誕生日！";
+
+    const centerOptions = {
       color: numberColor,
-      fontSize: 170,
+      fontSize: 200,
+      shadow: !isAccentMode,
+    } satisfies DrawTextOptions;
+
+    const rightOptions = {
+      color: textColor,
+      fontSize: FONT_SIZE_BASE,
+    } satisfies DrawTextOptions;
+
+    context.save();
+
+    context.font = getFont(centerOptions);
+    const centerWidth = context.measureText(center).width;
+
+    context.font = getFont(rightOptions);
+    const rightWidth = context.measureText(right).width;
+
+    context.restore();
+
+    const totalWidth = centerWidth + rightWidth;
+    const startX = (CANVAS_WIDTH - totalWidth) / 2;
+
+    drawText(context, center, startX, y, centerOptions);
+
+    drawText(context, right, startX + centerWidth + 20, y + 50, rightOptions);
+
+    drawCenteredText(context, "生まれてから", 1150, {
+      color: textColor,
+      fontSize: FONT_SIZE_BASE,
+    });
+
+    const yDays = 1390;
+
+    const days = `${result.livedDays}`;
+    const daysFollow = `日`;
+
+    const daysOptions = {
+      color: numberColor,
+      fontSize: 200,
+      shadow: !isAccentMode,
       weight: 900,
-      shadow: mode === "neon",
-    });
-    drawCenteredText(context, "歳の誕生日！", 1000, {
+    } satisfies DrawTextOptions;
+
+    const daysFollowOptions = {
       color: textColor,
-      fontSize: 58,
-      shadow: mode !== "rainbow",
-    });
-    drawCenteredText(context, "生まれてから", 1230, {
-      color: textColor,
-      fontSize: 48,
-      shadow: mode !== "rainbow",
-    });
-    drawCenteredText(
+      fontSize: FONT_SIZE_BASE,
+    } satisfies DrawTextOptions;
+
+    context.save();
+
+    context.font = getFont(daysOptions);
+    const daysWidth = context.measureText(days).width;
+
+    context.font = getFont(daysFollowOptions);
+    const daysFollowWidth = context.measureText(daysFollow).width;
+
+    context.restore();
+
+    const totalWidthDays = daysWidth + daysFollowWidth;
+    const startXDays = (CANVAS_WIDTH - totalWidthDays) / 2;
+
+    drawText(context, days, startXDays, yDays, daysOptions);
+
+    drawText(
       context,
-      `${formatBirthdayNumber(result.livedDays)}日`,
-      1390,
-      {
-        color: numberColor,
-        fontSize: 112,
-        weight: 900,
-        shadow: mode === "neon",
-      },
+      daysFollow,
+      startXDays + daysWidth + 20,
+      yDays + 60,
+      daysFollowOptions,
     );
-    drawCenteredText(context, "経ちました！", 1540, {
+
+    drawCenteredText(context, "経ちました！", 1650, {
       color: textColor,
-      fontSize: 52,
-      shadow: mode !== "rainbow",
+      fontSize: FONT_SIZE_BASE,
     });
     return;
   }
 
-  drawCenteredText(context, "今日は生まれてから", 510, {
+  drawCenteredText(context, "今日は生まれてから", 400, {
     color: textColor,
-    fontSize: 54,
-    shadow: mode !== "rainbow",
+    fontSize: FONT_SIZE_BASE,
   });
-  drawCenteredText(
+
+  const yDays = 670;
+
+  const days = `${result.livedDays}`;
+  const daysFollow = `日目！`;
+
+  const daysOptions = {
+    color: numberColor,
+    fontSize: 200,
+    shadow: !isAccentMode,
+    weight: 900,
+  } satisfies DrawTextOptions;
+
+  const daysFollowOptions = {
+    color: textColor,
+    fontSize: FONT_SIZE_BASE,
+  } satisfies DrawTextOptions;
+
+  context.save();
+
+  context.font = getFont(daysOptions);
+  const daysWidth = context.measureText(days).width;
+
+  context.font = getFont(daysFollowOptions);
+  const daysFollowWidth = context.measureText(daysFollow).width;
+
+  context.restore();
+
+  const totalWidthDays = daysWidth + daysFollowWidth;
+  const startXDays = (CANVAS_WIDTH - totalWidthDays) / 2;
+
+  drawText(context, days, startXDays, yDays, daysOptions);
+
+  drawText(
     context,
-    `${formatBirthdayNumber(result.livedDays)}日目！`,
-    720,
-    {
-      color: numberColor,
-      fontSize: 122,
-      weight: 900,
-      shadow: mode === "neon",
-    },
+    daysFollow,
+    startXDays + daysWidth + 20,
+    yDays + 60,
+    daysFollowOptions,
   );
+
   drawCenteredText(context, "次の誕生日まであと", 1120, {
     color: textColor,
-    fontSize: 52,
-    shadow: mode !== "rainbow",
+    fontSize: FONT_SIZE_BASE,
   });
-  drawCenteredText(
-    context,
-    `${formatBirthdayNumber(result.daysUntilNextBirthday)}`,
-    1320,
-    {
-      color: numberColor,
-      fontSize: 170,
-      weight: 900,
-      shadow: mode === "neon",
-    },
-  );
-  drawCenteredText(context, "日です！", 1500, {
+
+  const yDaysLeft = 1380;
+
+  const daysLeft = `${result.daysUntilNextBirthday}`;
+  const daysLeftFollow = `日です！`;
+
+  const daysLeftOptions = {
+    color: numberColor,
+    fontSize: 200,
+    shadow: !isAccentMode,
+    weight: 900,
+  } satisfies DrawTextOptions;
+
+  const daysLeftFollowOptions = {
     color: textColor,
-    fontSize: 58,
-    shadow: mode !== "rainbow",
-  });
+    fontSize: FONT_SIZE_BASE,
+  } satisfies DrawTextOptions;
+
+  context.save();
+
+  context.font = getFont(daysLeftOptions);
+  const daysLeftWidth = context.measureText(daysLeft).width;
+
+  context.font = getFont(daysFollowOptions);
+  const daysLeftFollowWidth = context.measureText(daysLeftFollow).width;
+
+  context.restore();
+
+  const totalWidthDaysLeft = daysLeftWidth + daysLeftFollowWidth;
+  const startXDaysLeft = (CANVAS_WIDTH - totalWidthDaysLeft) / 2;
+
+  drawText(context, daysLeft, startXDaysLeft, yDaysLeft, daysLeftOptions);
+
+  drawText(
+    context,
+    daysLeftFollow,
+    startXDaysLeft + daysLeftWidth + 20,
+    yDaysLeft + 60,
+    daysLeftFollowOptions,
+  );
 };
 
 const generateShareImage = async (
@@ -437,7 +756,7 @@ export function BirthdayShareImage(props: BirthdayShareImageProps) {
             unoptimized
           />
           <a href={imageUrl} download="birthday-counter.png">
-            画像を保存する
+            画像をダウンロード
           </a>
         </div>
       )}
