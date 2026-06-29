@@ -32,6 +32,9 @@ export function Header() {
         <Link href="/labo" className={styles.navLink}>
           Labo
         </Link>
+        <Link href="/privacy" className={styles.navLink}>
+          Privacy
+        </Link>
       </nav>
     </header>
   );
