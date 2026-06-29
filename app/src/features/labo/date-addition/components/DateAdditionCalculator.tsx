@@ -60,7 +60,7 @@ export const DateAdditionCalculator = () => {
             onChange={(e) =>
               setDayDeltaInput(normalizeDayDeltaInput(e.target.value))
             }
-            className={styles.field}
+            className={styles.fieldAdditionalDays}
           />
         </div>
       </div>
@@ -76,4 +76,3 @@ export const DateAdditionCalculator = () => {
     </section>
   );
 };
-

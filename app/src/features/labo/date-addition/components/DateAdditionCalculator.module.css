@@ -56,20 +56,28 @@
 }
 
 .field {
-  width: calc(100%);
+  width: 100%;
   min-width: 0;
   border: 1px solid var(--color-border-input);
   border-radius: 6px;
   background: var(--color-background);
   padding: 0.55rem 0.6rem;
   color: var(--color-foreground);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   outline: none;
 }
 
 .field:focus {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary-soft) 45%, transparent);
+}
+
+.fieldAdditionalDays {
+  width: 10rem;
+  padding: 0.55rem 0.6rem;
+  border: 1px solid var(--color-border-input);
+  font-size: 1rem;
+  border-radius: 6px;
 }
 
 .result {

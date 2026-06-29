@@ -35,15 +35,15 @@ export const DateAdditionResult = ({
   } else if (hasInvalidDayDelta) {
     message = "日数を整数で入力してください。";
   } else if (isInputComplete && baseDate && resultDate && dayDelta !== null) {
-    message = `${formatDate(baseDate)}から${getDeltaText(dayDelta)}は、`;
-    valueText = `${formatDate(resultDate)}になります！`;
+    message = `${formatDate(baseDate)}から${getDeltaText(dayDelta)}は`;
+    valueText = `${formatDate(resultDate)}`;
   }
 
   return (
     <div className={styles.result}>
       <p className={styles.resultMessage}>{message}</p>
       <p className={styles.resultValue}>{valueText}</p>
+      <p className={styles.resultMessage}>になります！</p>
     </div>
   );
 };
-
