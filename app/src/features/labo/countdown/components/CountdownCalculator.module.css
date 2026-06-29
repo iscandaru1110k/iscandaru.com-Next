@@ -1,0 +1,157 @@
+.calculator {
+  margin: 0 auto;
+  background: var(--color-surface-muted);
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.header {
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border-muted);
+}
+
+.header p {
+  margin: 0.25rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+  text-align: right;
+}
+
+.fields {
+  margin-top: 50px;
+  display: grid;
+  gap: 30px;
+}
+
+.inputGroup {
+  display: grid;
+  gap: 1rem;
+}
+
+.toggleLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.label {
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.labelTop {
+  color: var(--color-foreground);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.hint {
+  margin-left: 0.5rem;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.error {
+  margin: 0;
+  color: var(--color-danger);
+  font-size: 0.8rem;
+}
+
+.dateGrid {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.field {
+  width: calc(100%);
+  min-width: 0;
+  border: 1px solid var(--color-border-input);
+  border-radius: 6px;
+  background: var(--color-background);
+  padding: 0.55rem 0.6rem;
+  color: var(--color-foreground);
+  font-size: 0.8rem;
+  outline: none;
+}
+
+.field:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary-soft) 45%, transparent);
+}
+
+.timeFields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 8rem));
+  gap: 30px;
+}
+
+.timeField {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.result {
+  margin-top: 50px;
+  padding: 1rem;
+  border: 3px solid var(--color-primary-soft);
+  border-radius: 10px;
+  background: var(--color-background);
+  text-align: center;
+}
+
+.resultMessage {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+}
+
+.resultValue {
+  margin: 0.25rem 0 0;
+  color: var(--color-primary);
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.resultLine {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.25rem;
+  min-width: min(100%, 24rem);
+  text-align: center;
+}
+
+.resultNumber {
+  display: inline-block;
+  min-width: 2ch;
+  font-size: 2rem;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.resultNumberSmall {
+  display: inline-block;
+  min-width: 2ch;
+  font-size: 2rem;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+@media (max-width: 480px) {
+  .timeFields {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .resultLine {
+    min-width: 100%;
+  }
+}

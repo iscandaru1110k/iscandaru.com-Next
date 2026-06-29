@@ -31,6 +31,14 @@ export default function LaboPage() {
             基準日から指定した日数を足して、結果の日付を計算します。
           </p>
         </li>
+        <li className={styles.card}>
+          <Link href="/labo/countdown" className={styles.link}>
+            カウントダウン
+          </Link>
+          <p className={styles.description}>
+            今日から目標日までの日数、または経過日数を計算します。
+          </p>
+        </li>
       </ul>
     </main>
   );
