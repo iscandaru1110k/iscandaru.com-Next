@@ -23,6 +23,14 @@ export default function LaboPage() {
             2つの日付から日数の差分を計算します。
           </p>
         </li>
+        <li className={styles.card}>
+          <Link href="/labo/date-addition" className={styles.link}>
+            日付計算
+          </Link>
+          <p className={styles.description}>
+            基準日から指定した日数を足して、結果の日付を計算します。
+          </p>
+        </li>
       </ul>
     </main>
   );
