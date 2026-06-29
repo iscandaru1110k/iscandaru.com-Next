@@ -5,6 +5,7 @@ const navItems = [
   { href: "/", label: "Home" },
   { href: "/profile", label: "Profile" },
   { href: "/labo", label: "Labo" },
+  { href: "/privacy", label: "Privacy Policy" },
 ];
 
 export function Footer() {
@@ -21,4 +22,3 @@ export function Footer() {
     </footer>
   );
 }
-
