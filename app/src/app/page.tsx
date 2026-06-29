@@ -1,6 +1,22 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { CONTACT_FORM_URL } from "@/constants/links";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/constants/seo";
 import styles from "./HomePage.module.css";
+
+export const metadata: Metadata = {
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: "/",
+    type: "website",
+  },
+};
 
 const ctaLinks = [
   { href: "/profile", label: "Profile" },
