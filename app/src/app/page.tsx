@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { CONTACT_FORM_URL } from "@/constants/links";
 import styles from "./HomePage.module.css";
 
 const ctaLinks = [
   { href: "/profile", label: "Profile" },
   { href: "/profile#skills-heading", label: "Skills" },
   { href: "/labo", label: "LABO" },
-  { href: "/profile#contact-heading", label: "Contact" },
+  { href: CONTACT_FORM_URL, label: "Contact", isExternal: true },
 ];
 
 const serviceKeywords = ["Webサイト", "Webアプリ", "リニューアル"];
@@ -27,9 +28,10 @@ const navigationCards = [
     description: "技術記事・小さな制作物を見る",
   },
   {
-    href: "/profile#contact-heading",
+    href: CONTACT_FORM_URL,
     title: "Contact",
     description: "相談する",
+    isExternal: true,
   },
 ];
 
@@ -49,9 +51,21 @@ export default function Home() {
 
         <div className={styles.ctaList}>
           {ctaLinks.map((link) => (
-            <Link key={link.href} href={link.href} className={styles.ctaLink}>
-              {link.label}
-            </Link>
+            link.isExternal ? (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.ctaLink}
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link key={link.href} href={link.href} className={styles.ctaLink}>
+                {link.label}
+              </Link>
+            )
           ))}
         </div>
       </section>
@@ -66,10 +80,27 @@ export default function Home() {
 
       <section className={styles.navigation} aria-label="Site navigation">
         {navigationCards.map((card) => (
-          <Link key={card.href} href={card.href} className={styles.card}>
-            <span className={styles.cardTitle}>{card.title}</span>
-            <span className={styles.cardDescription}>{card.description}</span>
-          </Link>
+          card.isExternal ? (
+            <a
+              key={card.href}
+              href={card.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.card}
+            >
+              <span className={styles.cardTitle}>{card.title}</span>
+              <span className={styles.cardDescription}>
+                {card.description}
+              </span>
+            </a>
+          ) : (
+            <Link key={card.href} href={card.href} className={styles.card}>
+              <span className={styles.cardTitle}>{card.title}</span>
+              <span className={styles.cardDescription}>
+                {card.description}
+              </span>
+            </Link>
+          )
         ))}
       </section>
     </main>

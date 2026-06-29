@@ -1,3 +1,4 @@
+import { CONTACT_FORM_URL } from "@/constants/links";
 import styles from "./ProfilePage.module.css";
 
 const values = [
@@ -237,6 +238,14 @@ export default function ProfilePage() {
             「自分でWebサイトを作ってみたい！ でもどうしたら…」そんな相談でもOK!
           </p>
           <p>まずはお話を伺い、一緒に最適な形を考えます。</p>
+          <a
+            href={CONTACT_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.contactLink}
+          >
+            Googleフォームで相談する
+          </a>
         </div>
       </section>
     </main>
