@@ -1,0 +1,173 @@
+.page {
+  width: min(90%, 64rem);
+  margin: 3rem auto;
+}
+
+.hero {
+  border: 5px solid var(--color-primary);
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background: var(--color-background);
+  padding: 2rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  color: var(--color-primary);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08rem;
+}
+
+.title {
+  margin: 0;
+  color: var(--color-foreground);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.heroPhilosophies {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.heroPhilosophy {
+  display: grid;
+  gap: 0.65rem;
+  border-left: 4px solid var(--color-primary-soft);
+  background: var(--color-surface-muted);
+  padding: 1rem 1.25rem;
+}
+
+.heroPhilosophyTitle {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.lead {
+  margin: 0;
+  color: var(--color-foreground);
+  font-size: 1.125rem;
+  line-height: 1.9;
+}
+
+.subLead {
+  margin: 1rem 0 0;
+  color: var(--color-muted);
+  line-height: 1.9;
+}
+
+.section {
+  margin-top: 3rem;
+}
+
+.sectionTitle {
+  margin: 0 0 1rem 0.625rem;
+  color: var(--color-primary);
+  font-size: 1.625rem;
+  font-weight: 700;
+  text-shadow: 1px 1px 3px var(--color-muted);
+}
+
+.textBlock {
+  display: grid;
+  gap: 1rem;
+  border: 1px solid var(--color-border-muted);
+  border-radius: 10px;
+  background: var(--color-background);
+  padding: 1.5rem;
+}
+
+.textBlock p {
+  margin: 0;
+  line-height: 1.9;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.threeColumns {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.twoColumns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
+  border: 1px solid var(--color-border-muted);
+  border-radius: 10px;
+  background: var(--color-background);
+  padding: 1.25rem;
+}
+
+.cardTitle {
+  margin: 0 0 0.75rem;
+  color: var(--color-primary);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.card p {
+  margin: 0;
+  line-height: 1.8;
+}
+
+.list {
+  display: grid;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.list li {
+  line-height: 1.6;
+}
+
+.chipList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.chip {
+  border: 1px solid var(--color-border-muted);
+  border-radius: 999px;
+  background: var(--color-surface-muted);
+  padding: 0.35rem 0.7rem;
+  color: var(--color-foreground);
+  font-size: 0.875rem;
+}
+
+.contact {
+  border: 3px solid var(--color-primary-soft);
+  border-radius: 10px;
+  background: var(--color-background);
+  padding: 1.5rem;
+}
+
+.contact p {
+  margin: 0;
+  line-height: 1.9;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    padding: 1.5rem;
+  }
+
+  .threeColumns,
+  .twoColumns {
+    grid-template-columns: 1fr;
+  }
+}

@@ -26,6 +26,9 @@ export function Header() {
         <Link href="/" className={styles.navLink}>
           Home
         </Link>
+        <Link href="/profile" className={styles.navLink}>
+          Profile
+        </Link>
         <Link href="/labo" className={styles.navLink}>
           Labo
         </Link>
