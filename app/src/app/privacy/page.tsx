@@ -1,4 +1,21 @@
+import type { Metadata } from "next";
 import styles from "./PrivacyPage.module.css";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | iscandaru",
+  description:
+    "iscandaru.comのプライバシーポリシーです。個人情報の利用目的、アクセス解析、Cookie、免責事項、著作権について掲載しています。",
+  alternates: {
+    canonical: "/privacy",
+  },
+  openGraph: {
+    title: "Privacy Policy | iscandaru",
+    description:
+      "iscandaru.comのプライバシーポリシーです。個人情報の利用目的、アクセス解析、Cookie、免責事項、著作権について掲載しています。",
+    url: "/privacy",
+    type: "website",
+  },
+};
 
 const policySections = [
   {
@@ -75,4 +92,3 @@ export default function PrivacyPage() {
     </main>
   );
 }
-

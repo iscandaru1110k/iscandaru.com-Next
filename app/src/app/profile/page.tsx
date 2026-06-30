@@ -1,5 +1,22 @@
+import type { Metadata } from "next";
 import { CONTACT_FORM_URL } from "@/constants/links";
 import styles from "./ProfilePage.module.css";
+
+export const metadata: Metadata = {
+  title: "Profile | iscandaru",
+  description:
+    "iscandaruのプロフィールページです。Webサイト制作・Webアプリ開発で大切にしていること、スキル、経験、制作物を紹介しています。",
+  alternates: {
+    canonical: "/profile",
+  },
+  openGraph: {
+    title: "Profile | iscandaru",
+    description:
+      "iscandaruのプロフィールページです。Webサイト制作・Webアプリ開発で大切にしていること、スキル、経験、制作物を紹介しています。",
+    url: "/profile",
+    type: "website",
+  },
+};
 
 const values = [
   {

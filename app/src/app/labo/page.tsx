@@ -1,5 +1,22 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "./LaboPage.module.css";
+
+export const metadata: Metadata = {
+  title: "LABO | iscandaru",
+  description:
+    "誕生日計算、日数計算、日付計算、カウントダウンなど、日常で使える小さなWebツールをまとめたLABOページです。",
+  alternates: {
+    canonical: "/labo",
+  },
+  openGraph: {
+    title: "LABO | iscandaru",
+    description:
+      "誕生日計算、日数計算、日付計算、カウントダウンなど、日常で使える小さなWebツールをまとめたLABOページです。",
+    url: "/labo",
+    type: "website",
+  },
+};
 
 export default function LaboPage() {
   return (
