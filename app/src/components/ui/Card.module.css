@@ -1,0 +1,31 @@
+.card {
+  display: grid;
+  gap: var(--space-sm);
+  border: var(--border-subtle);
+  background: var(--color-background);
+  box-shadow: var(--shadow-card);
+  text-decoration: none;
+}
+
+.hover:hover,
+.hover:focus-visible {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+.padding-lg {
+  padding: var(--space-lg);
+}
+
+.padding-card {
+  padding: var(--space-card);
+}
+
+.radius-md {
+  border-radius: var(--radius-md);
+}
+
+.radius-lg {
+  border-radius: var(--radius-lg);
+}
+

@@ -1,0 +1,22 @@
+.container {
+  margin: var(--space-5xl) auto;
+}
+
+.sm {
+  width: min(var(--container-page-inline), var(--container-sm));
+}
+
+.md {
+  width: min(var(--container-page-inline), var(--container-md));
+}
+
+.lg {
+  width: min(var(--container-page-inline), var(--container-lg));
+}
+
+@media (max-width: 520px) {
+  .container {
+    margin: var(--space-3xl) auto;
+  }
+}
+
