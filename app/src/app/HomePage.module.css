@@ -1,19 +1,15 @@
 .page {
-  width: min(90%, 64rem);
-  margin: 5rem auto;
+  width: min(var(--container-page-inline), var(--container-lg));
+  margin: var(--space-5xl) auto;
 }
 
 .hero {
-  border: 1px solid var(--color-border-muted);
-  border-top: 4px solid var(--color-primary-soft);
-  border-radius: 16px;
-  background: linear-gradient(
-    180deg,
-    var(--color-background),
-    var(--color-surface-muted)
-  );
+  border: var(--border-subtle);
+  border-top: var(--border-accent-top);
+  border-radius: var(--radius-xl);
+  background: var(--hero-surface);
   padding: clamp(2rem, 6vw, 4rem);
-  box-shadow: 0 12px 30px color-mix(in srgb, var(--color-foreground) 8%, transparent);
+  box-shadow: var(--shadow-hero);
 }
 
 .eyebrow {
@@ -43,16 +39,16 @@
 .ctaList {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 2rem;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
 }
 
 .ctaLink {
   border: 1px solid var(--color-primary);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--color-primary);
   color: var(--color-background);
-  padding: 0.75rem 1.25rem;
+  padding: var(--padding-button);
   font-weight: 700;
   text-decoration: none;
 }
@@ -67,15 +63,15 @@
 .keywords {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 2.5rem;
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
 }
 
 .keyword {
-  border: 1px solid var(--color-border-muted);
-  border-radius: 999px;
+  border: var(--border-subtle);
+  border-radius: var(--radius-pill);
   background: var(--color-surface-muted);
-  padding: 0.5rem 1rem;
+  padding: var(--padding-tag);
   color: var(--color-foreground);
   font-weight: 700;
 }
@@ -83,18 +79,18 @@
 .navigation {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 4rem;
+  gap: var(--space-md);
+  margin-top: var(--space-4xl);
 }
 
 .card {
   display: grid;
-  gap: 0.75rem;
-  border: 1px solid var(--color-border-muted);
-  border-radius: 10px;
+  gap: var(--space-sm);
+  border: var(--border-subtle);
+  border-radius: var(--radius-md);
   background: var(--color-background);
-  padding: 1.5rem;
-  box-shadow: 0 8px 18px color-mix(in srgb, var(--color-foreground) 5%, transparent);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-card);
   text-decoration: none;
 }
 
@@ -123,7 +119,7 @@
 
 @media (max-width: 520px) {
   .page {
-    margin: 3rem auto;
+    margin: var(--space-3xl) auto;
   }
 
   .navigation {

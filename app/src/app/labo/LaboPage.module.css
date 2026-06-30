@@ -1,6 +1,6 @@
 .page {
-  width: min(90%, 56rem);
-  margin: 5rem auto;
+  width: min(var(--container-page-inline), var(--container-md));
+  margin: var(--space-5xl) auto;
 }
 
 .title {
@@ -13,18 +13,18 @@
 
 .list {
   display: grid;
-  gap: 2rem;
+  gap: var(--space-xl);
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
 .card {
-  padding: 1.75rem;
-  border: 1px solid var(--color-border-muted);
-  border-radius: 12px;
+  padding: var(--space-card);
+  border: var(--border-subtle);
+  border-radius: var(--radius-lg);
   background: var(--color-background);
-  box-shadow: 0 8px 18px color-mix(in srgb, var(--color-foreground) 5%, transparent);
+  box-shadow: var(--shadow-card);
 }
 
 .link {

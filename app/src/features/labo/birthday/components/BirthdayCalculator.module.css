@@ -2,11 +2,11 @@
   width: 100%;
   max-width: 40rem;
   margin: 0 auto;
-  padding: 1.5rem;
-  border: 1px solid var(--color-border-muted);
-  border-radius: 1rem;
+  padding: var(--space-lg);
+  border: var(--border-subtle);
+  border-radius: var(--radius-xl);
   background: var(--color-surface-muted);
-  box-shadow: 0 8px 18px color-mix(in srgb, var(--color-foreground) 5%, transparent);
+  box-shadow: var(--shadow-card);
 }
 
 .header {
@@ -31,17 +31,17 @@
 .inputGroup {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--space-md);
 }
 
 .label,
 .dateFields {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 1rem;
-  border: 1px solid var(--color-border-muted);
-  border-radius: 0.75rem;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  border: var(--border-subtle);
+  border-radius: var(--radius-lg);
   background: var(--color-background);
   color: var(--color-foreground);
   font-size: 0.875rem;
@@ -55,12 +55,12 @@
 .dateGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.5rem;
+  gap: var(--space-xs);
 }
 
 .textInput {
-  border: 1px solid var(--color-border-input);
-  border-radius: 0.5rem;
+  border: var(--border-input);
+  border-radius: var(--radius-control);
   background: var(--color-background);
   padding: 0.5rem;
   color: var(--color-foreground);
@@ -70,7 +70,7 @@
 
 .textInput:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary-soft) 60%, transparent);
+  box-shadow: var(--shadow-focus-strong);
 }
 
 .result {
@@ -80,17 +80,17 @@
   margin-right: auto;
   margin-left: auto;
   padding: 1.25rem;
-  border: 1px solid var(--color-border-muted);
-  border-top: 3px solid var(--color-primary-soft);
-  border-radius: 10px;
+  border: var(--border-subtle);
+  border-top: var(--border-result-top);
+  border-radius: var(--radius-md);
   background: var(--color-background);
   text-align: center;
-  box-shadow: 0 6px 14px color-mix(in srgb, var(--color-foreground) 4%, transparent);
+  box-shadow: var(--shadow-result);
 }
 
 .resultText {
   display: grid;
-  gap: 1rem;
+  gap: var(--space-md);
   line-height: 1.8;
 }
 
@@ -113,7 +113,7 @@
   max-width: max-content;
   margin: 0 auto;
   padding: 1rem 1.25rem;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   background: var(--color-surface-warm);
   color: var(--color-danger);
   font-size: 1.25rem;
@@ -135,11 +135,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.75rem;
+  gap: var(--space-sm);
   margin: 0 0 1rem;
   padding: 0.75rem;
-  border: 1px solid var(--color-border-muted);
-  border-radius: 10px;
+  border: var(--border-subtle);
+  border-radius: var(--radius-md);
   background: var(--color-surface-muted);
 }
 
@@ -152,18 +152,18 @@
 .modeSelect label {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-xs);
   color: var(--color-primary);
   font-size: 0.875rem;
   text-decoration: underline;
 }
 
 .shareButton {
-  border: 1px solid var(--color-border-muted);
+  border: var(--border-subtle);
   border-radius: 15px;
   background: var(--color-background);
   color: var(--color-primary);
-  padding: 0.75rem 1.25rem;
+  padding: var(--padding-button);
   font-weight: 700;
   cursor: pointer;
 }
@@ -176,15 +176,15 @@
 
 .sharePreview {
   display: grid;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
   justify-items: center;
 }
 
 .sharePreview img {
   width: min(100%, 18rem);
   height: auto;
-  border: 1px solid var(--color-border-muted);
+  border: var(--border-subtle);
 }
 
 .sharePreview a {
@@ -229,7 +229,7 @@
 
 @media (max-width: 480px) {
   .calculator {
-    padding: 1rem;
+    padding: var(--space-md);
   }
 
   .dateGrid {

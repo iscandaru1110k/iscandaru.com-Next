@@ -1,6 +1,6 @@
 .page {
-  width: min(90%, 48rem);
-  margin: 5rem auto;
+  width: min(var(--container-page-inline), var(--container-sm));
+  margin: var(--space-5xl) auto;
 }
 
 .title {
