@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { CONTACT_FORM_URL } from "@/constants/links";
@@ -19,13 +18,6 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
-
-const ctaLinks = [
-  { href: "/profile", label: "Profile" },
-  { href: "/profile#skills-heading", label: "Skills" },
-  { href: "/labo", label: "LABO" },
-  { href: CONTACT_FORM_URL, label: "Contact", isExternal: true },
-];
 
 const serviceKeywords = ["Webサイト", "Webアプリ", "リニューアル"];
 
@@ -66,14 +58,6 @@ export default function Home() {
         <p className={styles.lead}>
           Webサイト・Webアプリを、作って終わりにせず、長く使える形へ。
         </p>
-
-        <div className={styles.ctaList}>
-          {ctaLinks.map((link) => (
-            <Button key={link.href} href={link.href} external={link.isExternal}>
-              {link.label}
-            </Button>
-          ))}
-        </div>
       </section>
 
       <section className={styles.keywords} aria-label="Service keywords">

@@ -27,3 +27,15 @@
   color: var(--color-muted);
   line-height: 1.7;
 }
+
+@media (max-width: 520px) {
+  .title {
+    margin-bottom: var(--space-lg);
+    margin-left: 0;
+    font-size: 1.625rem;
+  }
+
+  .list {
+    gap: var(--space-lg);
+  }
+}

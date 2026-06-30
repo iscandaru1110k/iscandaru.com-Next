@@ -8,9 +8,9 @@
 }
 
 .eyebrow {
-  margin: 0 0 1rem;
+  margin: 0 0 var(--space-4xl);
   color: var(--color-primary);
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.08rem;
 }
@@ -25,24 +25,17 @@
 
 .lead {
   max-width: 38rem;
-  margin: 1.5rem 0 0;
+  margin: var(--space-4xl) 0 0;
   color: var(--color-muted);
   font-size: 1.125rem;
   line-height: 1.9;
-}
-
-.ctaList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-md);
-  margin-top: var(--space-xl);
 }
 
 .keywords {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-md);
-  margin-top: var(--space-2xl);
+  margin-top: var(--space-4xl);
 }
 
 .keyword {
@@ -79,7 +72,25 @@
 }
 
 @media (max-width: 520px) {
+  .hero {
+    padding: var(--space-lg);
+  }
+
+  .title {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .lead {
+    font-size: 1rem;
+  }
+
+  .keywords {
+    gap: var(--space-sm);
+    margin-top: var(--space-xl);
+  }
+
   .navigation {
     grid-template-columns: 1fr;
+    margin-top: var(--space-3xl);
   }
 }

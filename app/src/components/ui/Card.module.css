@@ -29,3 +29,9 @@
   border-radius: var(--radius-lg);
 }
 
+@media (max-width: 520px) {
+  .padding-lg,
+  .padding-card {
+    padding: var(--space-lg);
+  }
+}

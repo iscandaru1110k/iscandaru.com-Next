@@ -38,3 +38,13 @@
 .link {
   margin-top: var(--space-xl);
 }
+
+@media (max-width: 520px) {
+  .page {
+    margin: var(--space-3xl) auto;
+  }
+
+  .panel {
+    padding: var(--space-xl) var(--space-lg);
+  }
+}
