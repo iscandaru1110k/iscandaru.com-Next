@@ -1,19 +1,20 @@
 .header {
   position: relative;
-  min-height: 250px;
+  min-height: 240px;
   overflow: hidden;
+  border-bottom: var(--border-subtle);
   background-color: var(--color-foreground);
   background-image: url("/images/heartbeat-normal_long.png");
   background-position: left center;
   background-repeat: no-repeat;
-  background-size: 100vw auto;
+  background-size: auto 155px;
   color: var(--color-background);
 }
 
 .brandImages {
   position: absolute;
-  top: 155px;
-  right: 20px;
+  top: 182px;
+  right: var(--space-xl);
   display: flex;
   align-items: center;
 }
@@ -38,8 +39,8 @@
 
 .titleWrap {
   display: grid;
-  min-height: 185px;
-  padding: 0 1.5rem;
+  min-height: 170px;
+  padding: var(--space-lg) var(--space-xl) 0;
   place-items: center;
 }
 
@@ -54,32 +55,54 @@
 
 .nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0 1rem 1rem;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl) var(--space-xl);
 }
 
 .navLink {
   border: 1px solid color-mix(in srgb, var(--color-background) 45%, transparent);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: color-mix(in srgb, var(--color-background) 12%, transparent);
   color: var(--color-background);
-  padding: 0.45rem 0.9rem;
+  padding: var(--padding-tag);
+  font-weight: 700;
   text-decoration: none;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
 }
 
 .navLink:hover,
 .navLink:focus-visible {
-  border-color: var(--color-primary-soft);
-  background: color-mix(in srgb, var(--color-primary-soft) 22%, transparent);
+  border-color: color-mix(in srgb, var(--color-background) 80%, transparent);
+  background: color-mix(in srgb, var(--color-background) 22%, transparent);
   outline: none;
+}
+
+.active {
+  border-color: var(--color-primary-soft);
+  background: color-mix(in srgb, var(--color-primary-soft) 28%, transparent);
+}
+
+.contactLink {
+  border-color: color-mix(in srgb, var(--color-background) 45%, transparent);
+  background: color-mix(in srgb, var(--color-background) 12%, transparent);
+}
+
+.contactLink:hover,
+.contactLink:focus-visible {
+  border-color: var(--color-primary-soft);
+  background: color-mix(in srgb, var(--color-primary-soft) 28%, transparent);
 }
 
 @media (max-width: 700px) {
   .header {
     min-height: 200px;
-    background-size: 900px auto;
+    background-size: auto 130px;
   }
 
   .brandImages {

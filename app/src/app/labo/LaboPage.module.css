@@ -1,10 +1,5 @@
-.page {
-  width: min(90%, 56rem);
-  margin: 3rem auto;
-}
-
 .title {
-  margin: 0 0 1.5rem 0.625rem;
+  margin: 0 0 2rem 0.5rem;
   color: var(--color-primary);
   font-size: 1.875rem;
   font-weight: 700;
@@ -13,18 +8,10 @@
 
 .list {
   display: grid;
-  gap: 1.25rem;
+  gap: var(--space-xl);
   padding: 0;
   margin: 0;
   list-style: none;
-}
-
-.card {
-  padding: 1.25rem;
-  border: 5px solid var(--color-primary);
-  border-top-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  background: var(--color-background);
 }
 
 .link {
@@ -36,7 +23,7 @@
 }
 
 .description {
-  margin: 0.75rem 0 0;
+  margin: 1rem 0 0;
   color: var(--color-muted);
   line-height: 1.7;
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Button } from "@/components/ui/Button";
 import { CONTACT_FORM_URL } from "@/constants/links";
 import styles from "./ProfilePage.module.css";
 
@@ -255,14 +256,13 @@ export default function ProfilePage() {
             「自分でWebサイトを作ってみたい！ でもどうしたら…」そんな相談でもOK!
           </p>
           <p>まずはお話を伺い、一緒に最適な形を考えます。</p>
-          <a
+          <Button
             href={CONTACT_FORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.contactLink}
+            external
+            className={styles.contactButton}
           >
             Googleフォームで相談する
-          </a>
+          </Button>
         </div>
       </section>
     </main>

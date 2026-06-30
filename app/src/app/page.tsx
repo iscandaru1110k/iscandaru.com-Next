@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Container } from "@/components/ui/Container";
 import { CONTACT_FORM_URL } from "@/constants/links";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/constants/seo";
 import styles from "./HomePage.module.css";
@@ -53,7 +55,7 @@ const navigationCards = [
 
 export default function Home() {
   return (
-    <main className={styles.page}>
+    <Container as="main" size="lg">
       <section className={styles.hero}>
         <p className={styles.eyebrow}>iscandaru.com</p>
         <h1 className={styles.title}>
@@ -67,21 +69,9 @@ export default function Home() {
 
         <div className={styles.ctaList}>
           {ctaLinks.map((link) => (
-            link.isExternal ? (
-              <a
-                key={link.href}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.ctaLink}
-              >
-                {link.label}
-              </a>
-            ) : (
-              <Link key={link.href} href={link.href} className={styles.ctaLink}>
-                {link.label}
-              </Link>
-            )
+            <Button key={link.href} href={link.href} external={link.isExternal}>
+              {link.label}
+            </Button>
           ))}
         </div>
       </section>
@@ -96,29 +86,17 @@ export default function Home() {
 
       <section className={styles.navigation} aria-label="Site navigation">
         {navigationCards.map((card) => (
-          card.isExternal ? (
-            <a
-              key={card.href}
-              href={card.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.card}
-            >
-              <span className={styles.cardTitle}>{card.title}</span>
-              <span className={styles.cardDescription}>
-                {card.description}
-              </span>
-            </a>
-          ) : (
-            <Link key={card.href} href={card.href} className={styles.card}>
-              <span className={styles.cardTitle}>{card.title}</span>
-              <span className={styles.cardDescription}>
-                {card.description}
-              </span>
-            </Link>
-          )
+          <Card
+            key={card.href}
+            href={card.href}
+            external={card.isExternal}
+            hover
+          >
+            <span className={styles.cardTitle}>{card.title}</span>
+            <span className={styles.cardDescription}>{card.description}</span>
+          </Card>
         ))}
       </section>
-    </main>
+    </Container>
   );
 }

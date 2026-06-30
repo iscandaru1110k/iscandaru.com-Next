@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import styles from "./NotFoundPage.module.css";
 
 export default function NotFound() {
@@ -10,11 +10,10 @@ export default function NotFound() {
         <p className={styles.description}>
           お探しのページは削除されたか、URLが変更された可能性があります。
         </p>
-        <Link href="/" className={styles.link}>
+        <Button href="/" className={styles.link}>
           トップページへ戻る
-        </Link>
+        </Button>
       </section>
     </main>
   );
 }
-

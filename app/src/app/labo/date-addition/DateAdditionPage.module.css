@@ -1,13 +1,12 @@
 .page {
-  width: min(90%, 48rem);
-  margin: 3rem auto;
+  width: min(var(--container-page-inline), var(--container-sm));
+  margin: var(--space-5xl) auto;
 }
 
 .title {
-  margin: 0 0 1.5rem 0.625rem;
+  margin: 0 0 2rem 0.5rem;
   color: var(--color-primary);
   font-size: 1.875rem;
   font-weight: 700;
   text-shadow: 1px 1px 3px var(--color-muted);
 }
-

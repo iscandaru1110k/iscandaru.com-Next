@@ -1,8 +1,10 @@
 .calculator {
   margin: 0 auto;
+  border: var(--border-subtle);
   background: var(--color-surface-muted);
-  padding: 2rem;
-  border-radius: 1rem;
+  padding: var(--space-xl);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
 }
 
 .header {
@@ -19,20 +21,20 @@
 }
 
 .fields {
-  margin-top: 50px;
+  margin-top: var(--space-3xl);
   display: grid;
-  gap: 30px;
+  gap: var(--space-xl);
 }
 
 .inputGroup {
   display: grid;
-  gap: 1rem;
+  gap: var(--space-md);
 }
 
 .toggleLabel {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-xs);
   color: var(--color-muted);
   font-size: 0.8rem;
   font-weight: 600;
@@ -67,16 +69,16 @@
 .dateGrid {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+  gap: var(--space-md);
 }
 
 .field {
   width: calc(100%);
   min-width: 0;
-  border: 1px solid var(--color-border-input);
-  border-radius: 6px;
+  border: var(--border-input);
+  border-radius: var(--radius-sm);
   background: var(--color-background);
-  padding: 0.55rem 0.6rem;
+  padding: var(--padding-control);
   color: var(--color-foreground);
   font-size: 0.8rem;
   outline: none;
@@ -84,27 +86,29 @@
 
 .field:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary-soft) 45%, transparent);
+  box-shadow: var(--shadow-focus);
 }
 
 .timeFields {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 8rem));
-  gap: 30px;
+  gap: var(--space-xl);
 }
 
 .timeField {
   display: grid;
-  gap: 0.5rem;
+  gap: var(--space-xs);
 }
 
 .result {
-  margin-top: 50px;
-  padding: 1rem;
-  border: 3px solid var(--color-primary-soft);
-  border-radius: 10px;
+  margin-top: var(--space-3xl);
+  padding: var(--space-lg);
+  border: var(--border-subtle);
+  border-top: var(--border-result-top);
+  border-radius: var(--radius-md);
   background: var(--color-background);
   text-align: center;
+  box-shadow: var(--shadow-result);
 }
 
 .resultMessage {
@@ -125,7 +129,7 @@
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: center;
-  gap: 0.25rem;
+  gap: var(--space-2xs);
   min-width: min(100%, 24rem);
   text-align: center;
 }

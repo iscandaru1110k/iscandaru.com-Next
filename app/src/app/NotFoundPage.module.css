@@ -1,14 +1,15 @@
 .page {
-  width: min(90%, 48rem);
-  margin: 3rem auto;
+  width: min(var(--container-page-inline), var(--container-sm));
+  margin: var(--space-5xl) auto;
 }
 
 .panel {
-  border: 5px solid var(--color-primary);
-  border-top-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  background: var(--color-background);
+  border: var(--border-subtle);
+  border-top: var(--border-accent-top);
+  border-radius: var(--radius-xl);
+  background: var(--hero-surface);
   padding: clamp(2rem, 6vw, 4rem);
+  box-shadow: var(--shadow-hero);
   text-align: center;
 }
 
@@ -21,35 +22,19 @@
 }
 
 .title {
-  margin: 1rem 0 0;
+  margin: 1.5rem 0 0;
   color: var(--color-foreground);
   font-size: 1.5rem;
   font-weight: 700;
 }
 
 .description {
-  margin: 1rem auto 0;
+  margin: 1.5rem auto 0;
   max-width: 32rem;
   color: var(--color-muted);
   line-height: 1.9;
 }
 
 .link {
-  display: inline-block;
-  margin-top: 1.5rem;
-  border: 1px solid var(--color-primary);
-  border-radius: 999px;
-  background: var(--color-primary);
-  color: var(--color-background);
-  padding: 0.65rem 1rem;
-  font-weight: 700;
-  text-decoration: none;
+  margin-top: var(--space-xl);
 }
-
-.link:hover,
-.link:focus-visible {
-  background: var(--color-background);
-  color: var(--color-primary);
-  outline: none;
-}
-

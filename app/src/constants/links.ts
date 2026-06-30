@@ -1,2 +1,1 @@
-export const CONTACT_FORM_URL = "https://forms.gle/REPLACE_ME";
-
+export const CONTACT_FORM_URL = "https://forms.gle/KJqKJ9azZ3pp3KkH6";

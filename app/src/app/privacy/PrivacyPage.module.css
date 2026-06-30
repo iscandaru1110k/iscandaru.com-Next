@@ -1,18 +1,19 @@
 .page {
-  width: min(90%, 56rem);
-  margin: 3rem auto;
+  width: min(var(--container-page-inline), var(--container-md));
+  margin: var(--space-5xl) auto;
 }
 
 .hero {
-  border: 5px solid var(--color-primary);
-  border-top-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  background: var(--color-background);
-  padding: 2rem;
+  border: var(--border-subtle);
+  border-top: var(--border-accent-top);
+  border-radius: var(--radius-xl);
+  background: var(--hero-surface);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-hero);
 }
 
 .eyebrow {
-  margin: 0 0 0.75rem;
+  margin: 0 0 1rem;
   color: var(--color-primary);
   font-size: 0.875rem;
   font-weight: 700;
@@ -28,26 +29,27 @@
 }
 
 .lead {
-  margin: 1rem 0 0;
+  margin: 1.5rem 0 0;
   color: var(--color-muted);
   line-height: 1.9;
 }
 
 .sections {
   display: grid;
-  gap: 1.25rem;
-  margin-top: 2rem;
+  gap: var(--space-xl);
+  margin-top: var(--space-4xl);
 }
 
 .section {
-  border: 1px solid var(--color-border-muted);
-  border-radius: 10px;
+  border: var(--border-subtle);
+  border-radius: var(--radius-md);
   background: var(--color-background);
-  padding: 1.5rem;
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-card);
 }
 
 .sectionTitle {
-  margin: 0 0 0.75rem;
+  margin: 0 0 1rem;
   color: var(--color-primary);
   font-size: 1.125rem;
   font-weight: 700;
@@ -59,7 +61,7 @@
 }
 
 .section p + p {
-  margin-top: 0.75rem;
+  margin-top: var(--space-md);
 }
 
 @media (max-width: 760px) {
@@ -68,4 +70,3 @@
     padding: 1.25rem;
   }
 }
-
