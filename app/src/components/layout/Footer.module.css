@@ -14,14 +14,58 @@
 }
 
 .link {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  border-radius: var(--radius-sm);
   color: var(--color-primary);
   font-size: 0.9375rem;
   font-weight: 600;
   text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition:
+    background 160ms ease,
+    box-shadow 160ms ease,
+    color 160ms ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  background: color-mix(in srgb, var(--color-primary-soft) 18%, transparent);
+  color: var(--color-foreground);
+}
+
+.link:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.link:active {
+  color: var(--color-primary);
 }
 
 .copy {
   margin: 1rem 0 0;
   color: var(--color-muted);
   font-size: 0.8125rem;
+}
+
+@media (max-width: 520px) {
+  .footer {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .nav {
+    gap: var(--space-sm);
+  }
+
+  .link {
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
 }

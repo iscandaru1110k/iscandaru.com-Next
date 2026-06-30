@@ -5,12 +5,22 @@
   background: var(--color-background);
   box-shadow: var(--shadow-card);
   text-decoration: none;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
 }
 
 .hover:hover,
 .hover:focus-visible {
   border-color: var(--color-primary);
   outline: none;
+  box-shadow: var(--shadow-result);
+  transform: translateY(-1px);
+}
+
+.hover:active {
+  transform: translateY(0);
 }
 
 .padding-lg {
@@ -29,3 +39,21 @@
   border-radius: var(--radius-lg);
 }
 
+@media (max-width: 520px) {
+  .padding-lg,
+  .padding-card {
+    padding: var(--space-lg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+
+  .hover:hover,
+  .hover:focus-visible,
+  .hover:active {
+    transform: none;
+  }
+}

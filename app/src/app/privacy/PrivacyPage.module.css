@@ -65,8 +65,17 @@
 }
 
 @media (max-width: 760px) {
+  .page {
+    margin: var(--space-3xl) auto;
+  }
+
   .hero,
   .section {
     padding: 1.25rem;
+  }
+
+  .sections {
+    gap: var(--space-lg);
+    margin-top: var(--space-3xl);
   }
 }

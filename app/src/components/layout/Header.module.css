@@ -23,7 +23,13 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
+  border-radius: var(--radius-pill);
   text-decoration: none;
+}
+
+.brandLink:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
 }
 
 .mark {
@@ -59,10 +65,13 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
-  padding: var(--space-md) var(--space-xl) var(--space-xl);
+  padding: var(--space-md) var(--space-xl) var(--space-lg);
 }
 
 .navLink {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
   border: 1px solid color-mix(in srgb, var(--color-background) 45%, transparent);
   border-radius: var(--radius-pill);
   background: color-mix(in srgb, var(--color-background) 12%, transparent);
@@ -73,7 +82,9 @@
   transition:
     background 160ms ease,
     border-color 160ms ease,
-    color 160ms ease;
+    box-shadow 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
 }
 
 .navLink:hover,
@@ -81,6 +92,11 @@
   border-color: color-mix(in srgb, var(--color-background) 80%, transparent);
   background: color-mix(in srgb, var(--color-background) 22%, transparent);
   outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.navLink:active {
+  transform: translateY(1px);
 }
 
 .active {
@@ -99,10 +115,21 @@
   background: color-mix(in srgb, var(--color-primary-soft) 28%, transparent);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .navLink {
+    transition: none;
+  }
+
+  .navLink:active {
+    transform: none;
+  }
+}
+
 @media (max-width: 700px) {
   .header {
     min-height: 200px;
-    background-size: auto 130px;
+    background-position: left -1.0rem bottom 2.5rem;
+    background-size: auto 100px;
   }
 
   .brandImages {
@@ -121,27 +148,38 @@
 
   .titleWrap {
     min-height: 145px;
-    padding: 0 1rem;
+    padding: var(--space-md) var(--space-md) 0;
   }
 
   .siteTitle {
     font-size: 2.5rem;
     letter-spacing: 0.12rem;
   }
+
+  .nav {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
+  .header {
+    min-height: 150px;
+    background-position: left -1.6rem bottom 2.5rem;
+    background-size: auto 80px;
+  }
+
   .brandImages {
-    position: static;
-    justify-content: flex-end;
-    padding: 0.75rem 0.75rem 0;
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
   }
 
   .titleWrap {
-    min-height: 95px;
+    min-height: 150px;
+    padding: var(--space-lg) var(--space-md);
   }
 
   .siteTitle {
-    font-size: 2rem;
+    font-size: clamp(1.75rem, 9vw, 2rem);
   }
 }

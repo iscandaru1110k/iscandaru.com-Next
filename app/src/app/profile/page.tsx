@@ -110,7 +110,9 @@ export default function ProfilePage() {
         <h1 className={styles.title}>伴走型のWebエンジニア</h1>
         <div className={styles.heroPhilosophies}>
           <section className={styles.heroPhilosophy}>
-            <h3 className={styles.heroPhilosophyTitle}>哲学1</h3>
+            <h3 className={styles.heroPhilosophyTitle}>
+              実現したいことから考える
+            </h3>
             <p className={styles.lead}>
               Webサイトを作ることではなく、
               <br />
@@ -120,7 +122,9 @@ export default function ProfilePage() {
             </p>
           </section>
           <section className={styles.heroPhilosophy}>
-            <h3 className={styles.heroPhilosophyTitle}>哲学2</h3>
+            <h3 className={styles.heroPhilosophyTitle}>
+              小さく始めて、一緒に育てる
+            </h3>
             <p className={styles.lead}>
               日常にささやかな豊かさを届けることをテーマに、
               <br />
@@ -128,7 +132,9 @@ export default function ProfilePage() {
             </p>
           </section>
           <section className={styles.heroPhilosophy}>
-            <h3 className={styles.heroPhilosophyTitle}>哲学3</h3>
+            <h3 className={styles.heroPhilosophyTitle}>
+              相談しやすいパートナーであること
+            </h3>
             <p className={styles.lead}>
               Webに詳しくない方でも安心して相談できる、
               声のかけやすいWebエンジニアを目指しています。

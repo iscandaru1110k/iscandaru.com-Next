@@ -5,12 +5,13 @@
   background: var(--hero-surface);
   padding: clamp(2rem, 6vw, 4rem);
   box-shadow: var(--shadow-hero);
+  animation: fadeInUp 520ms ease-out both;
 }
 
 .eyebrow {
-  margin: 0 0 1rem;
+  margin: 0 0 var(--space-4xl);
   color: var(--color-primary);
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.08rem;
 }
@@ -25,24 +26,17 @@
 
 .lead {
   max-width: 38rem;
-  margin: 1.5rem 0 0;
+  margin: var(--space-4xl) 0 0;
   color: var(--color-muted);
   font-size: 1.125rem;
   line-height: 1.9;
-}
-
-.ctaList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-md);
-  margin-top: var(--space-xl);
 }
 
 .keywords {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-md);
-  margin-top: var(--space-2xl);
+  margin-top: var(--space-4xl);
 }
 
 .keyword {
@@ -59,6 +53,26 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-md);
   margin-top: var(--space-4xl);
+}
+
+.navigation > * {
+  animation: fadeInUp 480ms ease-out both;
+}
+
+.navigation > *:nth-child(1) {
+  animation-delay: 80ms;
+}
+
+.navigation > *:nth-child(2) {
+  animation-delay: 120ms;
+}
+
+.navigation > *:nth-child(3) {
+  animation-delay: 160ms;
+}
+
+.navigation > *:nth-child(4) {
+  animation-delay: 200ms;
 }
 
 .cardTitle {
@@ -79,7 +93,44 @@
 }
 
 @media (max-width: 520px) {
+  .hero {
+    padding: var(--space-lg);
+  }
+
+  .title {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .lead {
+    font-size: 1rem;
+  }
+
+  .keywords {
+    gap: var(--space-sm);
+    margin-top: var(--space-xl);
+  }
+
   .navigation {
     grid-template-columns: 1fr;
+    margin-top: var(--space-3xl);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .navigation > * {
+    animation: none;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

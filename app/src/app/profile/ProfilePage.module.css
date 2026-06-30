@@ -10,6 +10,7 @@
   background: var(--hero-surface);
   padding: var(--space-2xl);
   box-shadow: var(--shadow-hero);
+  animation: fadeInUp 520ms ease-out both;
 }
 
 .eyebrow {
@@ -171,12 +172,58 @@
 }
 
 @media (max-width: 760px) {
+  .page {
+    margin: var(--space-3xl) auto;
+  }
+
   .hero {
+    padding: var(--space-lg);
+  }
+
+  .heroPhilosophy {
+    padding: var(--space-md);
+  }
+
+  .section {
+    margin-top: var(--space-4xl);
+  }
+
+  .sectionTitle {
+    margin-left: 0;
+    font-size: 1.375rem;
+  }
+
+  .textBlock,
+  .card,
+  .contact {
     padding: var(--space-lg);
   }
 
   .threeColumns,
   .twoColumns {
     grid-template-columns: 1fr;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    animation: none;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
