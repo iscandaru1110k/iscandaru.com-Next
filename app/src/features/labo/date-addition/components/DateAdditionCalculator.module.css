@@ -1,8 +1,10 @@
 .calculator {
   margin: 0 auto;
+  border: 1px solid var(--color-border-muted);
   background: var(--color-surface-muted);
   padding: 2rem;
   border-radius: 1rem;
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--color-foreground) 5%, transparent);
 }
 
 .header {
@@ -19,9 +21,9 @@
 }
 
 .fields {
-  margin-top: 50px;
+  margin-top: 3rem;
   display: grid;
-  gap: 50px;
+  gap: 3rem;
 }
 
 .inputGroup {
@@ -52,7 +54,7 @@
 .dateGrid {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+  gap: 1rem;
 }
 
 .field {
@@ -61,7 +63,7 @@
   border: 1px solid var(--color-border-input);
   border-radius: 6px;
   background: var(--color-background);
-  padding: 0.55rem 0.6rem;
+  padding: 0.5rem 0.75rem;
   color: var(--color-foreground);
   font-size: 1rem;
   outline: none;
@@ -74,19 +76,21 @@
 
 .fieldAdditionalDays {
   width: 10rem;
-  padding: 0.55rem 0.6rem;
+  padding: 0.5rem 0.75rem;
   border: 1px solid var(--color-border-input);
   font-size: 1rem;
   border-radius: 6px;
 }
 
 .result {
-  margin-top: 70px;
-  padding: 1rem;
-  border: 3px solid var(--color-primary-soft);
+  margin-top: 4rem;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border-muted);
+  border-top: 3px solid var(--color-primary-soft);
   border-radius: 10px;
   background: var(--color-background);
   text-align: center;
+  box-shadow: 0 6px 14px color-mix(in srgb, var(--color-foreground) 4%, transparent);
 }
 
 .resultMessage {
@@ -101,4 +105,3 @@
   font-size: 2rem;
   font-weight: 700;
 }
-
