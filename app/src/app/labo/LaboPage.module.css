@@ -15,17 +15,38 @@
 }
 
 .link {
+  border-radius: var(--radius-sm);
   color: var(--color-primary);
   font-size: 1.25rem;
   font-weight: 700;
   text-decoration: underline;
+  text-underline-offset: 0.2em;
   text-shadow: 1px 1px 2px color-mix(in srgb, var(--color-primary-soft) 45%, transparent);
+  transition:
+    background 160ms ease,
+    box-shadow 160ms ease,
+    color 160ms ease;
+}
+
+.link:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.link:active {
+  color: var(--color-primary);
 }
 
 .description {
   margin: 1rem 0 0;
   color: var(--color-muted);
   line-height: 1.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
 }
 
 @media (max-width: 520px) {

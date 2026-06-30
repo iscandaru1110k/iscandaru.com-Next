@@ -74,7 +74,7 @@
 }
 
 .result {
-  margin-top: 1.25rem;
+  margin-top: var(--space-3xl);
   max-width: max-content;
   margin-right: auto;
   margin-left: auto;
@@ -126,7 +126,7 @@
 .shareTool {
   width: 95%;
   max-width: max-content;
-  margin: 1.5rem auto 0;
+  margin: var(--space-3xl) auto 0;
   text-align: center;
 }
 
@@ -165,12 +165,24 @@
   padding: var(--padding-button);
   font-weight: 700;
   cursor: pointer;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
 }
 
 .shareButton:hover,
 .shareButton:focus-visible {
   border-color: color-mix(in srgb, var(--color-primary-soft) 70%, transparent);
+  background: color-mix(in srgb, var(--color-primary-soft) 12%, var(--color-background));
   outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.shareButton:active {
+  transform: translateY(1px);
 }
 
 .sharePreview {
@@ -187,8 +199,20 @@
 }
 
 .sharePreview a {
+  border-radius: var(--radius-sm);
   color: var(--color-primary);
   font-weight: 700;
+  text-underline-offset: 0.2em;
+}
+
+.sharePreview a:hover,
+.sharePreview a:focus-visible {
+  color: var(--color-foreground);
+}
+
+.sharePreview a:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
 }
 
 .info {
@@ -200,15 +224,25 @@
   margin-bottom: 1.5rem;
   display: block;
   border: 0;
+  border-radius: var(--radius-sm);
   background: transparent;
   color: var(--color-primary);
   font: inherit;
   cursor: pointer;
+  transition:
+    box-shadow 160ms ease,
+    color 160ms ease;
 }
 
 .infoToggle:hover,
 .infoToggle:focus-visible {
+  color: var(--color-foreground);
   text-decoration: underline;
+}
+
+.infoToggle:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
 }
 
 .infoContent {
@@ -233,5 +267,16 @@
 
   .dateGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shareButton,
+  .infoToggle {
+    transition: none;
+  }
+
+  .shareButton:active {
+    transform: none;
   }
 }

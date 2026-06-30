@@ -9,10 +9,21 @@
   text-align: center;
   text-decoration: none;
   cursor: pointer;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
 }
 
 .button:focus-visible {
   outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.button:active {
+  transform: translateY(1px);
 }
 
 .md {
@@ -39,4 +50,14 @@
 .outline:focus-visible {
   background: var(--color-primary);
   color: var(--color-background);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .button:active {
+    transform: none;
+  }
 }

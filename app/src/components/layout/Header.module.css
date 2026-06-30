@@ -23,7 +23,13 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
+  border-radius: var(--radius-pill);
   text-decoration: none;
+}
+
+.brandLink:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
 }
 
 .mark {
@@ -76,7 +82,9 @@
   transition:
     background 160ms ease,
     border-color 160ms ease,
-    color 160ms ease;
+    box-shadow 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
 }
 
 .navLink:hover,
@@ -84,6 +92,11 @@
   border-color: color-mix(in srgb, var(--color-background) 80%, transparent);
   background: color-mix(in srgb, var(--color-background) 22%, transparent);
   outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.navLink:active {
+  transform: translateY(1px);
 }
 
 .active {
@@ -100,6 +113,16 @@
 .contactLink:focus-visible {
   border-color: var(--color-primary-soft);
   background: color-mix(in srgb, var(--color-primary-soft) 28%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navLink {
+    transition: none;
+  }
+
+  .navLink:active {
+    transform: none;
+  }
 }
 
 @media (max-width: 700px) {
