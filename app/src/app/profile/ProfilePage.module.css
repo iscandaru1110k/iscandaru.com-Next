@@ -10,6 +10,7 @@
   background: var(--hero-surface);
   padding: var(--space-2xl);
   box-shadow: var(--shadow-hero);
+  animation: fadeInUp 520ms ease-out both;
 }
 
 .eyebrow {
@@ -206,5 +207,23 @@
   .chip {
     display: inline-flex;
     align-items: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    animation: none;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
