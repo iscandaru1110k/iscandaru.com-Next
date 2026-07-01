@@ -10,9 +10,17 @@ export default function NotFound() {
         <p className={styles.description}>
           お探しのページは削除されたか、URLが変更された可能性があります。
         </p>
-        <Button href="/" className={styles.link}>
-          トップページへ戻る
-        </Button>
+        <div className={styles.actions}>
+          <Button href="/" className={styles.link}>
+            Homeへ戻る
+          </Button>
+          <Button href="/profile" variant="outline" className={styles.link}>
+            Profileを見る
+          </Button>
+          <Button href="/labo" variant="outline" className={styles.link}>
+            LABOを見る
+          </Button>
+        </div>
       </section>
     </main>
   );

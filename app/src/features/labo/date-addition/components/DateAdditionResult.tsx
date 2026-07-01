@@ -29,21 +29,30 @@ export const DateAdditionResult = ({
 }: DateAdditionResultProps) => {
   let message = "基準日と加算する日数を入力してください。";
   let valueText = "-";
+  const isComplete =
+    isInputComplete &&
+    baseDate !== null &&
+    resultDate !== null &&
+    dayDelta !== null &&
+    !hasInvalidDate &&
+    !hasInvalidDayDelta;
 
   if (hasInvalidDate) {
     message = "存在する基準日を選択してください。";
   } else if (hasInvalidDayDelta) {
     message = "日数を整数で入力してください。";
-  } else if (isInputComplete && baseDate && resultDate && dayDelta !== null) {
+  } else if (isComplete) {
     message = `${formatDate(baseDate)}から${getDeltaText(dayDelta)}は`;
     valueText = `${formatDate(resultDate)}`;
   }
 
   return (
-    <div className={styles.result}>
+    <div
+      className={`${styles.result} ${isComplete ? styles.resultComplete : ""}`}
+    >
       <p className={styles.resultMessage}>{message}</p>
       <p className={styles.resultValue}>{valueText}</p>
-      <p className={styles.resultMessage}>になります！</p>
+      {isComplete && <p className={styles.resultMessage}>になります！</p>}
     </div>
   );
 };

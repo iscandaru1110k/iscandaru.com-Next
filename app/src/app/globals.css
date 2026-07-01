@@ -51,11 +51,7 @@
   --container-md: 56rem;
   --container-lg: 64rem;
 
-  --hero-surface: linear-gradient(
-    180deg,
-    var(--color-background),
-    var(--color-surface-muted)
-  );
+  --hero-surface: var(--color-background);
 }
 
 body {

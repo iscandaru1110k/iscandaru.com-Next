@@ -41,7 +41,7 @@ const FONT_SIZE_BASE = 60;
 const SHARE_MODES: { label: string; value: BirthdayShareMode }[] = [
   { label: "全盛りモード", value: "max" },
   { label: "シンプルモード", value: "simple" },
-  { label: "レインボーモード", value: "rainbow" },
+  { label: "ミニマムモード", value: "minimum" },
   { label: "ネオンモード", value: "neon" },
 ];
 
@@ -125,7 +125,7 @@ const fillBackground = async (
   mode: BirthdayShareMode,
   palette: CanvasPalette,
 ) => {
-  if (mode === "rainbow") {
+  if (mode === "minimum") {
     context.fillStyle = palette.soft;
     context.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     context.strokeStyle = palette.primary;
@@ -155,7 +155,7 @@ const drawFooter = (
   palette: CanvasPalette,
 ) => {
   drawCenteredText(context, "© iscandaru.com", CANVAS_HEIGHT - 90, {
-    color: mode === "rainbow" ? palette.primary : palette.background,
+    color: mode === "minimum" ? palette.primary : palette.background,
     fontSize: 50,
     weight: 500,
   });
@@ -460,9 +460,10 @@ const drawCompactMode = (
   mode: BirthdayShareMode,
 ) => {
   const { result, details } = props;
-  const isAccentMode = mode === "rainbow" || mode === "neon";
-  const textColor = mode === "rainbow" ? palette.primary : palette.background;
-  const numberColor = isAccentMode ? createRainbowGradient(context) : textColor;
+  const isAccentMode = mode === "minimum" || mode === "neon";
+  const textColor = mode === "minimum" ? palette.primary : palette.background;
+  const numberColor =
+    mode === "neon" ? createRainbowGradient(context) : textColor;
 
   if (result.isBirthdayToday) {
     drawCenteredText(context, "HAPPY", 200, {
@@ -717,7 +718,7 @@ export function BirthdayShareImage(props: BirthdayShareImageProps) {
       </button>
 
       {imageUrl && (
-        <div className={styles.sharePreview}>
+        <div key={imageUrl} className={styles.sharePreview}>
           <Image
             src={imageUrl}
             alt="生成されたシェア画像"

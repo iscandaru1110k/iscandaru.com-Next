@@ -28,19 +28,19 @@ const navigationCards = [
     description: "人となり・経歴を見る",
   },
   {
-    href: "/profile#skills-heading",
-    title: "Skills",
+    href: "/profile#skills",
+    title: "Profile / Skills",
     description: "できること・実績を見る",
   },
   {
     href: "/labo",
     title: "LABO",
-    description: "技術記事・小さな制作物を見る",
+    description: "ささやかな便利ツールを見る",
   },
   {
     href: CONTACT_FORM_URL,
     title: "Contact",
-    description: "相談する",
+    description: "Googleフォームで相談する",
     isExternal: true,
   },
 ];

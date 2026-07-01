@@ -1,7 +1,12 @@
 .calculator {
   margin: 0 auto;
   border: var(--border-subtle);
-  background: var(--color-surface-muted);
+  background:
+    linear-gradient(
+      180deg,
+      var(--color-background),
+      var(--color-surface-muted)
+    );
   padding: var(--space-xl);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-card);
@@ -21,23 +26,59 @@
 }
 
 .fields {
-  margin-top: var(--space-3xl);
+  margin-top: var(--space-xl);
   display: grid;
-  gap: var(--space-xl);
+  gap: var(--space-lg);
 }
 
 .inputGroup {
   display: grid;
   gap: var(--space-md);
+  border: var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--color-background);
+  padding: var(--space-lg);
 }
 
 .toggleLabel {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-sm);
+  width: fit-content;
+  min-height: 15px;
+  border: var(--border-subtle);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-muted);
+  padding: var(--space-xs) var(--space-md);
   color: var(--color-muted);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    color 160ms ease;
+}
+
+.toggleLabelActive {
+  border-color: color-mix(in srgb, var(--color-primary-soft) 70%, var(--color-border-muted));
+  background: color-mix(in srgb, var(--color-primary-soft) 28%, var(--color-background));
+  color: var(--color-primary);
+}
+
+.toggleLabel:has(.toggleInput:focus-visible) {
+  box-shadow: var(--shadow-focus);
+}
+
+.toggleInput {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .label {
@@ -73,7 +114,7 @@
 }
 
 .field {
-  width: calc(100%);
+  width: 100%;
   min-width: 0;
   border: var(--border-input);
   border-radius: var(--radius-sm);
@@ -101,13 +142,17 @@
 }
 
 .result {
-  margin-top: var(--space-3xl);
+  margin-top: var(--space-xl);
   padding: var(--space-lg);
   border: var(--border-subtle);
-  border-top: var(--border-result-top);
   border-radius: var(--radius-md);
-  background: var(--color-background);
+  background: color-mix(in srgb, var(--color-background) 86%, var(--color-surface-muted));
   text-align: center;
+}
+
+.resultComplete {
+  border-top: var(--border-result-top);
+  background: var(--color-background);
   box-shadow: var(--shadow-result);
 }
 
@@ -119,9 +164,13 @@
 
 .resultValue {
   margin: 0.25rem 0 0;
-  color: var(--color-primary);
+  color: var(--color-muted);
   font-size: 1.35rem;
   font-weight: 700;
+}
+
+.resultComplete .resultValue {
+  color: var(--color-primary);
 }
 
 .resultLine {
@@ -151,11 +200,39 @@
 }
 
 @media (max-width: 480px) {
+  .calculator {
+    padding: var(--space-lg);
+  }
+
+  .dateGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .inputGroup {
+    padding: var(--space-md);
+  }
+
+  .toggleLabel {
+    justify-content: space-between;
+  }
+
   .timeFields {
     grid-template-columns: 1fr 1fr;
   }
 
   .resultLine {
     min-width: 100%;
+  }
+
+  .field {
+    width: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggleLabel {
+    transition: none;
   }
 }

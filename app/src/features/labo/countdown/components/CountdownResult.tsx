@@ -27,12 +27,18 @@ export const CountdownResult = ({
 }: CountdownResultProps) => {
   let message = "目標日の年・月・日を選択してください。";
   let value = <span>-</span>;
+  const isComplete =
+    isInputComplete &&
+    targetDate !== null &&
+    result !== null &&
+    !hasInvalidDate &&
+    !hasInvalidTime;
 
   if (hasInvalidDate) {
     message = "存在する目標日を選択してください。";
   } else if (hasInvalidTime) {
     message = "存在する時刻を入力してください。";
-  } else if (isInputComplete && targetDate && result) {
+  } else if (isComplete) {
     const timeValue = (
       <span className={styles.resultLine}>
         <span className={styles.resultNumber}>{result.days}</span>
@@ -69,7 +75,9 @@ export const CountdownResult = ({
   }
 
   return (
-    <div className={styles.result}>
+    <div
+      className={`${styles.result} ${isComplete ? styles.resultComplete : ""}`}
+    >
       <p className={styles.resultMessage}>{message}</p>
       <p className={styles.resultValue}>{value}</p>
     </div>

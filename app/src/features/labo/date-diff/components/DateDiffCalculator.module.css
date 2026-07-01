@@ -1,7 +1,12 @@
 .calculator {
   margin: 0 auto;
   border: var(--border-subtle);
-  background: var(--color-surface-muted);
+  background:
+    linear-gradient(
+      180deg,
+      var(--color-background),
+      var(--color-surface-muted)
+    );
   padding: var(--space-xl);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-card);
@@ -21,14 +26,18 @@
 }
 
 .fields {
-  margin-top: var(--space-3xl);
+  margin-top: var(--space-xl);
   display: grid;
-  gap: var(--space-3xl);
+  gap: var(--space-lg);
 }
 
 .inputGroup {
   display: grid;
   gap: var(--space-xs);
+  border: var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--color-background);
+  padding: var(--space-lg);
 }
 
 .label {
@@ -75,13 +84,17 @@
 }
 
 .result {
-  margin-top: var(--space-4xl);
+  margin-top: var(--space-xl);
   padding: var(--space-lg);
   border: var(--border-subtle);
-  border-top: var(--border-result-top);
   border-radius: var(--radius-md);
-  background: var(--color-background);
+  background: color-mix(in srgb, var(--color-background) 86%, var(--color-surface-muted));
   text-align: center;
+}
+
+.resultComplete {
+  border-top: var(--border-result-top);
+  background: var(--color-background);
   box-shadow: var(--shadow-result);
 }
 
@@ -93,7 +106,31 @@
 
 .resultValue {
   margin: 0.25rem 0 0;
-  color: var(--color-primary);
+  color: var(--color-muted);
   font-size: 2rem;
   font-weight: 700;
+}
+
+.resultComplete .resultValue {
+  color: var(--color-primary);
+}
+
+@media (max-width: 520px) {
+  .calculator {
+    padding: var(--space-lg);
+  }
+
+  .dateGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .inputGroup {
+    padding: var(--space-md);
+  }
+
+  .field {
+    width: auto;
+  }
 }

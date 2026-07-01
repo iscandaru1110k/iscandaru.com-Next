@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
+import { CONTACT_FORM_URL } from "@/constants/links";
 import styles from "./LaboPage.module.css";
 
 export const metadata: Metadata = {
@@ -24,6 +25,9 @@ export default function LaboPage() {
   return (
     <Container as="main" size="md">
       <h1 className={styles.title}>LABO</h1>
+      <p className={styles.lead}>
+        日常で使える小さなWebツールをまとめています。
+      </p>
 
       <ul className={styles.list}>
         <Card as="li" padding="card" radius="lg">
@@ -59,6 +63,24 @@ export default function LaboPage() {
           </p>
         </Card>
       </ul>
+
+      <section className={styles.contact} aria-label="Contact">
+        <p className={styles.contactText}>
+          Web制作や小さなWebアプリの相談は、Contactからご連絡ください。
+        </p>
+        <p className={styles.contactNote}>
+          ボタンを押すとGoogleフォームが別タブで開きます。
+        </p>
+        <a
+          href={CONTACT_FORM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.contactLink}
+          aria-label="Contact Googleフォームを新しいタブで開く"
+        >
+          Googleフォームで相談する
+        </a>
+      </section>
     </Container>
   );
 }

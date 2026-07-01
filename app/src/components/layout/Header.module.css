@@ -4,10 +4,10 @@
   overflow: hidden;
   border-bottom: var(--border-subtle);
   background-color: var(--color-foreground);
-  background-image: url("/images/heartbeat-normal_long.png");
-  background-position: left center;
+  background-image: url("/images/Heartbeat.svg");
+  background-position: left -3rem center;
   background-repeat: no-repeat;
-  background-size: auto 155px;
+  background-size: auto 145px;
   color: var(--color-background);
 }
 
@@ -55,7 +55,9 @@
   color: var(--color-background);
   font-size: 3.75rem;
   font-weight: 600;
-  letter-spacing: 0.18rem;
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+  letter-spacing: 0.075em;
+  line-height: 1;
   text-align: center;
 }
 
@@ -125,10 +127,10 @@
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 760px) {
   .header {
     min-height: 200px;
-    background-position: left -1.0rem bottom 2.5rem;
+    background-position: left -2rem bottom 2.5rem;
     background-size: auto 100px;
   }
 
@@ -153,7 +155,6 @@
 
   .siteTitle {
     font-size: 2.5rem;
-    letter-spacing: 0.12rem;
   }
 
   .nav {
@@ -164,8 +165,8 @@
 @media (max-width: 480px) {
   .header {
     min-height: 150px;
-    background-position: left -1.6rem bottom 2.5rem;
-    background-size: auto 80px;
+    background-position: left -2.5rem bottom 2.5rem;
+    background-size: auto 75px;
   }
 
   .brandImages {
@@ -175,7 +176,7 @@
   }
 
   .titleWrap {
-    min-height: 150px;
+    min-height: 130px;
     padding: var(--space-lg) var(--space-md);
   }
 
