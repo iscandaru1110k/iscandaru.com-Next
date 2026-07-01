@@ -35,8 +35,16 @@
   line-height: 1.9;
 }
 
-.link {
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
   margin-top: var(--space-xl);
+}
+
+.link {
+  min-width: 9rem;
 }
 
 @media (max-width: 520px) {
@@ -46,5 +54,9 @@
 
   .panel {
     padding: var(--space-xl) var(--space-lg);
+  }
+
+  .actions {
+    display: grid;
   }
 }

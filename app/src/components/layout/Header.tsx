@@ -9,8 +9,8 @@ import styles from "./Header.module.css";
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/profile", label: "Profile" },
-  { href: "/labo", label: "Labo" },
-  { href: "/privacy", label: "Privacy" },
+  { href: "/labo", label: "LABO" },
+  { href: "/privacy", label: "Privacy Policy" },
   { href: CONTACT_FORM_URL, label: "Contact", isExternal: true },
 ];
 
@@ -60,6 +60,7 @@ export function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={linkClassName}
+                aria-label="Contact Googleフォームを新しいタブで開く"
               >
                 {item.label}
               </a>

@@ -125,7 +125,7 @@
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 760px) {
   .header {
     min-height: 200px;
     background-position: left -1.0rem bottom 2.5rem;
@@ -164,7 +164,7 @@
 @media (max-width: 480px) {
   .header {
     min-height: 150px;
-    background-position: left -1.6rem bottom 2.5rem;
+    background-position: left -1.6rem bottom 2.0rem;
     background-size: auto 80px;
   }
 
@@ -175,7 +175,7 @@
   }
 
   .titleWrap {
-    min-height: 150px;
+    min-height: 130px;
     padding: var(--space-lg) var(--space-md);
   }
 

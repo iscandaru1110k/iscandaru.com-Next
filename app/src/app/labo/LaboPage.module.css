@@ -1,9 +1,15 @@
 .title {
-  margin: 0 0 2rem 0.5rem;
+  margin: 0 0 var(--space-sm) 0.5rem;
   color: var(--color-primary);
   font-size: 1.875rem;
   font-weight: 700;
   text-shadow: 1px 1px 3px var(--color-muted);
+}
+
+.lead {
+  margin: 0 0 2rem 0.5rem;
+  color: var(--color-muted);
+  line-height: 1.8;
 }
 
 .list {
@@ -35,6 +41,9 @@
 }
 
 .link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   border-radius: var(--radius-sm);
   color: var(--color-primary);
   font-size: 1.25rem;
@@ -63,23 +72,80 @@
   line-height: 1.7;
 }
 
+.contact {
+  display: grid;
+  gap: var(--space-md);
+  margin-top: var(--space-4xl);
+  border: var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--color-background);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.contactText {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.8;
+}
+
+.contactLink {
+  display: inline-flex;
+  min-height: 44px;
+  width: fit-content;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition:
+    background 160ms ease,
+    box-shadow 160ms ease,
+    color 160ms ease;
+}
+
+.contactLink:hover,
+.contactLink:focus-visible {
+  background: color-mix(in srgb, var(--color-primary-soft) 18%, transparent);
+  color: var(--color-foreground);
+}
+
+.contactLink:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .list > *,
   .link {
+    display: inline-flex;
     animation: none;
+    transition: none;
+  }
+
+  .contactLink {
     transition: none;
   }
 }
 
 @media (max-width: 520px) {
   .title {
-    margin-bottom: var(--space-lg);
     margin-left: 0;
     font-size: 1.625rem;
   }
 
+  .lead {
+    margin-left: 0;
+    margin-bottom: var(--space-lg);
+  }
+
   .list {
     gap: var(--space-lg);
+  }
+
+  .contact {
+    margin-top: var(--space-3xl);
   }
 }
 

@@ -5,7 +5,7 @@ import styles from "./Footer.module.css";
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/profile", label: "Profile" },
-  { href: "/labo", label: "Labo" },
+  { href: "/labo", label: "LABO" },
   { href: CONTACT_FORM_URL, label: "Contact", isExternal: true },
   { href: "/privacy", label: "Privacy Policy" },
 ];
@@ -22,6 +22,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.link}
+              aria-label="Contact Googleフォームを新しいタブで開く"
             >
               {item.label}
             </a>

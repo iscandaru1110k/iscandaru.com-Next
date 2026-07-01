@@ -267,7 +267,7 @@ export default function ProfilePage() {
             external
             className={styles.contactButton}
           >
-            Googleフォームで相談する
+            Contact（Googleフォーム）へ
           </Button>
         </div>
       </section>
