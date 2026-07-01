@@ -28,8 +28,8 @@ const navigationCards = [
     description: "人となり・経歴を見る",
   },
   {
-    href: "/profile#skills-heading",
-    title: "Skills",
+    href: "/profile#skills",
+    title: "Profile / Skills",
     description: "できること・実績を見る",
   },
   {

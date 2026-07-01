@@ -68,6 +68,9 @@ export default function LaboPage() {
         <p className={styles.contactText}>
           Web制作や小さなWebアプリの相談は、Contactからご連絡ください。
         </p>
+        <p className={styles.contactNote}>
+          ボタンを押すとGoogleフォームが別タブで開きます。
+        </p>
         <a
           href={CONTACT_FORM_URL}
           target="_blank"

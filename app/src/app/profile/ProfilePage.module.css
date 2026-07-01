@@ -167,6 +167,11 @@
   line-height: 1.9;
 }
 
+.contactNote {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
 .contactButton {
   margin-top: var(--space-lg);
 }

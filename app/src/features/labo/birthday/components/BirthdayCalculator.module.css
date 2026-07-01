@@ -4,7 +4,12 @@
   padding: var(--space-lg);
   border: var(--border-subtle);
   border-radius: var(--radius-xl);
-  background: var(--color-surface-muted);
+  background:
+    linear-gradient(
+      180deg,
+      var(--color-background),
+      var(--color-surface-muted)
+    );
   box-shadow: var(--shadow-card);
 }
 
@@ -264,7 +269,7 @@
 
 @media (max-width: 480px) {
   .calculator {
-    padding: var(--space-md);
+    padding: var(--space-lg);
   }
 
   .dateGrid {

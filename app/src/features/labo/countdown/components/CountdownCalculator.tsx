@@ -65,13 +65,18 @@ export const CountdownCalculator = () => {
         />
 
         <div className={styles.inputGroup}>
-          <label className={styles.toggleLabel}>
-            時刻を指定する
+          <label
+            className={`${styles.toggleLabel} ${
+              usesTime ? styles.toggleLabelActive : ""
+            }`}
+          >
             <input
+              className={styles.toggleInput}
               type="checkbox"
               checked={usesTime}
               onChange={(e) => setUsesTime(e.target.checked)}
             />
+            <span>時刻を指定する</span>
           </label>
 
           {usesTime && (

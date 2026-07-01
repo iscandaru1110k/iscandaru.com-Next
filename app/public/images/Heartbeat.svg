@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="2734.0999"
+   height="148.80162"
+   viewBox="0 0 723.39728 39.37043"
+   version="1.1"
+   id="svg3402"
+   inkscape:version="1.0.1 (c497b03c, 2020-09-10)"
+   sodipodi:docname="Heartbeat.svg">
+  <defs
+     id="defs3396" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#363939"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="861.33564"
+     inkscape:cy="285.8294"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1440"
+     inkscape:window-height="819"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     units="px" />
+  <metadata
+     id="metadata3399">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="レイヤー 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(413.85934,-104.29097)">
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:0.535805;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -413.85934,134.45731 h 19.88784 l 2.46982,1.35253 c 3.60555,-0.14721 3.57316,-11.72974 6.92903,-0.48753 l 9.54569,-0.10817 c 1.46872,0.64665 3.29169,2.1806 3.29169,2.1806 l 3.5158,-33.07545 3.06013,39.30707 1.10681,-8.38873 c 0.45597,-2.44466 3.38567,0.0474 7.87812,-0.67105 4.49247,-0.71905 4.42723,-0.19179 8.26875,-3.40346 3.84131,-3.21165 3.58092,-3.16374 5.07826,-1.91741 1.49756,1.24632 1.49756,1.91741 3.32065,3.59516 1.82296,1.67772 2.14857,1.58183 3.32051,1.67772 1.17184,0.0958 2.9298,-1.15042 4.94812,-2.20502 2.01836,-1.05455 1.82307,-0.81491 2.99501,-0.19174 1.17192,0.6231 1.69283,2.10916 2.92988,2.10916 1.23696,0 6.57594,0.0958 6.57594,0.0958 l 628.27474,-1.09899"
+       id="path1981"
+       sodipodi:nodetypes="cccccccccsssssssscc"
+       inkscape:export-filename="/Users/iscandaru/Desktop/path1981.png"
+       inkscape:export-xdpi="200"
+       inkscape:export-ydpi="200" />
+  </g>
+</svg>

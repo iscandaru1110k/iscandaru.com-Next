@@ -193,7 +193,11 @@ export default function ProfilePage() {
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="skills-heading">
+      <section
+        id="skills"
+        className={styles.section}
+        aria-labelledby="skills-heading"
+      >
         <h2 id="skills-heading" className={styles.sectionTitle}>
           Skills
         </h2>
@@ -262,6 +266,9 @@ export default function ProfilePage() {
             「自分でWebサイトを作ってみたい！ でもどうしたら…」そんな相談でもOK!
           </p>
           <p>まずはお話を伺い、一緒に最適な形を考えます。</p>
+          <p className={styles.contactNote}>
+            お問い合わせはGoogleフォームで受け付けています。ボタンを押すと別タブでフォームが開きます。
+          </p>
           <Button
             href={CONTACT_FORM_URL}
             external
