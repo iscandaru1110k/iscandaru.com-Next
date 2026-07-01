@@ -1,0 +1,40 @@
+.link {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  width: fit-content;
+  margin: 0 0 var(--space-lg) auto;
+  border-radius: var(--radius-sm);
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition:
+    background 160ms ease,
+    box-shadow 160ms ease,
+    color 160ms ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  background: color-mix(in srgb, var(--color-primary-soft) 18%, transparent);
+  color: var(--color-primary);
+}
+
+.link:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+@media (max-width: 520px) {
+  .link {
+    margin-right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
+}

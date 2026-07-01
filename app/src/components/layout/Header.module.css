@@ -55,7 +55,9 @@
   color: var(--color-background);
   font-size: 3.75rem;
   font-weight: 600;
-  letter-spacing: 0.18rem;
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+  letter-spacing: 0.075em;
+  line-height: 1;
   text-align: center;
 }
 
@@ -153,7 +155,6 @@
 
   .siteTitle {
     font-size: 2.5rem;
-    letter-spacing: 0.12rem;
   }
 
   .nav {

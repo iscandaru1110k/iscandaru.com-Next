@@ -32,4 +32,4 @@ export type BirthdayDisplayDetails = {
   approximateSecondsText: string;
 };
 
-export type BirthdayShareMode = "max" | "simple" | "rainbow" | "neon";
+export type BirthdayShareMode = "max" | "simple" | "minimum" | "neon";

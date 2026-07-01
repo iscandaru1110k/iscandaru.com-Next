@@ -72,7 +72,7 @@
   color: var(--color-primary);
   font-size: 1.625rem;
   font-weight: 700;
-  text-shadow: 1px 1px 3px var(--color-muted);
+  line-height: 1.3;
 }
 
 .textBlock {

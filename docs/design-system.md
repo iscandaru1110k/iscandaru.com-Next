@@ -28,6 +28,7 @@
 - 補足: `0.8125rem` から `0.9375rem`
 
 トップのHeroなど、第一印象を作る箇所のみ `clamp()` で大きめの見出しを使う。
+見出しには原則として `text-shadow` や強い装飾を使わず、font-size / font-weight / color / spacing で階層を表現する。
 
 ## Container Width
 
