@@ -34,7 +34,9 @@ export function Header() {
       </div>
 
       <div className={styles.titleWrap}>
-        <p className={styles.siteTitle}>iscandaru.com</p>
+        <Link href="/" className={styles.siteTitle} aria-label="Home">
+          iscandaru.com
+        </Link>
       </div>
 
       <nav className={styles.nav} aria-label="Main navigation">

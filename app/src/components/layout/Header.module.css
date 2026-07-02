@@ -51,7 +51,9 @@
 }
 
 .siteTitle {
+  display: inline-block;
   margin: 0;
+  border-radius: var(--radius-sm);
   color: var(--color-background);
   font-size: 4.25rem;
   font-weight: 600;
@@ -59,6 +61,20 @@
   letter-spacing: 0.075em;
   line-height: 1;
   text-align: center;
+  text-decoration: none;
+  transition:
+    box-shadow 160ms ease,
+    color 160ms ease;
+}
+
+.siteTitle:hover,
+.siteTitle:focus-visible {
+  color: var(--color-background);
+}
+
+.siteTitle:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
 }
 
 .nav {

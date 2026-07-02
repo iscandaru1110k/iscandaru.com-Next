@@ -9,8 +9,9 @@
       180deg,
       var(--color-background),
       var(--color-surface-muted)
-    );
+  );
   box-shadow: var(--shadow-card);
+  animation: fadeInUp 480ms ease-out both;
 }
 
 .header {
@@ -274,6 +275,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .calculator,
   .result,
   .sharePreview {
     animation: none;
