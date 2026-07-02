@@ -56,24 +56,23 @@ export const BirthdayResult = ({
           <p>
             生存日数が
             <span className={styles.resultNumber}>
-              {formatBirthdayNumber(result.livedDays)}
+              {formatBirthdayNumber(result.livedDays)}日
             </span>
-            日です！
+            です！
           </p>
           <p>
             時間換算で約
             <span className={styles.resultNumber}>
-              {details.approximateHoursText}
+              {details.approximateHoursText}時間
             </span>
-            時間、(
-            {formatBirthdayNumber(details.exactHours)}&nbsp;時間)
+            ({formatBirthdayNumber(details.exactHours)}&nbsp;時間)
           </p>
           <p>
             秒数換算で約
             <span className={styles.resultNumber}>
-              {details.approximateSecondsText}
+              {details.approximateSecondsText}秒
             </span>
-            秒です。(
+            です。(
             {formatBirthdayNumber(details.exactSeconds)}&nbsp;秒)
           </p>
           <div className={styles.ageLine}>
@@ -83,7 +82,7 @@ export const BirthdayResult = ({
                 {details.ageParts.years}歳{details.ageParts.months}ヶ月と
                 {details.ageParts.days}日
               </span>
-              で、
+              で
             </p>
           </div>
           {result.isBirthdayToday ? (
@@ -96,9 +95,9 @@ export const BirthdayResult = ({
             <p>
               次の誕生日まであと
               <span className={styles.resultNumber}>
-                {formatBirthdayNumber(result.daysUntilNextBirthday)}
+                {formatBirthdayNumber(result.daysUntilNextBirthday)}日
               </span>
-              日です。楽しみですね！
+              です。楽しみですね！
             </p>
           )}
         </div>

@@ -311,7 +311,7 @@ const drawMaxMode = (
       context,
       daysFollow,
       startXDays + daysWidth + 20,
-      yDays + 60,
+      yDays + 55,
       daysFollowOptions,
     );
 
@@ -395,7 +395,7 @@ const drawMaxMode = (
     context,
     daysFollow,
     startXDays + daysWidth + 20,
-    yDays + 60,
+    yDays + 55,
     daysFollowOptions,
   );
 
@@ -448,7 +448,7 @@ const drawMaxMode = (
     context,
     daysLeftFollow,
     startXDaysLeft + daysLeftWidth + 20,
-    yDaysLeft + 60,
+    yDaysLeft + 55,
     daysLeftFollowOptions,
   );
 };
@@ -545,7 +545,7 @@ const drawCompactMode = (
       context,
       daysFollow,
       startXDays + daysWidth + 20,
-      yDays + 60,
+      yDays + 55,
       daysFollowOptions,
     );
 
@@ -594,7 +594,7 @@ const drawCompactMode = (
     context,
     daysFollow,
     startXDays + daysWidth + 20,
-    yDays + 60,
+    yDays + 55,
     daysFollowOptions,
   );
 
@@ -636,7 +636,7 @@ const drawCompactMode = (
     context,
     daysLeftFollow,
     startXDaysLeft + daysLeftWidth + 20,
-    yDaysLeft + 60,
+    yDaysLeft + 55,
     daysLeftFollowOptions,
   );
 };
