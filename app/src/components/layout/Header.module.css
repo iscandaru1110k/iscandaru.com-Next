@@ -51,14 +51,30 @@
 }
 
 .siteTitle {
+  display: inline-block;
   margin: 0;
+  border-radius: var(--radius-sm);
   color: var(--color-background);
-  font-size: 3.75rem;
+  font-size: 4.25rem;
   font-weight: 600;
   font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
   letter-spacing: 0.075em;
   line-height: 1;
   text-align: center;
+  text-decoration: none;
+  transition:
+    box-shadow 160ms ease,
+    color 160ms ease;
+}
+
+.siteTitle:hover,
+.siteTitle:focus-visible {
+  color: var(--color-background);
+}
+
+.siteTitle:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
 }
 
 .nav {
@@ -130,7 +146,7 @@
 @media (max-width: 760px) {
   .header {
     min-height: 200px;
-    background-position: left -2rem bottom 2.5rem;
+    background-position: left -2.8rem bottom 2.5rem;
     background-size: auto 100px;
   }
 

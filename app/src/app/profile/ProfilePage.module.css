@@ -119,7 +119,7 @@
 }
 
 .card p {
-  margin: 0;
+  margin: 0 0 1rem;
   line-height: 1.8;
 }
 
@@ -167,7 +167,8 @@
   line-height: 1.9;
 }
 
-.contactNote {
+.contact p.contactNote {
+  margin-top: 1rem;
   color: var(--color-muted);
   font-size: 0.875rem;
 }

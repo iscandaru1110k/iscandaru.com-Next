@@ -92,7 +92,7 @@ const works = [
   },
   {
     title: "業務開発",
-    body: "守秘義務のため、詳細は抽象化して掲載しています。",
+    body: "※守秘義務のため、詳細は抽象化して掲載します。",
     items: [
       "人材紹介系Webシステム開発",
       "AWS環境での開発",
@@ -114,7 +114,7 @@ export default function ProfilePage() {
               実現したいことから考える
             </h3>
             <p className={styles.lead}>
-              Webサイトを作ることではなく、
+              Webサイトありきではなく、
               <br />
               あなたが「実現したいこと」を一緒に整理して、
               <br />
@@ -128,7 +128,7 @@ export default function ProfilePage() {
             <p className={styles.lead}>
               日常にささやかな豊かさを届けることをテーマに、
               <br />
-              小さく始めて、相談しながら育てていけるWebサイト・Webアプリを作っています。
+              小さく始めて、一緒に育てていけるWebサイト・Webアプリを作っています。
             </p>
           </section>
           <section className={styles.heroPhilosophy}>
@@ -137,6 +137,7 @@ export default function ProfilePage() {
             </h3>
             <p className={styles.lead}>
               Webに詳しくない方でも安心して相談できる、
+              <br />
               声のかけやすいWebエンジニアを目指しています。
             </p>
           </section>
@@ -224,11 +225,11 @@ export default function ProfilePage() {
         <div className={styles.textBlock}>
           <p>大手SIerにてWebシステム開発に約5年間従事。</p>
           <p>
-            Reactを用いたToC向けWebアプリケーションの新規画面開発を担当。画面設計から実装まで一貫して対応しています。
+            React、Javaを用いた大規模Webアプリケーションの新機能開発を担当。画面設計から実装まで一貫して対応しています。
           </p>
           <p>
             Spring
-            Bootを中心に、API設計、エンドポイント実装、SQL作成、データベース連携まで一貫して担当できます。
+            Bootを中心に、API設計、ビジネスロジック実装、データベース連携までフルスタックで担当できます。
           </p>
         </div>
       </section>
@@ -263,7 +264,8 @@ export default function ProfilePage() {
             Web制作やWebアプリ開発について、「こんなこと相談しても大丈夫かな？」という内容でもお気軽にご相談ください。
           </p>
           <p>
-            「自分でWebサイトを作ってみたい！ でもどうしたら…」そんな相談でもOK!
+            「自分でWebサイトを作ってみたい！
+            でもどうしたら…」そんな相談でもOK！
           </p>
           <p>まずはお話を伺い、一緒に最適な形を考えます。</p>
           <p className={styles.contactNote}>
@@ -274,7 +276,7 @@ export default function ProfilePage() {
             external
             className={styles.contactButton}
           >
-            Contact（Googleフォーム）へ
+            Googleフォームへ
           </Button>
         </div>
       </section>
