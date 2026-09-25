@@ -91,16 +91,16 @@
 
 ### 情報設計（IA）
 
-将来的なサイト構成は以下を想定する。`（新設予定）` のルートは未実装であり、WEB-P3 以降で追加する。
+サイト構成は以下とする（WEB-P3〜P6 で実装済み）。
 
 ```txt
-/                      Top（Developer × Creator として再構成予定）
-/projects              Projects 一覧（新設予定）
-/projects/tiktok-live  TikTok LIVE アプリ Case Study（新設予定）
-/profile               Profile（Creator 活動 + Developer 実績へ再編予定）
+/                      Top（Developer × Creator）
+/projects              Projects 一覧
+/projects/tiktok-live  TikTok LIVE アプリ Case Study
+/profile               Profile（Creator 活動 + Developer 実績）
 /labo                  LABO（既存・維持）
 /labo/*                LABO 各ツール（既存・維持）
-/privacy               Privacy（既存・維持。一次ナビからは整理予定）
+/privacy               Privacy（既存・維持。Footer から導線）
 ```
 
 - TikTok LIVE アプリは Profile の Works に押し込まず、独立した Case Study ページとして扱う

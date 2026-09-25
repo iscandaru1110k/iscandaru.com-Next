@@ -20,16 +20,18 @@
 | --- | --- | --- | --- | --- |
 | WEB-P1 | Requirements / IA / Repo Boundary | web | なし | 完了 |
 | WEB-P2 | Site Shell / Navigation | web | WEB-P1 | 完了 |
-| WEB-P3 | Projects Foundation | web | WEB-P2 | 未着手 |
-| WEB-P4 | TikTok LIVE Case Study | web（一次情報は app repo を参照） | WEB-P3 | 未着手 |
-| WEB-P5 | Top Page Rebuild | web | WEB-P4 | 未着手 |
-| WEB-P6 | Profile Rework | web | WEB-P2（WEB-P4 完了後が望ましい） | 未着手 |
+| WEB-P3 | Projects Foundation | web | WEB-P2 | 完了 |
+| WEB-P4 | TikTok LIVE Case Study | web（一次情報は app repo を参照） | WEB-P3 | 完了 |
+| WEB-P5 | Top Page Rebuild | web | WEB-P4 | 完了 |
+| WEB-P6 | Profile Rework | web | WEB-P2（WEB-P4 完了後が望ましい） | 完了 |
 | WEB-P7 | Polish / SEO / OGP | web | WEB-P3〜P6 | 未着手 |
 
 - web = `iscandaru.com-Next`
 - app = `tiktok-live-sort-game`
 
 各 Phase は 1 つ以上の PR で進める。Phase をまたぐ変更は同じ PR に混ぜない。
+
+WEB-P3〜P6 は例外として、Creator Site Core として同一 PR で実施した。
 
 ---
 

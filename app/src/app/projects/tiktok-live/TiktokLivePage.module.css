@@ -1,0 +1,617 @@
+.page {
+  width: min(var(--container-page-inline), var(--container-lg));
+  margin: var(--space-4xl) auto var(--space-5xl);
+}
+
+/* Hero: Header と同じ dark navy の世界観 */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 360px);
+  align-items: center;
+  gap: var(--space-3xl);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-foreground);
+  background-image: radial-gradient(
+    circle at 85% 20%,
+    color-mix(in srgb, var(--color-primary-soft) 18%, transparent),
+    transparent 55%
+  );
+  padding: clamp(var(--space-lg), 5vw, var(--space-4xl));
+  box-shadow: var(--shadow-hero);
+  color: var(--color-background);
+}
+
+.heroText {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.heroEyebrow {
+  margin: 0;
+  color: var(--color-primary-soft);
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  margin: 0;
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+}
+
+.heroLead {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.heroRole {
+  margin: 0;
+  color: color-mix(in srgb, var(--color-background) 70%, transparent);
+  line-height: 1.8;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.primaryCta,
+.secondaryCta {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: var(--space-2xs);
+  border: 1px solid var(--color-background);
+  border-radius: var(--radius-pill);
+  padding: 0 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    color 160ms ease;
+}
+
+.primaryCta {
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+.primaryCta:hover,
+.primaryCta:focus-visible {
+  border-color: var(--color-primary-soft);
+  background: var(--color-surface-muted);
+  color: var(--color-primary);
+}
+
+.secondaryCta {
+  border-color: color-mix(in srgb, var(--color-background) 50%, transparent);
+  background: transparent;
+  color: var(--color-background);
+}
+
+.secondaryCta:hover,
+.secondaryCta:focus-visible {
+  border-color: var(--color-primary-soft);
+  background: color-mix(in srgb, var(--color-primary-soft) 18%, transparent);
+}
+
+.primaryCta:focus-visible,
+.secondaryCta:focus-visible,
+.tocLink:focus-visible,
+.backLink:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.heroMedia {
+  width: 100%;
+}
+
+/* ページ内目次 */
+.toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-lg);
+}
+
+.tocLink {
+  border: var(--border-subtle);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-muted);
+  padding: var(--space-2xs) var(--space-sm);
+  color: var(--color-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.tocLink:hover {
+  border-color: var(--color-primary);
+}
+
+.section {
+  margin-top: var(--space-5xl);
+  scroll-margin-top: var(--space-4xl);
+}
+
+.sectionEyebrow {
+  margin: 0 0 var(--space-xs);
+  color: var(--color-muted);
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.sectionTitle {
+  margin: 0 0 var(--space-xl);
+  color: var(--color-primary);
+  font-size: clamp(1.375rem, 3vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.4;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.subTitle {
+  margin: var(--space-3xl) 0 var(--space-md);
+  color: var(--color-foreground);
+  font-size: 1.125rem;
+}
+
+.cardTitle {
+  margin: 0 0 var(--space-xs);
+  color: var(--color-primary);
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.challengeGrid,
+.interactionGrid,
+.otherModes,
+.metrics,
+.chipList,
+.story,
+.flow {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.whatBlock {
+  display: grid;
+  gap: var(--space-md);
+  max-width: 44rem;
+  border-left: 4px solid var(--color-primary-soft);
+  padding-left: var(--space-lg);
+}
+
+.whatBlock p {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.9;
+}
+
+.challengeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.challengeCard,
+.otherMode {
+  border: var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--color-background);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.challengeCard p,
+.otherMode p,
+.storyStep p,
+.featuredBody p {
+  margin: 0;
+  line-height: 1.8;
+}
+
+/* Story */
+.story {
+  display: grid;
+  gap: var(--space-md);
+  border-left: 2px solid var(--color-primary-soft);
+  padding-left: var(--space-lg);
+}
+
+.storyStep {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-md);
+}
+
+.storyLabel {
+  color: var(--color-primary-soft);
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.storyTitle {
+  margin: 0 0 var(--space-2xs);
+  font-size: 1.0625rem;
+}
+
+/* Featured */
+.featuredList {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+/* 動画の表示幅は page.tsx で面積から算出した --media-width を使う */
+.featured {
+  display: grid;
+  grid-template-columns: minmax(0, min(var(--media-width), 50%)) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-2xl);
+  border: var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-muted);
+  padding: var(--space-xl);
+  scroll-margin-top: var(--space-4xl);
+}
+
+.featured:nth-child(even) {
+  grid-template-columns: minmax(0, 1fr) minmax(0, min(var(--media-width), 50%));
+}
+
+.featured:nth-child(even) .featuredMedia {
+  order: 2;
+}
+
+.featuredBody {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.featuredTagline {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.featuredName {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-xs) var(--space-sm);
+  margin: 0;
+  color: var(--color-primary);
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+}
+
+.featuredNameJa,
+.otherModeNameJa {
+  color: var(--color-muted);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.featuredInteractions {
+  display: grid;
+  gap: var(--space-2xs);
+  margin: 0;
+  padding-left: 1.25rem;
+  line-height: 1.7;
+}
+
+.otherModes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.otherMode .otherModeName {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-xs);
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* LIVE Interaction */
+.interactionGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.interactionCard {
+  display: grid;
+  align-content: start;
+  gap: var(--space-xs);
+  border-top: var(--border-result-top);
+  border-radius: var(--radius-md);
+  background: var(--color-foreground);
+  padding: var(--space-lg);
+  color: var(--color-background);
+}
+
+.interactionCard p {
+  margin: 0;
+}
+
+.interactionAction {
+  color: var(--color-primary-soft);
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.interactionViewer {
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.interactionResult {
+  color: color-mix(in srgb, var(--color-background) 75%, transparent);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+/* Challenges */
+.challengeCard {
+  display: grid;
+  align-content: start;
+  gap: var(--space-sm);
+}
+
+.challengeProblem {
+  color: var(--color-muted);
+}
+
+.challengeLabel {
+  display: block;
+  margin-bottom: var(--space-2xs);
+  color: var(--color-primary);
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Architecture */
+.architecture {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-2xl);
+}
+
+.flow {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.flowNode {
+  position: relative;
+  display: grid;
+  gap: var(--space-2xs);
+  border: 1px solid color-mix(in srgb, var(--color-primary-soft) 45%, transparent);
+  border-radius: var(--radius-md);
+  background: var(--color-foreground);
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-background);
+}
+
+.flowNode:not(:last-child)::after {
+  position: absolute;
+  bottom: calc(-1 * var(--space-lg));
+  left: 50%;
+  color: var(--color-primary-soft);
+  content: "↓";
+  font-size: 0.875rem;
+  line-height: var(--space-lg);
+  transform: translateX(-50%);
+}
+
+.flowName {
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+.flowNote {
+  color: color-mix(in srgb, var(--color-background) 70%, transparent);
+  font-size: 0.8125rem;
+}
+
+.chipList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.chip {
+  border: var(--border-subtle);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-muted);
+  padding: var(--space-2xs) var(--space-sm);
+  font-size: 0.875rem;
+}
+
+/* Process */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.metric {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2xs);
+  border: var(--border-subtle);
+  border-top: var(--border-result-top);
+  border-radius: var(--radius-md);
+  background: var(--color-background);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.metricValue {
+  color: var(--color-primary);
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.metricLabel {
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.metricsNote {
+  margin: var(--space-xs) 0 0;
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+  text-align: right;
+}
+
+.metricTitle {
+  margin: var(--space-sm) 0 0;
+  color: var(--color-foreground);
+  font-size: 1rem;
+}
+
+.metric p {
+  margin: 0;
+  line-height: 1.8;
+}
+
+.toolGroups {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+/* CTA */
+.cta {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-5xl);
+  border-radius: var(--radius-xl);
+  background: var(--color-foreground);
+  padding: var(--space-3xl) var(--space-lg);
+  color: var(--color-background);
+  text-align: center;
+}
+
+.ctaTitle {
+  margin: 0;
+  font-size: clamp(1.375rem, 3vw, 1.75rem);
+}
+
+.ctaLead {
+  margin: 0;
+  color: color-mix(in srgb, var(--color-background) 75%, transparent);
+  line-height: 1.8;
+}
+
+.cta .heroActions {
+  justify-content: center;
+}
+
+.backLink {
+  margin-top: var(--space-md);
+  border-radius: var(--radius-sm);
+  color: var(--color-primary-soft);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .interactionGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .challengeGrid,
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .page {
+    margin-top: var(--space-2xl);
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .heroMedia {
+    width: min(100%, 320px);
+    justify-self: center;
+  }
+
+  .section {
+    margin-top: var(--space-4xl);
+  }
+
+  .otherModes,
+  .architecture {
+    grid-template-columns: 1fr;
+  }
+
+  .featured,
+  .featured:nth-child(even) {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+  }
+
+  .featured:nth-child(even) .featuredMedia {
+    order: 0;
+  }
+
+  .featuredMedia {
+    width: min(100%, var(--media-width-mobile));
+    justify-self: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .interactionGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryCta,
+  .secondaryCta {
+    transition: none;
+  }
+}

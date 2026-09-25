@@ -6,7 +6,7 @@ export const SITE_TITLE =
   "iscandaru.com";
 
 export const SITE_DESCRIPTION =
-  "iscandaru.comは、Webサイト制作・Webアプリ開発・既存サイト改善をサポートする個人Webエンジニアのポートフォリオサイトです。Webに詳しくない方でも安心して相談できる伴走型のWebパートナーを目指しています。";
+  "iscandaru.comは、TikTok LIVEで視聴者参加型ゲームを開発・配信する Developer × Creator の公式サイトです。TikTok LIVE向けアプリのCase Study、個人開発のプロジェクト、Web制作・開発のご相談窓口をまとめています。";
 
 export const OGP_IMAGE_PATH = "/images/OGP.png";
 

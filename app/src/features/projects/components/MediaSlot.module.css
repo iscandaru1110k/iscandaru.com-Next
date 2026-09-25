@@ -1,0 +1,60 @@
+/* 映像の周囲は Header と同じ dark navy + 薄いグリッド。映像より目立たせない */
+.slot {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-primary-soft) 25%, transparent);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-foreground);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--color-foreground) 18%, transparent);
+}
+
+/* 動画ごとの実寸比率を保ち、切り抜かない */
+.video {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: var(--color-foreground);
+}
+
+/* 実動画が用意されるまでの仮表示 */
+.placeholder {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-xs);
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-primary-soft) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-primary-soft) 10%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+  padding: var(--space-md);
+  text-align: center;
+}
+
+.placeholderBadge {
+  border: 1px solid color-mix(in srgb, var(--color-primary-soft) 60%, transparent);
+  border-radius: var(--radius-pill);
+  padding: var(--space-2xs) var(--space-sm);
+  color: var(--color-primary-soft);
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+.placeholderLabel {
+  color: var(--color-background);
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+  font-size: clamp(1rem, 3vw, 1.375rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.placeholderNote {
+  color: color-mix(in srgb, var(--color-background) 55%, transparent);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
