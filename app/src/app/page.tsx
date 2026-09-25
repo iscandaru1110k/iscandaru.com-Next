@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import { CONTACT_FORM_URL, TIKTOK_PROFILE_URL } from "@/constants/links";
-import { SITE_DESCRIPTION, SITE_TITLE } from "@/constants/seo";
+import {
+  createPageMetadata,
+  SITE_DESCRIPTION,
+  SITE_TITLE,
+} from "@/constants/seo";
 import { MediaSlot } from "@/features/projects/components/MediaSlot";
 import {
   FEATURED_MODES,
@@ -9,19 +14,11 @@ import {
 } from "@/features/projects/tiktok-live/data/caseStudy";
 import styles from "./HomePage.module.css";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    title: SITE_TITLE,
-    description: SITE_DESCRIPTION,
-    url: "/",
-    type: "website",
-  },
-};
+  path: "/",
+});
 
 const contactTopics = [
   {
@@ -48,18 +45,17 @@ export default function Home() {
             向けのゲームを開発し、自分の LIVE で配信しています。
           </p>
           <div className={styles.actions}>
-            <a
+            <Button
               href={TIKTOK_PROFILE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.primaryCta}
-              aria-label="TikTokで配信を見る（新しいタブで開く）"
+              external
+              variant="onDark"
+              ariaLabel="TikTokで配信を見る（新しいタブで開く）"
             >
               TikTokで配信を見る <span aria-hidden="true">↗</span>
-            </a>
-            <Link href="/projects/tiktok-live" className={styles.secondaryCta}>
+            </Button>
+            <Button href="/projects/tiktok-live" variant="onDarkOutline">
               ゲームを詳しく見る
-            </Link>
+            </Button>
           </div>
         </div>
         {/* Top で自動再生するのはこの 1 本だけにする */}
@@ -132,15 +128,13 @@ export default function Home() {
             <li key={topic.title} className={styles.contactCard}>
               <h3 className={styles.contactTitle}>{topic.title}</h3>
               <p>{topic.body}</p>
-              <a
+              <Button
                 href={CONTACT_FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.contactLink}
-                aria-label={`${topic.title}の相談をする（Googleフォームを新しいタブで開く）`}
+                external
+                ariaLabel={`${topic.title}の相談をする（Googleフォームを新しいタブで開く）`}
               >
                 相談する <span aria-hidden="true">↗</span>
-              </a>
+              </Button>
             </li>
           ))}
         </ul>

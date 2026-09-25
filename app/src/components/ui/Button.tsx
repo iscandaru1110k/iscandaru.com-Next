@@ -3,12 +3,15 @@ import { ButtonHTMLAttributes, ReactNode } from "react";
 import styles from "./Button.module.css";
 
 type ButtonProps = {
+  // リンク時のアクセシブルネーム（外部リンクで「新しいタブで開く」ことを伝える場合など）
+  ariaLabel?: string;
   children: ReactNode;
   className?: string;
   external?: boolean;
   href?: string;
   size?: "md";
-  variant?: "primary" | "outline";
+  // onDark / onDarkOutline は dark navy 背景（Hero・CTA）の上で使う
+  variant?: "primary" | "outline" | "onDark" | "onDarkOutline";
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const getClassName = (
@@ -22,6 +25,7 @@ const getClassName = (
 };
 
 export function Button({
+  ariaLabel,
   children,
   className,
   external = false,
@@ -39,6 +43,7 @@ export function Button({
         target="_blank"
         rel="noopener noreferrer"
         className={buttonClassName}
+        aria-label={ariaLabel}
       >
         {children}
       </a>
@@ -47,7 +52,7 @@ export function Button({
 
   if (href) {
     return (
-      <Link href={href} className={buttonClassName}>
+      <Link href={href} className={buttonClassName} aria-label={ariaLabel}>
         {children}
       </Link>
     );

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import type { CSSProperties } from "react";
 import { CONTACT_FORM_URL, TIKTOK_PROFILE_URL } from "@/constants/links";
 import {
@@ -20,24 +21,17 @@ import {
   WHAT_I_BUILT,
 } from "@/features/projects/tiktok-live/data/caseStudy";
 import styles from "./TiktokLivePage.module.css";
+import { createPageMetadata } from "@/constants/seo";
 
-const title = "TikTok LIVE Interactive Apps | iscandaru";
 const description =
-  "TikTok LIVEの視聴者がLIKE・ギフト・コメント・フォローで参加できるゲームアプリのCase Study。ソート可視化から複数のゲームモードへ発展した開発ストーリーと技術的な工夫を紹介します。";
+  "TikTok LIVE向け視聴者参加型ゲームのCase Study。LIKE・ギフト・コメントで展開が変わるゲームの実プレイ映像と、開発の経緯、LIVEならではの技術的な工夫を紹介します。";
 
-export const metadata: Metadata = {
-  title,
+export const metadata: Metadata = createPageMetadata({
+  title: "TikTok LIVE Interactive Apps",
   description,
-  alternates: {
-    canonical: "/projects/tiktok-live",
-  },
-  openGraph: {
-    title,
-    description,
-    url: "/projects/tiktok-live",
-    type: "article",
-  },
-};
+  path: "/projects/tiktok-live",
+  type: "article",
+});
 
 // 比率の違う動画でも見た目の大きさがそろうよう、表示面積（px²）から表示幅を決める
 const FEATURED_MEDIA_AREA = 130_000;
@@ -82,18 +76,17 @@ export default function TiktokLivePage() {
             プロジェクトです。
           </p>
           <div className={styles.heroActions}>
-            <a
+            <Button
               href={TIKTOK_PROFILE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.primaryCta}
-              aria-label="TikTokで配信を見る（新しいタブで開く）"
+              external
+              variant="onDark"
+              ariaLabel="TikTokで配信を見る（新しいタブで開く）"
             >
               TikTokで配信を見る <span aria-hidden="true">↗</span>
-            </a>
-            <a href="#featured" className={styles.secondaryCta}>
+            </Button>
+            <Button href="#featured" variant="onDarkOutline">
               ゲームを見る
-            </a>
+            </Button>
           </div>
         </div>
         <MediaSlot
@@ -303,24 +296,22 @@ export default function TiktokLivePage() {
           配信は TikTok で行っています。コラボや開発のご相談もお気軽にどうぞ。
         </p>
         <div className={styles.heroActions}>
-          <a
+          <Button
             href={TIKTOK_PROFILE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.primaryCta}
-            aria-label="TikTokをフォローする（新しいタブで開く）"
+            external
+            variant="onDark"
+            ariaLabel="TikTokをフォローする（新しいタブで開く）"
           >
             TikTokをフォロー <span aria-hidden="true">↗</span>
-          </a>
-          <a
+          </Button>
+          <Button
             href={CONTACT_FORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondaryCta}
-            aria-label="Contact Googleフォームを新しいタブで開く"
+            external
+            variant="onDarkOutline"
+            ariaLabel="コラボ・開発の相談をする（Googleフォームを新しいタブで開く）"
           >
             コラボ・開発の相談 <span aria-hidden="true">↗</span>
-          </a>
+          </Button>
         </div>
         <Link href="/projects" className={styles.backLink}>
           ← Projects 一覧へ

@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import {
-  OGP_IMAGE_PATH,
+  createPageMetadata,
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_TITLE,
@@ -29,37 +29,17 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: {
-    default: SITE_TITLE,
-    template: "%s",
-  },
-  description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
   icons: {
     icon: "/favicon.ico",
   },
-  openGraph: {
+  ...createPageMetadata({
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    url: "/",
-    siteName: SITE_NAME,
-    images: [
-      {
-        url: OGP_IMAGE_PATH,
-        width: 1200,
-        height: 630,
-        alt: SITE_TITLE,
-      },
-    ],
-    locale: "ja_JP",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: SITE_TITLE,
-    description: SITE_DESCRIPTION,
-    images: [OGP_IMAGE_PATH],
-  },
+    path: "/",
+  }),
+  // canonical は各ページで指定する（404 などが Top を canonical にしないように）
+  alternates: undefined,
 };
 
 export default function RootLayout({

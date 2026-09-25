@@ -2,6 +2,7 @@ import type { Media } from "@/features/projects/components/MediaSlot";
 
 // TikTok LIVE Case Study の公開用コンテンツ。
 // 一次情報は tiktok-live-sort-game リポジトリ。更新時は手動で確認して反映する（docs/decisions.md Decision E）。
+// 「300+ Updates」「6 Modes」などの公開数値も自動取得せず、必要なときに手動で更新する。
 // userId / nickname / ログ / 内部接続情報などは載せない（docs/requirements.md「掲載しない情報」）。
 
 // 動画は app/public/videos/ に置いた Web 用圧縮版。width / height は実寸（比率の維持に使う）
@@ -224,6 +225,6 @@ export const DEVELOPMENT_PROCESS = [
     value: "AI",
     label: "Harness",
     title: "AIを組み込んだ開発プロセス",
-    body: "仕様・バックログ・設計判断をドキュメントとして整理し、AIエージェントが必要な情報を読みながら設計・実装・検証を回せる開発基盤を整えています。個人開発でも、大きなプロダクトを継続して育てられるようにしています。",
+    body: "仕様や設計判断をドキュメントとして整理し、AIエージェントがそれを読みながら設計・実装・検証を回せる開発基盤を整えています。",
   },
 ];

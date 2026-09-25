@@ -37,12 +37,6 @@
   height: auto;
 }
 
-.titleImage {
-  width: 230px;
-  height: auto;
-  margin-top: 35px;
-}
-
 .titleWrap {
   display: grid;
   min-height: 170px;
@@ -178,6 +172,18 @@
   }
 }
 
+/* 761〜960px: ナビ + CTA とロゴマークが重ならないよう、ロゴをモバイル同様に右上へ移す */
+@media (min-width: 761px) and (max-width: 960px) {
+  .brandImages {
+    top: var(--space-md);
+    right: var(--space-md);
+  }
+
+  .mark {
+    width: 60px;
+  }
+}
+
 @media (max-width: 760px) {
   .header {
     min-height: 200px;
@@ -192,11 +198,6 @@
 
   .mark {
     width: 50px;
-  }
-
-  .titleImage {
-    width: 180px;
-    margin-top: 23px;
   }
 
   .titleWrap {

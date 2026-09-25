@@ -4,7 +4,7 @@
 `tiktok-live-sort-game` 側や `docs/tasks.md` には詳細 Backlog を重複させない。
 
 - 要件: `docs/requirements.md`（Creator Site 要件）
-- 判断理由: `docs/decisions.md`（Decision A〜F）
+- 判断理由: `docs/decisions.md`（Decision A〜G）
 
 ## ステータス
 
@@ -24,7 +24,7 @@
 | WEB-P4 | TikTok LIVE Case Study | web（一次情報は app repo を参照） | WEB-P3 | 完了 |
 | WEB-P5 | Top Page Rebuild | web | WEB-P4 | 完了 |
 | WEB-P6 | Profile Rework | web | WEB-P2（WEB-P4 完了後が望ましい） | 完了 |
-| WEB-P7 | Polish / SEO / OGP | web | WEB-P3〜P6 | 未着手 |
+| WEB-P7 | Polish / SEO / OGP | web | WEB-P3〜P6 | 完了 |
 
 - web = `iscandaru.com-Next`
 - app = `tiktok-live-sort-game`

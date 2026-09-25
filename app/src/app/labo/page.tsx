@@ -3,22 +3,16 @@ import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { CONTACT_FORM_URL } from "@/constants/links";
 import styles from "./LaboPage.module.css";
+import { createPageMetadata } from "@/constants/seo";
 
-export const metadata: Metadata = {
-  title: "LABO | iscandaru",
-  description:
-    "誕生日計算、日数計算、日付計算、カウントダウンなど、日常で使える小さなWebツールをまとめたLABOページです。",
-  alternates: {
-    canonical: "/labo",
-  },
-  openGraph: {
-    title: "LABO | iscandaru",
-    description:
-      "誕生日計算、日数計算、日付計算、カウントダウンなど、日常で使える小さなWebツールをまとめたLABOページです。",
-    url: "/labo",
-    type: "website",
-  },
-};
+const description =
+  "人生カウンター、日数計算、日付計算、カウントダウンなど、日常で使える小さなWebツールをまとめたLABOページです。";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "LABO",
+  description,
+  path: "/labo",
+});
 
 export default function LaboPage() {
   return (

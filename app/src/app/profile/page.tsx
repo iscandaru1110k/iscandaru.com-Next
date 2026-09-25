@@ -3,23 +3,16 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { CONTACT_FORM_URL, TIKTOK_PROFILE_URL } from "@/constants/links";
 import styles from "./ProfilePage.module.css";
+import { createPageMetadata } from "@/constants/seo";
 
 const description =
-  "iscandaruのプロフィール。TikTok LIVEで視聴者参加型ゲームを開発・配信する Developer × Creator としての活動、プロジェクト、スキル、Web制作・開発のご相談について紹介しています。";
+  "Developer × Creator、iscandaruのプロフィール。TikTok LIVEでのゲーム開発・配信の活動と、Webエンジニアとしての経歴・スキル、Webサイト・Webアプリ開発のご相談について紹介しています。";
 
-export const metadata: Metadata = {
-  title: "Profile | iscandaru",
+export const metadata: Metadata = createPageMetadata({
+  title: "Profile",
   description,
-  alternates: {
-    canonical: "/profile",
-  },
-  openGraph: {
-    title: "Profile | iscandaru",
-    description,
-    url: "/profile",
-    type: "website",
-  },
-};
+  path: "/profile",
+});
 
 const values = [
   {
@@ -77,8 +70,6 @@ const skillGroups = [
     skills: [
       "C#",
       "Python",
-      "HTML",
-      "CSS",
       "MySQL",
       "Oracle",
       "SQL",
@@ -86,7 +77,6 @@ const skillGroups = [
       "xUnit",
       "Git",
       "GitHub",
-      "pnpm",
     ],
   },
 ];
@@ -104,7 +94,7 @@ const projects = [
   {
     title: "LABO",
     href: "/labo",
-    body: "日常で使える便利ツールをまとめたWebアプリケーションです。",
+    body: "日常で使える便利ツールをまとめたWebアプリです。",
     items: ["人生カウンター", "日数計算・日付計算", "カウントダウン"],
   },
   {
@@ -172,10 +162,15 @@ export default function ProfilePage() {
           </p>
           <p>配信で見つけた課題を開発に戻し、改善を続けています。</p>
           <div className={styles.creatorActions}>
-            <Button href={TIKTOK_PROFILE_URL} external>
-              TikTokを見る ↗
+            <Button
+              href={TIKTOK_PROFILE_URL}
+              external
+              variant="onDark"
+              ariaLabel="TikTokを見る（新しいタブで開く）"
+            >
+              TikTokを見る <span aria-hidden="true">↗</span>
             </Button>
-            <Button href="/projects/tiktok-live" variant="outline">
+            <Button href="/projects/tiktok-live" variant="onDarkOutline">
               Case Study を読む
             </Button>
           </div>

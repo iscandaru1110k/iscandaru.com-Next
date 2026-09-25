@@ -190,6 +190,14 @@ WEB-001 の Project-level Backlog（WEB-P1〜P7）の正本は `iscandaru.com-Ne
 
 乖離が実際に運用問題になった場合のみ、自動化を再検討する。
 
+### 運用（2026-09-25 WEB-P7 で追記）
+
+- TikTok LIVE Case Study（`/projects/tiktok-live`）の内容は、app repo の一次情報を確認して web repo へ手動で反映する
+  - 反映先: `app/src/features/projects/tiktok-live/data/caseStudy.ts`
+- `300+ Updates`・Game Modes 数などの公開数値も自動取得しない（GitHub API / build 時集計は使わない）
+  - 必要になったときに app repo の値を確認して手動で更新し、表記は「2026年9月時点」のように時点を添える
+  - 数値は PR 数そのものではなく、利用者向けの「アップデート回数」として表現する
+
 ---
 
 ## 2026-09-25: Decision F - WEB-001 は NOW スコープとして進める
@@ -208,3 +216,17 @@ WEB-001 の Project-level Backlog（WEB-P1〜P7）の正本は `iscandaru.com-Ne
 
 Stable Release 確認は Web 開発の blocker にしない。
 ただし Case Study にモード数や仕様を記載する場合は、公開時点の app repo の一次情報を確認して反映する。
+
+---
+
+## 2026-09-25: Decision G - OGP はサイト全体で共通の 1 枚を使う
+
+### 決定
+
+OGP 画像は `/images/OGP.png` をサイト全体で共通利用する。Top / Case Study などページ別の OGP 画像は作らない。
+各ページの metadata は `createPageMetadata()`（`app/src/constants/seo.ts`）で生成し、共通 OGP・canonical・Twitter Card をそろえる。
+
+### 理由
+
+- ページ数が少なく、ページ別画像の制作・保守コストに見合わない
+- Next.js ではページ側で `openGraph` を書くと layout 側の設定（画像を含む）が丸ごと上書きされるため、共通化しないと OGP 画像の付け忘れが起きる

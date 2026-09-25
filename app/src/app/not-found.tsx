@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
+import { SITE_NAME } from "@/constants/seo";
 import styles from "./NotFoundPage.module.css";
+
+export const metadata: Metadata = {
+  title: { absolute: `ページが見つかりません | ${SITE_NAME}` },
+};
 
 export default function NotFound() {
   return (
@@ -14,11 +20,11 @@ export default function NotFound() {
           <Button href="/" className={styles.link}>
             Homeへ戻る
           </Button>
+          <Button href="/projects" variant="outline" className={styles.link}>
+            Projectsを見る
+          </Button>
           <Button href="/profile" variant="outline" className={styles.link}>
             Profileを見る
-          </Button>
-          <Button href="/labo" variant="outline" className={styles.link}>
-            LABOを見る
           </Button>
         </div>
       </section>

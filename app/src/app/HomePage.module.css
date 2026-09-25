@@ -60,53 +60,9 @@
   gap: var(--space-sm);
 }
 
-.primaryCta,
-.secondaryCta {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  gap: var(--space-2xs);
-  border: 1px solid var(--color-background);
-  border-radius: var(--radius-pill);
-  padding: 0 1.25rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition:
-    background 160ms ease,
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    color 160ms ease;
-}
 
-.primaryCta {
-  background: var(--color-background);
-  color: var(--color-foreground);
-}
-
-.primaryCta:hover,
-.primaryCta:focus-visible {
-  border-color: var(--color-primary-soft);
-  background: var(--color-surface-muted);
-  color: var(--color-primary);
-}
-
-.secondaryCta {
-  border-color: color-mix(in srgb, var(--color-background) 50%, transparent);
-  background: transparent;
-  color: var(--color-background);
-}
-
-.secondaryCta:hover,
-.secondaryCta:focus-visible {
-  border-color: var(--color-primary-soft);
-  background: color-mix(in srgb, var(--color-primary-soft) 18%, transparent);
-}
-
-.primaryCta:focus-visible,
-.secondaryCta:focus-visible,
 .modeCard:focus-visible,
-.textLink:focus-visible,
-.contactLink:focus-visible {
+.textLink:focus-visible {
   outline: none;
   box-shadow: var(--shadow-focus);
 }
@@ -247,30 +203,8 @@
   font-size: 1.125rem;
 }
 
-.contactLink {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  gap: var(--space-2xs);
-  border: 1px solid var(--color-primary);
-  border-radius: var(--radius-pill);
-  background: var(--color-primary);
-  padding: 0 1.25rem;
-  color: var(--color-background);
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.contactLink:hover {
-  background: var(--color-background);
-  color: var(--color-primary);
-}
-
-@media (max-width: 760px) {
-  .page {
-    margin-top: var(--space-2xl);
-  }
-
+/* 中間幅では Hero の文章が窮屈になるため、動画を文章の下へ回す */
+@media (max-width: 960px) {
   .hero {
     grid-template-columns: 1fr;
     gap: var(--space-xl);
@@ -279,6 +213,12 @@
   .heroMedia {
     width: min(100%, 320px);
     justify-self: center;
+  }
+}
+
+@media (max-width: 760px) {
+  .page {
+    margin-top: var(--space-2xl);
   }
 
   .section {
@@ -301,8 +241,6 @@
     animation: none;
   }
 
-  .primaryCta,
-  .secondaryCta,
   .modeCard {
     transition: none;
   }

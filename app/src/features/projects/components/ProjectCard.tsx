@@ -15,11 +15,11 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
   return (
     <article className={className}>
       <p className={styles.role}>{project.role}</p>
-      <h3 className={styles.title}>
+      <h2 className={styles.title}>
         <Link href={project.href} className={styles.titleLink}>
           {project.title}
         </Link>
-      </h3>
+      </h2>
       <p className={styles.summary}>{project.summary}</p>
       <ul className={styles.highlights}>
         {project.highlights.map((highlight) => (
