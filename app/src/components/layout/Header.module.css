@@ -208,9 +208,9 @@
     font-size: 2.5rem;
   }
 
-  /* Menu trigger: 44px のタップ領域を保ちつつ、見た目はアイコンのみ */
+  /* Menu trigger: 44px のタップ領域を保ちつつ、見た目はアイコン主体。スクロール中も固定表示 */
   .menuButton {
-    position: absolute;
+    position: fixed;
     top: var(--space-sm);
     left: var(--space-sm);
     z-index: 110;
@@ -221,16 +221,14 @@
     justify-content: center;
     border: none;
     border-radius: var(--radius-pill);
-    background: transparent;
+    background: color-mix(in srgb, var(--color-foreground) 65%, transparent);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
     color: var(--color-background);
     cursor: pointer;
     transition:
       background 160ms ease,
       box-shadow 160ms ease;
-  }
-
-  .menuButton:hover {
-    background: color-mix(in srgb, var(--color-background) 8%, transparent);
   }
 
   .menuButton:focus-visible {
@@ -272,8 +270,15 @@
     top: 12.5px;
   }
 
-  .menuButton:hover .menuLine:nth-child(2) {
-    width: 100%;
+  /* タッチ端末の sticky hover で見た目が残らないよう、hover 可能なポインタのみに限定 */
+  @media (hover: hover) and (pointer: fine) {
+    .menuButton:hover {
+      background: color-mix(in srgb, var(--color-foreground) 80%, transparent);
+    }
+
+    .menuButton:hover .menuLine:nth-child(2) {
+      width: 100%;
+    }
   }
 
   .menuButtonOpen .menuLine:nth-child(1) {
@@ -321,7 +326,8 @@
     align-items: stretch;
     justify-content: flex-start;
     gap: 0;
-    width: min(80vw, 320px);
+    box-sizing: border-box;
+    width: min(70vw, 280px);
     height: 100vh;
     height: 100dvh;
     overflow-y: auto;
@@ -384,7 +390,7 @@
     background: transparent;
     color: color-mix(in srgb, var(--color-background) 85%, transparent);
     font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
-    font-size: 1.0625rem;
+    font-size: 1.125rem;
     font-weight: 500;
     letter-spacing: 0.06em;
   }
@@ -423,7 +429,7 @@
 
   .ctaLink {
     color: var(--color-primary-soft);
-    font-size: 0.9375rem;
+    font-size: 1rem;
   }
 
   .ctaLink:hover,
