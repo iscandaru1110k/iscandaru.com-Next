@@ -221,7 +221,7 @@
     justify-content: center;
     border: none;
     border-radius: var(--radius-pill);
-    background: color-mix(in srgb, var(--color-foreground) 65%, transparent);
+    background: color-mix(in srgb, var(--color-foreground) 85%, transparent);
     -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
     color: var(--color-background);
@@ -273,7 +273,7 @@
   /* タッチ端末の sticky hover で見た目が残らないよう、hover 可能なポインタのみに限定 */
   @media (hover: hover) and (pointer: fine) {
     .menuButton:hover {
-      background: color-mix(in srgb, var(--color-foreground) 80%, transparent);
+      background: var(--color-foreground);
     }
 
     .menuButton:hover .menuLine:nth-child(2) {
