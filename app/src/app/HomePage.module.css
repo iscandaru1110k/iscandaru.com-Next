@@ -146,7 +146,6 @@
 }
 
 .modeList,
-.chipList,
 .contactList {
   margin: 0;
   padding: 0;
@@ -218,21 +217,6 @@
   background: var(--color-background);
   padding: var(--space-xl);
   box-shadow: var(--shadow-card);
-}
-
-.chipList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xs);
-  margin-top: var(--space-lg);
-}
-
-.chip {
-  border: var(--border-subtle);
-  border-radius: var(--radius-pill);
-  background: var(--color-surface-muted);
-  padding: var(--space-2xs) var(--space-sm);
-  font-size: 0.875rem;
 }
 
 .contactList {

@@ -23,18 +23,6 @@ export const metadata: Metadata = {
   },
 };
 
-const developerSkills = [
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Node.js",
-  "WebSocket",
-  "Canvas",
-  "Java",
-  "Spring Boot",
-  "AWS",
-];
-
 const contactTopics = [
   {
     title: "配信・コラボ",
@@ -75,7 +63,11 @@ export default function Home() {
           </div>
         </div>
         {/* Top で自動再生するのはこの 1 本だけにする */}
-        <MediaSlot media={HERO_MEDIA} autoPlay className={styles.heroMedia} />
+        <MediaSlot
+          media={HERO_MEDIA}
+          playback="autoplay"
+          className={styles.heroMedia}
+        />
       </section>
 
       <section className={styles.section} aria-labelledby="featured-heading">
@@ -116,22 +108,15 @@ export default function Home() {
         </h2>
         <div className={styles.developer}>
           <p className={styles.sectionLead}>
-            SIer で Web システム開発に携わりながら、個人開発では TikTok LIVE
-            アプリや LABO のような小さなツールを作っています。設計・テスト・運用まで含めて、長く動かせるものづくりを大切にしています。
+            SIer で Web システム開発に携わりながら、個人では TikTok LIVE
+            で遊べるゲームや、LABO のような小さなツールを作っています。
           </p>
-          <ul className={styles.chipList} aria-label="Skills">
-            {developerSkills.map((skill) => (
-              <li key={skill} className={styles.chip}>
-                {skill}
-              </li>
-            ))}
-          </ul>
           <div className={styles.sectionLinks}>
             <Link href="/profile" className={styles.textLink}>
               Profile を見る →
             </Link>
-            <Link href="/labo" className={styles.textLink}>
-              LABO を使ってみる →
+            <Link href="/projects" className={styles.textLink}>
+              Projects を見る →
             </Link>
           </div>
         </div>

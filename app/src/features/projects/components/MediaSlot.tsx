@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import styles from "./MediaSlot.module.css";
 
 export type Media = {
@@ -10,43 +13,77 @@ export type Media = {
 
 type MediaSlotProps = {
   media: Media;
-  // Top では 1 本だけ true にする。false の場合は動画を読み込まず poster のみ表示する
-  autoPlay?: boolean;
+  // "autoplay": 読み込み直後から再生（Top Hero など 1 本だけ）
+  // "inView": 画面内に入ったときだけ再生し、外れたら停止
+  playback?: "autoplay" | "inView";
   className?: string;
 };
 
-export function MediaSlot({ media, autoPlay = false, className }: MediaSlotProps) {
+export function MediaSlot({
+  media,
+  playback = "inView",
+  className,
+}: MediaSlotProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const slotClassName = [styles.slot, className].filter(Boolean).join(" ");
 
-  if (media.src && autoPlay) {
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) {
+      return;
+    }
+
+    // 動きを減らす設定の場合は再生しない（poster / 先頭フレームのまま）
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      video.pause();
+      return;
+    }
+
+    if (playback === "autoplay") {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // 自動再生がブロックされても表示は poster のまま問題ないため握りつぶす
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.25 },
+    );
+    observer.observe(video);
+
+    return () => observer.disconnect();
+  }, [playback, media.src]);
+
+  if (media.src) {
     return (
       <div className={slotClassName}>
         <video
+          ref={videoRef}
           className={styles.video}
           src={media.src}
           poster={media.poster}
           aria-label={media.label}
-          autoPlay
+          autoPlay={playback === "autoplay"}
           muted
           loop
           playsInline
-          preload="metadata"
+          preload={playback === "autoplay" ? "auto" : "metadata"}
         />
       </div>
     );
   }
 
-  if (media.poster) {
-    return (
-      <div className={slotClassName}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className={styles.video} src={media.poster} alt={media.label} />
-      </div>
-    );
-  }
-
   return (
-    <div className={`${slotClassName} ${styles.placeholder}`} role="img" aria-label={`${media.label}（準備中）`}>
+    <div
+      className={`${slotClassName} ${styles.placeholder}`}
+      role="img"
+      aria-label={`${media.label}（準備中）`}
+    >
       <span className={styles.placeholderBadge} aria-hidden="true">
         VIDEO
       </span>

@@ -4,17 +4,15 @@ import { CONTACT_FORM_URL, TIKTOK_PROFILE_URL } from "@/constants/links";
 import { MediaSlot } from "@/features/projects/components/MediaSlot";
 import {
   ARCHITECTURE_FLOW,
-  DEVELOPMENT_METRICS,
   DEVELOPMENT_METRICS_AS_OF,
   DEVELOPMENT_PROCESS,
   FEATURED_MODES,
-  GALLERY_ITEMS,
   HERO_MEDIA,
   LIVE_INTERACTIONS,
   OTHER_MODES,
   STORY_STEPS,
-  TECH_STACK,
   TECHNICAL_CHALLENGES,
+  TOOL_GROUPS,
   WHAT_I_BUILT,
 } from "@/features/projects/tiktok-live/data/caseStudy";
 import styles from "./TiktokLivePage.module.css";
@@ -78,7 +76,11 @@ export default function TiktokLivePage() {
             </a>
           </div>
         </div>
-        <MediaSlot media={HERO_MEDIA} autoPlay className={styles.heroMedia} />
+        <MediaSlot
+          media={HERO_MEDIA}
+          playback="autoplay"
+          className={styles.heroMedia}
+        />
       </section>
 
       <nav className={styles.toc} aria-label="Case Study sections">
@@ -92,16 +94,13 @@ export default function TiktokLivePage() {
       <section id="what" className={styles.section} aria-labelledby="what-heading">
         <p className={styles.sectionEyebrow}>What I Built</p>
         <h2 id="what-heading" className={styles.sectionTitle}>
-          配信の中で、視聴者と一緒に遊ぶためのアプリ
+          ライブで動く、視聴者参加型アプリ
         </h2>
-        <ul className={styles.pointGrid}>
-          {WHAT_I_BUILT.map((point) => (
-            <li key={point.title} className={styles.pointCard}>
-              <h3 className={styles.cardTitle}>{point.title}</h3>
-              <p>{point.body}</p>
-            </li>
+        <div className={styles.whatBlock}>
+          {WHAT_I_BUILT.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
           ))}
-        </ul>
+        </div>
       </section>
 
       <section className={styles.section} aria-labelledby="story-heading">
@@ -195,7 +194,7 @@ export default function TiktokLivePage() {
       >
         <p className={styles.sectionEyebrow}>Technical Challenges</p>
         <h2 id="challenges-heading" className={styles.sectionTitle}>
-          実際のLIVEで起きる問題と、その解き方
+          LIVEで遊べるゲームにするための工夫
         </h2>
         <ul className={styles.challengeGrid}>
           {TECHNICAL_CHALLENGES.map((challenge) => (
@@ -232,15 +231,19 @@ export default function TiktokLivePage() {
               </li>
             ))}
           </ol>
-          <div>
-            <h3 className={styles.cardTitle}>Tech Stack</h3>
-            <ul className={styles.chipList}>
-              {TECH_STACK.map((tech) => (
-                <li key={tech} className={styles.chip}>
-                  {tech}
-                </li>
-              ))}
-            </ul>
+          <div className={styles.toolGroups}>
+            {TOOL_GROUPS.map((group) => (
+              <div key={group.title}>
+                <h3 className={styles.cardTitle}>{group.title}</h3>
+                <ul className={styles.chipList}>
+                  {group.items.map((item) => (
+                    <li key={item} className={styles.chip}>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -252,36 +255,19 @@ export default function TiktokLivePage() {
       >
         <p className={styles.sectionEyebrow}>Development Process</p>
         <h2 id="process-heading" className={styles.sectionTitle}>
-          個人開発を、チーム開発のように回す
+          小さく、速く、積み重ねる
         </h2>
         <ul className={styles.metrics}>
-          {DEVELOPMENT_METRICS.map((metric) => (
-            <li key={metric.label} className={styles.metric}>
-              <span className={styles.metricValue}>{metric.value}</span>
-              <span className={styles.metricLabel}>{metric.label}</span>
+          {DEVELOPMENT_PROCESS.map((item) => (
+            <li key={item.title} className={styles.metric}>
+              <span className={styles.metricValue}>{item.value}</span>
+              <span className={styles.metricLabel}>{item.label}</span>
+              <h3 className={styles.metricTitle}>{item.title}</h3>
+              <p>{item.body}</p>
             </li>
           ))}
         </ul>
         <p className={styles.metricsNote}>{DEVELOPMENT_METRICS_AS_OF}</p>
-        <ul className={styles.processList}>
-          {DEVELOPMENT_PROCESS.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      <section className={styles.section} aria-labelledby="gallery-heading">
-        <p className={styles.sectionEyebrow}>Gallery</p>
-        <h2 id="gallery-heading" className={styles.sectionTitle}>
-          Gallery
-        </h2>
-        <ul className={styles.gallery}>
-          {GALLERY_ITEMS.map((item) => (
-            <li key={item.label}>
-              <MediaSlot media={item} />
-            </li>
-          ))}
-        </ul>
       </section>
 
       <section className={styles.cta} aria-labelledby="cta-heading">

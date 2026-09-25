@@ -21,41 +21,18 @@ export const metadata: Metadata = {
   },
 };
 
-const philosophies = [
-  {
-    title: "実現したいことから考える",
-    body: "Webサイトありきではなく、あなたが「実現したいこと」を一緒に整理して、分かりやすく形にしていくことを大切にしています。",
-  },
-  {
-    title: "小さく始めて、一緒に育てる",
-    body: "日常にささやかな豊かさを届けることをテーマに、小さく始めて、一緒に育てていけるWebサイト・Webアプリを作っています。",
-  },
-  {
-    title: "相談しやすいパートナーであること",
-    body: "Webに詳しくない方でも安心して相談できる、声のかけやすいWebエンジニアを目指しています。",
-  },
-];
-
 const values = [
   {
-    title: "伴走型の開発",
-    body: [
-      "Webサイトを作ることではなく、「実現したいこと」を一緒に整理しながら形にすることを大切にしています。",
-      "専門用語をできるだけ使わず、Webに詳しくない方でも安心して相談できるよう心掛けています。",
-    ],
+    title: "実現したいことから考える",
+    body: "Webサイトありきではなく、「実現したいこと」を一緒に整理して形にします。専門用語をできるだけ使わず、Webに詳しくない方でも安心して相談できるよう心掛けています。",
+  },
+  {
+    title: "小さく作って改善する",
+    body: "完成形を最後まで待たず、小さく作り、確認しながら改善します。成果物を見ながら進めることで、「イメージと違った」というズレを減らします。",
   },
   {
     title: "オーバースペックにしない",
-    body: [
-      "必要以上に複雑なシステムは提案せず、その方にとって扱いやすく、更新しやすく、長く使えるWebサイト・Webアプリを目指します。",
-    ],
-  },
-  {
-    title: "成果物を見ながら進める",
-    body: [
-      "完成形を最後まで待つのではなく、小さく作り、確認し、改善する流れを大切にしています。",
-      "完成後に「イメージと違った」というズレを少なくするため、成果物を確認しながら一緒に進めていきます。",
-    ],
+    body: "必要以上に複雑なシステムは提案せず、扱いやすく、更新しやすく、長く使えるWebサイト・Webアプリを目指します。",
   },
 ];
 
@@ -280,25 +257,15 @@ export default function ProfilePage() {
           Services
         </h2>
         <p className={styles.sectionLead}>
-          Webサイト制作・Webアプリ開発のご相談も受け付けています。伴走型のWebエンジニアとして、次のことを大切にしています。
+          Webサイト・Webアプリの制作や、既存サイトの改善のご相談を受け付けています。
         </p>
-        <div className={styles.philosophies}>
-          {philosophies.map((philosophy) => (
-            <section key={philosophy.title} className={styles.philosophy}>
-              <h3 className={styles.philosophyTitle}>{philosophy.title}</h3>
-              <p className={styles.philosophyBody}>{philosophy.body}</p>
-            </section>
-          ))}
-        </div>
 
-        <h3 className={styles.subTitle}>進め方</h3>
+        <h3 className={styles.subTitle}>大切にしていること</h3>
         <div className={`${styles.grid} ${styles.threeColumns}`}>
           {values.map((value) => (
             <article key={value.title} className={styles.card}>
               <h4 className={styles.cardTitle}>{value.title}</h4>
-              {value.body.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
+              <p>{value.body}</p>
             </article>
           ))}
         </div>

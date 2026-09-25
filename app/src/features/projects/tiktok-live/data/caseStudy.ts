@@ -9,34 +9,20 @@ export const HERO_MEDIA: Media = {
 };
 
 export const WHAT_I_BUILT = [
-  {
-    title: "配信者のPCで動くWebアプリ",
-    body: "一般公開のブラウザゲームではなく、配信者が自分のPCで起動して使うアプリです。",
-  },
-  {
-    title: "配信画面にそのまま載せる",
-    body: "操作用の画面とは別に、配信用の画面を OBS や TikTok LIVE Studio に取り込んで映します。",
-  },
-  {
-    title: "視聴者のアクションで展開が変わる",
-    body: "LIKE・ギフト・コメント・フォローがリアルタイムにゲームへ届き、配信中の展開を変えます。",
-  },
-  {
-    title: "縦型 9:16 のLIVE向け設計",
-    body: "スマホで見る TikTok LIVE に合わせて、縦長の画面で見やすいレイアウトにしています。",
-  },
+  "TikTok LIVE の配信中に使う、視聴者参加型のWebアプリです。ゲームは配信者のPCで動かし、配信用の画面を OBS や TikTok LIVE Studio に取り込んで映します。",
+  "視聴者が送った LIKE・ギフト・コメント・フォローは、その場でゲームに反映されます。スマホで見る TikTok LIVE に合わせて、画面はすべて縦型で設計しています。",
 ];
 
 export const STORY_STEPS = [
   {
     label: "01",
     title: "ソートアルゴリズムの可視化",
-    body: "棒グラフが並び替わる様子と音を楽しむ、ソート可視化アプリとしてスタート。",
+    body: "棒グラフが並び替わる様子と音を楽しむ、可視化アプリとしてスタート。",
   },
   {
     label: "02",
     title: "Sort Battle へ",
-    body: "2つのアルゴリズムを競わせる対戦モードを追加し、コメントで視聴者が応援できるように。",
+    body: "2つのアルゴリズムを競わせ、コメントで応援できる対戦モードに。",
   },
   {
     label: "03",
@@ -46,7 +32,7 @@ export const STORY_STEPS = [
   {
     label: "04",
     title: "独立したゲームへ拡張",
-    body: "ソートを使わない Skill Check・Runner・Gatling Defense など、LIVE向けの独立ゲームへ発展。",
+    body: "ソートを使わない Runner や Gatling Defense など、LIVE向けのゲームへ。",
   },
 ];
 
@@ -73,6 +59,7 @@ export const FEATURED_MODES: FeaturedMode[] = [
       "ギフトで敵の増援・ボス出現、または塔の回復や強力な砲撃",
       "最後は GIFTER RANKING でリザルト表示",
     ],
+    // 実動画を用意したら src: "/videos/gatling-defense.mp4" を追加する
     media: { label: "Gatling Defense プレイ映像" },
   },
   {
@@ -87,6 +74,7 @@ export const FEATURED_MODES: FeaturedMode[] = [
       "飛行中は障害物をすり抜けて一気に進める",
       "LIKE が一定数集まるたびにランダムな妨害イベント",
     ],
+    // 実動画を用意したら src: "/videos/dino-runner.mp4" を追加する
     media: { label: "Dino Runner プレイ映像" },
   },
   {
@@ -101,6 +89,7 @@ export const FEATURED_MODES: FeaturedMode[] = [
       "ギフトで相手チームを一時停止、または味方を超加速",
       "フォローで両チームがスピードアップ",
     ],
+    // 実動画を用意したら src: "/videos/sort-battle.mp4" を追加する
     media: { label: "Sort Battle プレイ映像" },
   },
 ];
@@ -148,90 +137,80 @@ export const LIVE_INTERACTIONS = [
 
 export const TECHNICAL_CHALLENGES = [
   {
-    title: "操作画面と配信画面の分離",
-    problem: "配信用の画面でもゲームが動くと、状態や音がズレたり二重に鳴ったりする。",
+    title: "LIVEイベントを公平に処理する",
+    problem:
+      "ギフトが立て続けに届くと、後から来た効果に埋もれて「自分のギフトが反映されなかった」と感じさせてしまう。参加した手応えがなければ、視聴者参加型は成り立たない。",
     solution:
-      "ゲームを動かすのは操作用の Operator 画面だけにし、配信用の Presentation 画面は受け取った状態を描くだけの読み取り専用にしました。",
+      "ギフトは届いた順に1つずつ必ず反映し、LIKE から生まれるイベントはギフトを追い越さない低い優先度で待たせる設計にしました。誰の、どのアクションで何が起きたかが画面上で分かるようにしています。",
   },
   {
-    title: "WebSocket による画面同期",
-    problem: "配信ソフト側の通信が詰まると、映像が遅れて溜まっていく。",
+    title: "実LIVEを改善につなげるログ基盤",
+    problem:
+      "LIKE の累計が一瞬だけ巻き戻るなど、実際の配信ではローカルのテストでは起きない問題が起きる。どこで盛り上がり、どこで止まったかも、配信を終えると分からなくなる。",
     solution:
-      "描画フレームと状態を分けて送り、通信が詰まったときは差し替え可能な描画フレームだけを間引くことで、重要な状態を失わないようにしました。",
+      "配信ごとにイベントを記録して集計・時系列分析し、見つけた問題はシナリオとして再生して再現・修正します。個人情報を取り除いた分析結果だけを、次の仕様や改善へ戻しています。",
   },
   {
-    title: "ギフトの公平な反映",
-    problem: "ギフトが連続すると、後から来た効果に埋もれて「自分のギフトが反映されない」ことがある。",
+    title: "3秒でわかるゲーム画面",
+    problem:
+      "TikTok LIVE の視聴者は途中から入ってきて、スマホの小さな画面で見る。ルール説明を読んでもらう前提にはできない。",
     solution:
-      "ギフトは届いた順に1つずつ必ず反映する FIFO キューで処理し、LIKE 由来のイベントはギフトを追い越さない低優先の枠に分けました。",
-  },
-  {
-    title: "実LIVE特有のデータ揺れ",
-    problem: "LIKE の累計値が 505 → 499 → 518 のように巻き戻ることがあり、同じ達成演出が二重に発生しうる。",
-    solution:
-      "これまでの最大値を基準に判定し、配信（ルーム）単位で集計を区切ることで、巻き戻りや再起動があっても演出が重複しないようにしました。",
-  },
-  {
-    title: "再現できるゲームロジック",
-    problem: "LIVE中に起きた不具合は、同じ状況をもう一度作るのが難しい。",
-    solution:
-      "ゲームの中核を固定タイムステップと乱数状態を持つ純粋なロジックとして作り、シナリオファイルで LIVE イベントを再生して検証できるようにしました。",
-  },
-  {
-    title: "LIVEログからの改善",
-    problem: "テストだけでは、実際の配信でどこが盛り上がり、どこで止まったか分からない。",
-    solution:
-      "配信ごとのログを集計して時系列で分析し、個人情報を除いた分析結果を次の仕様や判断へつなげています。",
+      "縦型 9:16 でゲーム領域を大きく取り、HP やいいねゲージ、ギフトで何が起きるかを示す Gift Guide、リザルトなどの情報に優先順位をつけて配置しています。撃つ・跳ぶのように、見た瞬間にルールを想像できるゲームを選んでいます。",
   },
 ];
 
 export const ARCHITECTURE_FLOW = [
-  { name: "TikTok LIVE", note: "LIKE / Gift / Comment / Follow" },
-  { name: "Node LIVE Event Server", note: "イベント受信・変換" },
-  { name: "Operator", note: "ゲームロジック・音・入力" },
-  { name: "WebSocket", note: "状態と描画フレームを配信" },
-  { name: "Presentation", note: "読み取り専用の配信用画面" },
-  { name: "OBS / LIVE Studio", note: "配信画面に合成" },
+  { name: "TikTok LIVE", note: "視聴者の LIKE / Gift / Comment / Follow" },
+  { name: "Node LIVE Event Server", note: "イベントを受け取り、ゲーム用に変換" },
+  { name: "Operator", note: "配信者の操作画面。ゲームを動かす" },
+  { name: "WebSocket", note: "ゲームの状態を配信用画面へ送る" },
+  { name: "Presentation", note: "視聴者に見せる配信用画面" },
+  { name: "OBS / TikTok LIVE Studio", note: "配信画面に合成して LIVE へ" },
 ];
 
-export const TECH_STACK = [
-  "TypeScript",
-  "React",
-  "Vite",
-  "Node.js",
-  "WebSocket (ws)",
-  "Canvas API",
-  "Web Audio API",
-  "tiktok-live-connector",
-  "Vitest",
-  "Testing Library",
-  "ESLint",
-  "Prettier",
-  "GitHub Actions",
+export const TOOL_GROUPS = [
+  {
+    title: "Tech Stack",
+    items: [
+      "TypeScript",
+      "React",
+      "Vite",
+      "Node.js",
+      "WebSocket",
+      "Canvas API",
+      "Web Audio API",
+      "Vitest",
+    ],
+  },
+  {
+    title: "Streaming / Platform",
+    items: ["TikTok LIVE", "OBS", "TikTok LIVE Studio"],
+  },
+  {
+    title: "Development Tools / AI",
+    items: ["GitHub", "ChatGPT", "Claude Code"],
+  },
 ];
 
-export const DEVELOPMENT_METRICS_AS_OF = "2026-09-25時点";
-
-export const DEVELOPMENT_METRICS = [
-  { value: "295", label: "Merged PRs" },
-  { value: "321", label: "Decisions" },
-  { value: "260", label: "Test files" },
-  { value: "約4,800", label: "Test cases" },
-];
+export const DEVELOPMENT_METRICS_AS_OF = "2026年9月時点";
 
 export const DEVELOPMENT_PROCESS = [
-  "2026年8月の初回コミットから、約2か月で6モードまで拡張",
-  "機能ごとに SPEC（目標仕様）と BACKLOG（現状との差分）を分けて管理",
-  "判断の理由と採用しなかった案を Decision として記録",
-  "AI エージェントが必要な知識だけを読めるよう、ドキュメントを階層化",
-  "実LIVEのログ分析と、シナリオ再生による再現テストで検証",
-];
-
-export const GALLERY_ITEMS: Media[] = [
-  { label: "Gatling Defense" },
-  { label: "Dino Runner" },
-  { label: "Sort Battle" },
-  { label: "Quest" },
-  { label: "Pure Skill Check" },
-  { label: "Operator 画面" },
+  {
+    value: "300+",
+    label: "Updates",
+    title: "300回以上のアップデート",
+    body: "初回コミット以降、実際の配信で気づいたことを小さな改善として積み重ね、300回以上のアップデートを重ねてきました。",
+  },
+  {
+    value: "6 Modes",
+    label: "in 2 months",
+    title: "約2か月で6モード",
+    body: "2026年8月の初回コミットから約2か月で、ソート可視化から6つのゲームモードまで拡張しました。",
+  },
+  {
+    value: "AI",
+    label: "Harness",
+    title: "AIを組み込んだ開発プロセス",
+    body: "仕様・バックログ・設計判断をドキュメントとして整理し、AIエージェントが必要な情報を読みながら設計・実装・検証を回せる開発基盤を整えています。個人開発でも、大きなプロダクトを継続して育てられるようにしています。",
+  },
 ];
