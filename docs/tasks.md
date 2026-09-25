@@ -1,30 +1,19 @@
 # タスク一覧
 
-## Phase 1: 初期セットアップ
+Project-level の Backlog（WEB-P1〜P7）は `docs/roadmap.md` を正本とする。
+このファイルには Backlog を重複させない。
 
-- [ ] Next.js アプリを `app/` 配下に作成する
-- [ ] TypeScript / ESLint / App Router / src directory を有効にする
-- [ ] 初期ページをシンプルなトップページに差し替える
-- [ ] `/labo` ページを作成する
+## このファイルの役割
 
-## Phase 2: labo 画面の仮実装
+- 現在の PR / Phase 内で扱う、小規模な一時タスクのメモ
+- 完了したら削除してよい
+- Phase をまたぐ作業や新しい機能は、ここではなく `docs/roadmap.md` に追加する
 
-- [ ] `BirthdayCalculator.tsx` を作成する
-- [ ] `DateDiffCalculator.tsx` を作成する
-- [ ] `/labo` に2つのコンポーネントを表示する
-- [ ] 最低限の入力フォームを作る
+## 一時タスク
 
-## Phase 3: 日付計算ロジック
+（なし）
 
-- [ ] `features/labo/utils/date.ts` を作成する
-- [ ] 年齢計算関数を実装する
-- [ ] 次の誕生日までの日数計算関数を実装する
-- [ ] 日付差分計算関数を実装する
-- [ ] コンポーネントから計算関数を呼び出す
+## 履歴
 
-## Phase 4: 整理
-
-- [ ] 不要な初期ファイルを削除する
-- [ ] 表示文言を整える
-- [ ] README を更新する
-- [ ] decisions.md に重要な判断を追記する
+初期の Phase 1〜4（Next.js セットアップ / labo 画面 / 日付計算ロジック / 整理）は、実装済みまたは現在の構成と乖離していたため削除した。
+詳細は git 履歴を参照。

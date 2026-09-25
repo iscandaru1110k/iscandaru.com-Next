@@ -26,12 +26,37 @@ app/
 
 ## Current Scope
 
-Current scope is limited to small labo-style tools.
+The site is being rebuilt as the official site of a Developer × Creator
+who builds and streams viewer-participation apps on TikTok LIVE
+(WEB-001 iscandaru.com Creator Site Rebuild, NOW scope).
 
-Implemented or planned features:
+Current scope:
 
-- Date difference calculator
-- Birthday calculator
+- Top
+- Profile
+- Projects (/projects)
+- TikTok LIVE Case Study (/projects/tiktok-live)
+- LABO (/labo and existing labo tools)
+- Privacy
+
+Project-level backlog (WEB-P1 to WEB-P7) is maintained in:
+
+docs/roadmap.md
+
+Creator Site requirements and fixed decisions are in:
+
+- docs/requirements.md
+- docs/decisions.md
+
+Work only on the phase requested for the current task.
+Do not start later phases without approval.
+
+### Repository Boundary
+
+- tiktok-live-sort-game: source of truth for primary information about the TikTok LIVE app.
+- iscandaru.com-Next (this repo): source of truth for edited, public-facing information and the Creator Site itself.
+- Sync manually. Do not add git submodules, packages, GitHub API fetching, build-time cross-repo references, or API-based sync.
+- Do not publish non-public information listed in docs/requirements.md (user IDs, raw logs, analysis data, internal connection info, env values, unlicensed media, etc.).
 
 ---
 
@@ -50,6 +75,9 @@ Do not introduce the following unless explicitly approved:
 - Large UI frameworks
 
 Keep the project lightweight.
+
+The Creator Site rebuild does not lift these restrictions.
+Project content should be static data inside this repository.
 
 ---
 
@@ -294,6 +322,7 @@ Documents:
 - docs/requirements.md
 - docs/design.md
 - docs/decisions.md
+- docs/roadmap.md
 - docs/tasks.md
 - docs/coding-rules.md
 
