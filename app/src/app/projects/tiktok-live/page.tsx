@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { CONTACT_FORM_URL, TIKTOK_PROFILE_URL } from "@/constants/links";
-import { MediaSlot } from "@/features/projects/components/MediaSlot";
+import {
+  MediaSlot,
+  type Media,
+} from "@/features/projects/components/MediaSlot";
 import {
   ARCHITECTURE_FLOW,
   DEVELOPMENT_METRICS_AS_OF,
@@ -34,6 +38,22 @@ export const metadata: Metadata = {
     type: "article",
   },
 };
+
+// 比率の違う動画でも見た目の大きさがそろうよう、表示面積（px²）から表示幅を決める
+const FEATURED_MEDIA_AREA = 130_000;
+const FEATURED_MEDIA_AREA_MOBILE = 62_000;
+
+function getMediaWidth(media: Media, area: number) {
+  const ratio = media.width && media.height ? media.width / media.height : 9 / 16;
+  return `${Math.round(Math.sqrt(area * ratio))}px`;
+}
+
+function getFeaturedMediaStyle(media: Media) {
+  return {
+    "--media-width": getMediaWidth(media, FEATURED_MEDIA_AREA),
+    "--media-width-mobile": getMediaWidth(media, FEATURED_MEDIA_AREA_MOBILE),
+  } as CSSProperties;
+}
 
 const tocItems = [
   { href: "#what", label: "What I Built" },
@@ -134,7 +154,12 @@ export default function TiktokLivePage() {
         </h2>
         <div className={styles.featuredList}>
           {FEATURED_MODES.map((mode) => (
-            <article key={mode.id} id={mode.id} className={styles.featured}>
+            <article
+              key={mode.id}
+              id={mode.id}
+              className={styles.featured}
+              style={getFeaturedMediaStyle(mode.media)}
+            >
               <MediaSlot media={mode.media} className={styles.featuredMedia} />
               <div className={styles.featuredBody}>
                 <p className={styles.featuredTagline}>{mode.tagline}</p>

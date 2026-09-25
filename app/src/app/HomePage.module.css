@@ -6,7 +6,7 @@
 /* Hero: Header と同じ dark navy の世界観 */
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 260px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 360px);
   align-items: center;
   gap: var(--space-3xl);
   border-radius: var(--radius-xl);
@@ -277,7 +277,7 @@
   }
 
   .heroMedia {
-    width: min(100%, 220px);
+    width: min(100%, 320px);
     justify-self: center;
   }
 

@@ -6,7 +6,7 @@
 /* Hero: Header と同じ dark navy の世界観 */
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 280px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 360px);
   align-items: center;
   gap: var(--space-3xl);
   border-radius: var(--radius-xl);
@@ -261,9 +261,10 @@
   gap: var(--space-2xl);
 }
 
+/* 動画の表示幅は page.tsx で面積から算出した --media-width を使う */
 .featured {
   display: grid;
-  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, min(var(--media-width), 50%)) minmax(0, 1fr);
   align-items: center;
   gap: var(--space-2xl);
   border: var(--border-subtle);
@@ -274,7 +275,7 @@
 }
 
 .featured:nth-child(even) {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 220px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, min(var(--media-width), 50%));
 }
 
 .featured:nth-child(even) .featuredMedia {
@@ -572,7 +573,7 @@
   }
 
   .heroMedia {
-    width: min(100%, 240px);
+    width: min(100%, 320px);
     justify-self: center;
   }
 
@@ -597,7 +598,7 @@
   }
 
   .featuredMedia {
-    width: min(100%, 160px);
+    width: min(100%, var(--media-width-mobile));
     justify-self: center;
   }
 }

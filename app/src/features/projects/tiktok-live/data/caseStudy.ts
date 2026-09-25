@@ -4,9 +4,15 @@ import type { Media } from "@/features/projects/components/MediaSlot";
 // 一次情報は tiktok-live-sort-game リポジトリ。更新時は手動で確認して反映する（docs/decisions.md Decision E）。
 // userId / nickname / ログ / 内部接続情報などは載せない（docs/requirements.md「掲載しない情報」）。
 
-export const HERO_MEDIA: Media = {
+// 動画は app/public/videos/ に置いた Web 用圧縮版。width / height は実寸（比率の維持に使う）
+const GATLING_DEFENSE_VIDEO: Media = {
   label: "Gatling Defense プレイ映像",
+  src: "/videos/gatling-defense.mp4",
+  width: 852,
+  height: 710,
 };
+
+export const HERO_MEDIA: Media = GATLING_DEFENSE_VIDEO;
 
 export const WHAT_I_BUILT = [
   "TikTok LIVE の配信中に使う、視聴者参加型のWebアプリです。ゲームは配信者のPCで動かし、配信用の画面を OBS や TikTok LIVE Studio に取り込んで映します。",
@@ -59,8 +65,7 @@ export const FEATURED_MODES: FeaturedMode[] = [
       "ギフトで敵の増援・ボス出現、または塔の回復や強力な砲撃",
       "最後は GIFTER RANKING でリザルト表示",
     ],
-    // 実動画を用意したら src: "/videos/gatling-defense.mp4" を追加する
-    media: { label: "Gatling Defense プレイ映像" },
+    media: GATLING_DEFENSE_VIDEO,
   },
   {
     id: "dino-runner",
@@ -74,8 +79,12 @@ export const FEATURED_MODES: FeaturedMode[] = [
       "飛行中は障害物をすり抜けて一気に進める",
       "LIKE が一定数集まるたびにランダムな妨害イベント",
     ],
-    // 実動画を用意したら src: "/videos/dino-runner.mp4" を追加する
-    media: { label: "Dino Runner プレイ映像" },
+    media: {
+      label: "Dino Runner プレイ映像",
+      src: "/videos/dino-runner.mp4",
+      width: 852,
+      height: 512,
+    },
   },
   {
     id: "sort-battle",
@@ -89,8 +98,12 @@ export const FEATURED_MODES: FeaturedMode[] = [
       "ギフトで相手チームを一時停止、または味方を超加速",
       "フォローで両チームがスピードアップ",
     ],
-    // 実動画を用意したら src: "/videos/sort-battle.mp4" を追加する
-    media: { label: "Sort Battle プレイ映像" },
+    media: {
+      label: "Sort Battle プレイ映像",
+      src: "/videos/sort-battle.mp4",
+      width: 408,
+      height: 852,
+    },
   },
 ];
 
