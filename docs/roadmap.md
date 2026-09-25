@@ -18,7 +18,7 @@
 
 | Phase | 名称 | 対象 repo | 依存 | 状態 |
 | --- | --- | --- | --- | --- |
-| WEB-P1 | Requirements / IA / Repo Boundary | web | なし | 進行中 |
+| WEB-P1 | Requirements / IA / Repo Boundary | web | なし | 完了 |
 | WEB-P2 | Site Shell / Navigation | web | WEB-P1 | 未着手 |
 | WEB-P3 | Projects Foundation | web | WEB-P2 | 未着手 |
 | WEB-P4 | TikTok LIVE Case Study | web（一次情報は app repo を参照） | WEB-P3 | 未着手 |
