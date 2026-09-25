@@ -3,23 +3,16 @@ import { Container } from "@/components/ui/Container";
 import { ProjectCard } from "@/features/projects/components/ProjectCard";
 import { PROJECTS } from "@/features/projects/data/projects";
 import styles from "./ProjectsPage.module.css";
+import { createPageMetadata } from "@/constants/seo";
 
 const description =
-  "iscandaruのプロジェクト一覧。TikTok LIVE向けの視聴者参加型アプリや、日常で使える小さなWebツールを紹介しています。";
+  "iscandaruの個人開発プロジェクト一覧。TikTok LIVE向けの視聴者参加型ゲームや、日常で使える小さなWebツールを紹介しています。";
 
-export const metadata: Metadata = {
-  title: "Projects | iscandaru",
+export const metadata: Metadata = createPageMetadata({
+  title: "Projects",
   description,
-  alternates: {
-    canonical: "/projects",
-  },
-  openGraph: {
-    title: "Projects | iscandaru",
-    description,
-    url: "/projects",
-    type: "website",
-  },
-};
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   return (

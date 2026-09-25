@@ -3,6 +3,7 @@
   min-height: 28px;
   align-items: center;
   justify-content: center;
+  gap: var(--space-2xs);
   border: 1px solid var(--color-primary);
   border-radius: var(--radius-pill);
   font-weight: 700;
@@ -50,6 +51,31 @@
 .outline:focus-visible {
   background: var(--color-primary);
   color: var(--color-background);
+}
+
+.onDark {
+  border-color: var(--color-background);
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+.onDark:hover,
+.onDark:focus-visible {
+  border-color: var(--color-primary-soft);
+  background: var(--color-surface-muted);
+  color: var(--color-primary);
+}
+
+.onDarkOutline {
+  border-color: color-mix(in srgb, var(--color-background) 50%, transparent);
+  background: transparent;
+  color: var(--color-background);
+}
+
+.onDarkOutline:hover,
+.onDarkOutline:focus-visible {
+  border-color: var(--color-primary-soft);
+  background: color-mix(in srgb, var(--color-primary-soft) 18%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {
