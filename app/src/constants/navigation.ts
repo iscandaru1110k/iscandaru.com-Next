@@ -11,6 +11,7 @@ export type ExternalNavItem = NavItem & {
 
 export const PRIMARY_NAV_ITEMS: NavItem[] = [
   { href: "/", label: "Home" },
+  { href: "/projects", label: "Projects" },
   { href: "/profile", label: "Profile" },
   { href: "/labo", label: "LABO" },
 ];

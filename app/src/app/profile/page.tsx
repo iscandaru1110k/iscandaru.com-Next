@@ -1,23 +1,40 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { CONTACT_FORM_URL } from "@/constants/links";
+import { CONTACT_FORM_URL, TIKTOK_PROFILE_URL } from "@/constants/links";
 import styles from "./ProfilePage.module.css";
+
+const description =
+  "iscandaruのプロフィール。TikTok LIVEで視聴者参加型ゲームを開発・配信する Developer × Creator としての活動、プロジェクト、スキル、Web制作・開発のご相談について紹介しています。";
 
 export const metadata: Metadata = {
   title: "Profile | iscandaru",
-  description:
-    "iscandaruのプロフィールページです。Webサイト制作・Webアプリ開発で大切にしていること、スキル、経験、制作物を紹介しています。",
+  description,
   alternates: {
     canonical: "/profile",
   },
   openGraph: {
     title: "Profile | iscandaru",
-    description:
-      "iscandaruのプロフィールページです。Webサイト制作・Webアプリ開発で大切にしていること、スキル、経験、制作物を紹介しています。",
+    description,
     url: "/profile",
     type: "website",
   },
 };
+
+const philosophies = [
+  {
+    title: "実現したいことから考える",
+    body: "Webサイトありきではなく、あなたが「実現したいこと」を一緒に整理して、分かりやすく形にしていくことを大切にしています。",
+  },
+  {
+    title: "小さく始めて、一緒に育てる",
+    body: "日常にささやかな豊かさを届けることをテーマに、小さく始めて、一緒に育てていけるWebサイト・Webアプリを作っています。",
+  },
+  {
+    title: "相談しやすいパートナーであること",
+    body: "Webに詳しくない方でも安心して相談できる、声のかけやすいWebエンジニアを目指しています。",
+  },
+];
 
 const values = [
   {
@@ -55,40 +72,63 @@ const services = [
 
 const skillGroups = [
   {
-    title: "Frontend",
-    skills: ["React", "Next.js", "TypeScript", "HTML", "CSS", "CSS Modules"],
+    title: "個人開発で使用",
+    note: "TikTok LIVE Interactive Apps / このサイト / LABO",
+    skills: [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Node.js",
+      "Vite",
+      "WebSocket",
+      "Canvas API",
+      "Web Audio API",
+      "CSS Modules",
+      "Vitest",
+      "GitHub Actions",
+      "Vercel",
+    ],
   },
   {
-    title: "Backend",
-    skills: ["Java", "Spring Boot", "C#", "Python"],
+    title: "業務で使用",
+    note: "大規模Webシステムの新機能開発・保守",
+    skills: ["React", "Java", "Spring Boot", "AWS"],
   },
   {
-    title: "Database",
-    skills: ["MySQL", "Oracle", "SQL"],
-  },
-  {
-    title: "Infrastructure",
-    skills: ["AWS", "Vercel"],
-  },
-  {
-    title: "Development",
-    skills: ["Git", "GitHub", "pnpm"],
-  },
-  {
-    title: "Test",
-    skills: ["Vitest", "JUnit", "xUnit"],
+    title: "その他の経験",
+    note: "言語・DB・テスト・開発ツール",
+    skills: [
+      "C#",
+      "Python",
+      "HTML",
+      "CSS",
+      "MySQL",
+      "Oracle",
+      "SQL",
+      "JUnit",
+      "xUnit",
+      "Git",
+      "GitHub",
+      "pnpm",
+    ],
   },
 ];
 
-const works = [
+const projects = [
   {
-    title: "Portfolio Site",
-    body: "現在のポートフォリオサイト。Next.jsへのリビルドを進めながら、コンポーネント設計や保守性を意識して開発しています。",
+    title: "TikTok LIVE Interactive Apps",
+    href: "/projects/tiktok-live",
+    body: "TikTok LIVEの視聴者が LIKE・ギフト・コメントで参加できるゲームアプリ。企画・開発・配信まで自分で行っています。",
+    items: [
+      "Gatling Defense / Dino Runner / Sort Battle など6モード",
+      "LIVEイベントとのリアルタイム連携",
+    ],
   },
   {
     title: "LABO",
+    href: "/labo",
     body: "日常で使える便利ツールをまとめたWebアプリケーションです。",
-    items: ["誕生日計算", "日付計算", "その他ツールを順次追加予定"],
+    items: ["人生カウンター", "日数計算・日付計算", "カウントダウン"],
   },
   {
     title: "業務開発",
@@ -100,6 +140,10 @@ const works = [
       "保守・運用",
     ],
   },
+  {
+    title: "Portfolio Site",
+    body: "このサイト。Next.js で再構築し、Developer × Creator の公式サイトとして育てています。",
+  },
 ];
 
 export default function ProfilePage() {
@@ -107,41 +151,14 @@ export default function ProfilePage() {
     <main className={styles.page}>
       <section className={styles.hero}>
         <p className={styles.eyebrow}>PROFILE</p>
-        <h1 className={styles.title}>伴走型のWebエンジニア</h1>
-        <div className={styles.heroPhilosophies}>
-          <section className={styles.heroPhilosophy}>
-            <h3 className={styles.heroPhilosophyTitle}>
-              実現したいことから考える
-            </h3>
-            <p className={styles.lead}>
-              Webサイトありきではなく、
-              <br />
-              あなたが「実現したいこと」を一緒に整理して、
-              <br />
-              分かりやすく形にしていくことを大切にしています。
-            </p>
-          </section>
-          <section className={styles.heroPhilosophy}>
-            <h3 className={styles.heroPhilosophyTitle}>
-              小さく始めて、一緒に育てる
-            </h3>
-            <p className={styles.lead}>
-              日常にささやかな豊かさを届けることをテーマに、
-              <br />
-              小さく始めて、一緒に育てていけるWebサイト・Webアプリを作っています。
-            </p>
-          </section>
-          <section className={styles.heroPhilosophy}>
-            <h3 className={styles.heroPhilosophyTitle}>
-              相談しやすいパートナーであること
-            </h3>
-            <p className={styles.lead}>
-              Webに詳しくない方でも安心して相談できる、
-              <br />
-              声のかけやすいWebエンジニアを目指しています。
-            </p>
-          </section>
-        </div>
+        <h1 className={styles.title}>Developer × Creator</h1>
+        <p className={styles.heroLead}>
+          Webエンジニアとして働きながら、TikTok LIVE
+          で遊べる視聴者参加型ゲームを自分で開発し、自分で配信しています。
+        </p>
+        <p className={styles.subLead}>
+          「つくる」と「届ける」の両方を楽しみながら、Webサイト・Webアプリ開発のご相談も受け付けています。
+        </p>
       </section>
 
       <section className={styles.section} aria-labelledby="about-heading">
@@ -158,39 +175,62 @@ export default function ProfilePage() {
             <br />
             休日は個人開発を通じて新しい技術のキャッチアップやサービス制作に取り組んでいます。
           </p>
+          <p>
+            2026年からは TikTok LIVE
+            向けの視聴者参加型ゲームアプリを開発し、自分の配信で視聴者と一緒に遊んでいます。
+          </p>
           <p>趣味は音楽、ディズニー、料理、ダーツ、漫画など幅広め。</p>
           <p>「人生幅広くゆったりと」をモットーに楽しんでいます。</p>
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="values-heading">
-        <h2 id="values-heading" className={styles.sectionTitle}>
-          大切にしていること
+      <section className={styles.section} aria-labelledby="creator-heading">
+        <h2 id="creator-heading" className={styles.sectionTitle}>
+          Creator
         </h2>
-        <div className={`${styles.grid} ${styles.threeColumns}`}>
-          {values.map((value) => (
-            <article key={value.title} className={styles.card}>
-              <h3 className={styles.cardTitle}>{value.title}</h3>
-              {value.body.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </article>
-          ))}
+        <div className={styles.creator}>
+          <p>
+            TikTok LIVE では、自作のゲームを使った配信を行っています。視聴者の
+            LIKE やギフトで展開が変わるので、毎回違う展開になります。
+          </p>
+          <p>配信で見つけた課題を開発に戻し、改善を続けています。</p>
+          <div className={styles.creatorActions}>
+            <Button href={TIKTOK_PROFILE_URL} external>
+              TikTokを見る ↗
+            </Button>
+            <Button href="/projects/tiktok-live" variant="outline">
+              Case Study を読む
+            </Button>
+          </div>
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="services-heading">
-        <h2 id="services-heading" className={styles.sectionTitle}>
-          Services
+      <section className={styles.section} aria-labelledby="projects-heading">
+        <h2 id="projects-heading" className={styles.sectionTitle}>
+          Projects
         </h2>
-        <div className={styles.card}>
-          <ul className={styles.chipList}>
-            {services.map((service) => (
-              <li key={service} className={styles.chip}>
-                {service}
-              </li>
-            ))}
-          </ul>
+        <div className={`${styles.grid} ${styles.twoColumns}`}>
+          {projects.map((project) => (
+            <article key={project.title} className={styles.card}>
+              <h3 className={styles.cardTitle}>
+                {project.href ? (
+                  <Link href={project.href} className={styles.cardTitleLink}>
+                    {project.title} →
+                  </Link>
+                ) : (
+                  project.title
+                )}
+              </h3>
+              <p>{project.body}</p>
+              {project.items && (
+                <ul className={styles.list}>
+                  {project.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              )}
+            </article>
+          ))}
         </div>
       </section>
 
@@ -206,6 +246,7 @@ export default function ProfilePage() {
           {skillGroups.map((group) => (
             <article key={group.title} className={styles.card}>
               <h3 className={styles.cardTitle}>{group.title}</h3>
+              <p className={styles.cardNote}>{group.note}</p>
               <ul className={styles.chipList}>
                 {group.skills.map((skill) => (
                   <li key={skill} className={styles.chip}>
@@ -234,24 +275,43 @@ export default function ProfilePage() {
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="works-heading">
-        <h2 id="works-heading" className={styles.sectionTitle}>
-          Works
+      <section className={styles.section} aria-labelledby="services-heading">
+        <h2 id="services-heading" className={styles.sectionTitle}>
+          Services
         </h2>
-        <div className={`${styles.grid} ${styles.twoColumns}`}>
-          {works.map((work) => (
-            <article key={work.title} className={styles.card}>
-              <h3 className={styles.cardTitle}>{work.title}</h3>
-              <p>{work.body}</p>
-              {work.items && (
-                <ul className={styles.list}>
-                  {work.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              )}
+        <p className={styles.sectionLead}>
+          Webサイト制作・Webアプリ開発のご相談も受け付けています。伴走型のWebエンジニアとして、次のことを大切にしています。
+        </p>
+        <div className={styles.philosophies}>
+          {philosophies.map((philosophy) => (
+            <section key={philosophy.title} className={styles.philosophy}>
+              <h3 className={styles.philosophyTitle}>{philosophy.title}</h3>
+              <p className={styles.philosophyBody}>{philosophy.body}</p>
+            </section>
+          ))}
+        </div>
+
+        <h3 className={styles.subTitle}>進め方</h3>
+        <div className={`${styles.grid} ${styles.threeColumns}`}>
+          {values.map((value) => (
+            <article key={value.title} className={styles.card}>
+              <h4 className={styles.cardTitle}>{value.title}</h4>
+              {value.body.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </article>
           ))}
+        </div>
+
+        <h3 className={styles.subTitle}>対応できること</h3>
+        <div className={styles.card}>
+          <ul className={styles.chipList}>
+            {services.map((service) => (
+              <li key={service} className={styles.chip}>
+                {service}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -261,7 +321,11 @@ export default function ProfilePage() {
         </h2>
         <div className={styles.contact}>
           <p>
-            Web制作やWebアプリ開発について、「こんなこと相談しても大丈夫かな？」という内容でもお気軽にご相談ください。
+            TikTok LIVE
+            でのコラボ・配信企画のご相談、Web制作やWebアプリ開発のご相談を受け付けています。
+          </p>
+          <p>
+            「こんなこと相談しても大丈夫かな？」という内容でもお気軽にどうぞ。
           </p>
           <p>
             「自分でWebサイトを作ってみたい！

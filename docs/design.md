@@ -52,6 +52,8 @@ project-root/
 
 ```txt
 /       トップページ
+/projects プロジェクト一覧ページ
+/projects/tiktok-live TikTok LIVE Case Study ページ
 /profile プロフィールページ
 /labo   labo機能ページ
 /labo/date-addition 日付計算ページ

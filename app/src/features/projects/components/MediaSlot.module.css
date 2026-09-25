@@ -1,0 +1,59 @@
+.slot {
+  position: relative;
+  overflow: hidden;
+  /* TikTok LIVE の配信画面に合わせて縦長 9:16 */
+  aspect-ratio: 9 / 16;
+  border-radius: var(--radius-lg);
+  background: var(--color-foreground);
+}
+
+.video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 実動画が用意されるまでの仮表示 */
+.placeholder {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-xs);
+  border: 1px solid color-mix(in srgb, var(--color-primary-soft) 30%, transparent);
+  background-color: var(--color-foreground);
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-primary-soft) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-primary-soft) 10%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+  padding: var(--space-md);
+  text-align: center;
+}
+
+.placeholderBadge {
+  border: 1px solid color-mix(in srgb, var(--color-primary-soft) 60%, transparent);
+  border-radius: var(--radius-pill);
+  padding: var(--space-2xs) var(--space-sm);
+  color: var(--color-primary-soft);
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+.placeholderLabel {
+  color: var(--color-background);
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+  font-size: clamp(1rem, 3vw, 1.375rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.placeholderNote {
+  color: color-mix(in srgb, var(--color-background) 55%, transparent);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
